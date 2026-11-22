@@ -6,6 +6,8 @@
 build/
 libs/
 dist/
+wix/**/obj/
+wix/**/bin/
 Release/
 *.log
 *.ini

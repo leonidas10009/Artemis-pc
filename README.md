@@ -55,18 +55,22 @@ Este es un fork no oficial. No está afiliado a Moonlight Stream, LizardByte ni 
 
 ## Instalación
 
-La versión portable se publica en
+La versión portable y el instalador se publican en
 [GitHub Releases](https://github.com/leonidas10009/Artemis-pc/releases).
 
-Paquete generado localmente:
+### Instalador (recomendado)
 
-| Archivo | Contenido |
-|---|---|
-| `Artemis-1.0.0-win64.zip` | Cliente portable para Windows 10/11 x64 |
+1. Descarga `ArtemisSetup-1.0.0-win64.exe`.
+2. Ejecútalo y sigue el asistente.
+3. Se instala en `Program Files\Artemis 2026` y crea acceso directo.
+4. Desinstala desde **Configuración → Aplicaciones**.
 
-El SHA-256 se publica junto a la release en GitHub.
+> El instalador no está firmado con un certificado comercial. Windows SmartScreen
+> puede pedir confirmación la primera vez.
 
-1. Descarga el ZIP `Artemis-1.0.0-win64.zip`.
+### Versión portable
+
+1. Descarga `Artemis-1.0.0-win64.zip`.
 2. Extrae en una carpeta propia.
 3. Ejecuta `Artemis.exe`.
 4. Añade tu PC Apollo por descubrimiento automático o manualmente.

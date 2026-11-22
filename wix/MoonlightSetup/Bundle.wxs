@@ -21,7 +21,7 @@
           IconSourceFile="..\..\app\artemis.ico">
 
     <bal:Condition Message="This version of Artemis requires Windows 10 or later." Condition="VersionNT &gt;= v10.0" />
-    <bal:Condition Message="This version of Artemis requires a 64-bit version of Windows." Condition="NativeMachine &lt;&gt; 332" />
+    <bal:Condition Message="This version of Artemis requires 64-bit x64 Windows." Condition="VersionNT64 AND NativeMachine &lt;&gt; 43620" />
 
     <Variable Name="InstallFolder" Type="formatted" Value="[ProgramFiles6432Folder]Artemis 2026" />
 
@@ -56,59 +56,11 @@
     </BootstrapperApplication>
 
     <Chain>
-      <ExePackage Cache="remove"
-                  PerMachine="yes"
-                  Permanent="yes"
-                  Vital="yes"
-                  InstallCondition="(VersionNT64 AND NOT NativeMachine) OR (NativeMachine = 34404)"
-                  DetectCondition="VCREDIST_14_x64 &gt;= v$(var.VCREDIST_VER)"
-                  InstallArguments="/install /quiet /norestart">
-
-        <ExePackagePayload Description="Microsoft Visual C++ 2015-2022 Redistributable - x64"
-                           ProductName="Microsoft Visual C++ 2015-2022 Redistributable - x64"
-                           Size="$(var.VCREDIST_X64_SIZE)"
-                           Version="$(var.VCREDIST_VER)"
-                           Hash="$(var.VCREDIST_X64_SHA512)"
-                           Name="VC_redist.x64.exe"
-                           DownloadUrl="$(var.VCREDIST_X64_URL)" />
-
-        <!-- Newer version installed is fine -->
-        <ExitCode Value="1638" Behavior="success" />
-      </ExePackage>
-
-      <ExePackage Cache="remove"
-                  PerMachine="yes"
-                  Permanent="yes"
-                  Vital="yes"
-                  InstallCondition="NativeMachine = 43620"
-                  DetectCondition="VCREDIST_14_ARM64 &gt;= v$(var.VCREDIST_VER)"
-                  InstallArguments="/install /quiet /norestart">
-
-        <ExePackagePayload Description="Microsoft Visual C++ 2015-2022 Redistributable - ARM64"
-                           ProductName="Microsoft Visual C++ 2015-2022 Redistributable - ARM64"
-                           Size="$(var.VCREDIST_ARM64_SIZE)"
-                           Version="$(var.VCREDIST_VER)"
-                           Hash="$(var.VCREDIST_ARM64_SHA512)"
-                           Name="VC_redist.arm64.exe"
-                           DownloadUrl="$(var.VCREDIST_ARM64_URL)" />
-
-        <!-- Newer version installed is fine -->
-        <ExitCode Value="1638" Behavior="success" />
-      </ExePackage>
 
       <MsiPackage Id="Artemis_x64"
-                  SourceFile="$(env.BUILD_ROOT)\build-x64-$(env.BUILD_CONFIG)\Artemis.msi"
+                  SourceFile="$(env.BUILD_FOLDER)\Artemis.msi"
                   Name="Artemis_x64.msi"
                   InstallCondition="(VersionNT64 AND NOT NativeMachine) OR (NativeMachine = 34404)"
-                  Vital="yes">
-        <MsiProperty Name="INSTALLFOLDER" Value="[InstallFolder]" />
-        <MsiProperty Name="ADDDESKTOPSHORTCUT" Value="[AddDesktopShortcutCheckbox]" />
-      </MsiPackage>
-
-      <MsiPackage Id="Artemis_arm64"
-                  SourceFile="$(env.BUILD_ROOT)\build-arm64-$(env.BUILD_CONFIG)\Artemis.msi"
-                  Name="Artemis_arm64.msi"
-                  InstallCondition="NativeMachine = 43620"
                   Vital="yes">
         <MsiProperty Name="INSTALLFOLDER" Value="[InstallFolder]" />
         <MsiProperty Name="ADDDESKTOPSHORTCUT" Value="[AddDesktopShortcutCheckbox]" />

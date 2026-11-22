@@ -5,6 +5,7 @@
   <PropertyGroup>
     <OutputPath>$(BUILD_FOLDER)\</OutputPath>
     <IntermediateOutputPath>$(BUILD_FOLDER)\</IntermediateOutputPath>
+    <OutputName>Artemis</OutputName>
   </PropertyGroup>
   <PropertyGroup>
     <DefineConstants>DeployDir=$(DEPLOY_FOLDER);BuildDir=$(BUILD_FOLDER)</DefineConstants>

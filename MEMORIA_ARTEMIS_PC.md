@@ -31,10 +31,11 @@
 | Repositorio | `https://github.com/leonidas10009/Artemis-pc` |
 | Proyecto | `E:\ProyectoProgramacion\apolo_V2026\artemis_pc_V2026\artemis-pc-2026` |
 | Salida de compilación | `build\build-x64-release\app\release\Artemis.exe` |
+| Instalador MSI | `build\build-x64-release\Artemis.msi` |
+| Instalador EXE | `dist\installer\ArtemisSetup.exe` |
 | Distribución portable | `dist\ArtemisPortable` |
-| Paquete de usuario | `dist\ArtemisPortable\Artemis-1.0.0-win64.zip` |
-| Paquete de release | `E:\ProyectoProgramacion\apolo_V2026\artemis_pc_V2026\Release\Artemis-1.0.0-win64.zip` |
-| SHA-256 | Se publica junto a la release en GitHub |
+| Paquete portable | `Release\Artemis-1.0.0-win64.zip` |
+| Paquete instalador | `Release\ArtemisSetup-1.0.0-win64.exe` |
 | Config portable | `dist\ArtemisPortable\Artemis 2026 Project\Artemis.ini` |
 | Host Apollo | `E:\ProyectoProgramacion\apolo_V2026\_update\Release` |
 
@@ -307,6 +308,32 @@ Copiar también:
 - DLL del runtime VC++ (`msvcp140.dll`, `vcruntime140.dll`, `vcruntime140_1.dll`)
 - `portable.dat` (modo portable)
 
+### 7.4 Instalador
+
+Requiere WiX Toolset 7 (se restaura automáticamente por NuGet al usar MSBuild).
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy-artemis.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\build-installer.ps1
+```
+
+Salidas:
+
+- `build\build-x64-release\Artemis.msi`
+- `dist\installer\ArtemisSetup.exe`
+- `Release\ArtemisSetup-<versión>-win64.exe`
+
+El bootstrapper es x64, instala en `Program Files\Artemis 2026`, crea accesos
+directos y permite desinstalar. No incluye el VC++ redistributable porque el MSI
+ya lleva las DLL del runtime.
+
+### 7.5 CI
+
+`.github/workflows/windows.yml` compila en `windows-2025` con Qt 6.11.3 y MSVC,
+genera el portable y el instalador, y los sube como artefactos. En tags `v*`
+también crea una release de GitHub. No se ejecuta en cada push normal, solo
+manual o por tag, para no generar correos de fallos.
+
 ---
 
 ## 8. Estado y pendientes
@@ -316,7 +343,7 @@ Copiar también:
 - Rebranding completo.
 - Temas Apollo (22) y selector persistente.
 - Sidebar y barra de estado.
-- Búsqueda de PCs/apps.
+- Búsqueda de PCs/apps en los modelos; barra visible retirada por diseño.
 - Geometría de ventana.
 - Comandos de energía Apollo.
 - Pantalla virtual.
@@ -325,20 +352,20 @@ Copiar también:
 - Captura automática de entrada.
 - Iconos claros/oscuras.
 - README y esta memoria.
-- Paquete portable `Artemis-1.0.0-win64.zip` con hash SHA-256.
+- Paquete portable `Artemis-1.0.0-win64.zip`.
+- Instalador `ArtemisSetup-1.0.0-win64.exe` (MSI + bootstrapper WiX).
 - Traducciones al español de las cadenas nuevas.
+- CI propia de Windows (Qt 6.11.3 + MSVC + WiX).
 
 ### Pendiente
 
-- Publicar la release en GitHub (`Artemis-pc`).
-- Probar el instalador WiX (`wix\Moonlight.sln`) y renombrar la carpeta interna si se desea.
-- Traducir al español las cadenas nuevas de C++ (las de QML ya están).
+- Firmar el instalador con un certificado comercial (opcional, evita SmartScreen).
+- Publicar la release con el instalador además del portable.
 - Verificar el menú de temas con navegación completa por teclado/gamepad.
 - Añadir capturas reales al README.
 - Probar energía, portapapeles y pantalla virtual end-to-end con Apollo.
 - Revisar el aviso `ToolTip attached property must be attached to an object deriving from Item`
   (preexistente, no bloqueante).
-- Silenciar el log 404 del actualizador mientras no haya releases.
 
 ---
 

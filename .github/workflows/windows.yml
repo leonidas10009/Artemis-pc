@@ -67,16 +67,24 @@ jobs:
         shell: pwsh
         run: ./scripts/deploy-artemis.ps1 -Root "${{ github.workspace }}" -QtRoot "C:\Qt\6.11.3\msvc2022_64" -BuildDir "build\ci"
 
+      - name: Build installer EXE
+        shell: pwsh
+        run: ./scripts/build-installer.ps1 -Root "${{ github.workspace }}" -BuildDir "build\ci"
+
       - name: Upload portable ZIP
         uses: actions/upload-artifact@v4
         with:
           name: Artemis-win64
-          path: Release/*.zip
+          path: |
+            Release/*.zip
+            Release/*.exe
           if-no-files-found: error
 
       - name: Publish GitHub release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          files: Release/*.zip
+          files: |
+            Release/*.zip
+            Release/*.exe
           generate_release_notes: true
