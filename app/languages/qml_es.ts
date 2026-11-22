@@ -5,7 +5,7 @@
         <message>
             <location filename="../gui/AppView.qml" line="16" />
             <source> app</source>
-            <translation> aplicaci?n</translation>
+            <translation> aplicación</translation>
         </message>
         <message>
             <location filename="../gui/AppView.qml" line="16" />
@@ -60,7 +60,7 @@
         </message>
         <message>
             <source>No apps match '%1'</source>
-            <translation type="vanished">Ninguna aplicaci?n coincide con '%1'</translation>
+            <translation>Ninguna aplicación coincide con '%1'</translation>
         </message>
         <message>
             <location filename="../gui/AppView.qml" line="417" />
@@ -119,7 +119,7 @@
         <message>
             <location filename="../gui/CliStartStreamSegue.qml" line="78" />
             <source>Are you sure you want to quit %1? Any unsaved progress will be lost.</source>
-            <translation>Seguro que quieres salir de %1? Se perderá cualquier progreso no guardado.</translation>
+            <translation>¿Estás seguro de que quieres abandonar %1? Cualquier progreso no guardado se perderá.</translation>
         </message>
     </context>
     <context>
@@ -256,11 +256,11 @@
         <message>
             <location filename="../gui/PcView.qml" line="83" />
             <source>This PC's Internet connection is blocking Artemis. Streaming over the Internet may not work while connected to this network.</source>
-            <translation>La conexi?n a Internet de este PC est? bloqueando Artemis. La transmisi?n por Internet puede no funcionar mientras est?s conectado a esta red.</translation>
+            <translation>La conexión a Internet de este PC está bloqueando Artemis. La transmisión por Internet puede no funcionar mientras estés conectado a esta red.</translation>
         </message>
         <message>
             <source>No PCs match '%1'</source>
-            <translation type="vanished">Ning?n PC coincide con '%1'</translation>
+            <translation>Ningún PC coincide con '%1'</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="212" />
@@ -270,7 +270,7 @@
         <message>
             <location filename="../gui/PcView.qml" line="230" />
             <source>1 app</source>
-            <translation>1 aplicaci?n</translation>
+            <translation>1 aplicación</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="230" />
@@ -315,17 +315,17 @@
         <message>
             <location filename="../gui/PcView.qml" line="405" />
             <source>If your host PC is running Apollo, open its web UI to enter the PIN.</source>
-            <translation>Si tu PC anfitri?n ejecuta Apollo, abre su interfaz web para introducir el PIN.</translation>
+            <translation>Si tu PC anfitrión ejecuta Apollo, abre su interfaz web para introducir el PIN.</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="431" />
             <source>Artemis is testing your network connection to determine if any required ports are blocked.</source>
-            <translation>Artemis est? probando tu conexi?n de red para determinar si alg?n puerto necesario est? bloqueado.</translation>
+            <translation>Artemis está probando tu conexión de red para determinar si algún puerto necesario está bloqueado.</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="438" />
             <source>The network test could not be performed because none of Artemis's connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
-            <translation>No se pudo realizar la prueba de red porque no se pudo acceder a ninguno de los servidores de prueba de conexi?n de Artemis desde este PC. Comprueba tu conexi?n a Internet o int?ntalo de nuevo m?s tarde.</translation>
+            <translation>No se pudo realizar la prueba de red porque no se pudo acceder a ninguno de los servidores de prueba de conexión de Artemis desde este PC. Comprueba tu conexión a Internet o inténtalo de nuevo más tarde.</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="442" />
@@ -335,32 +335,32 @@
         <message>
             <location filename="../gui/PcView.qml" line="442" />
             <source>Make sure Apollo is running and reachable on your gaming PC.</source>
-            <translation>Aseg?rate de que Apollo se est? ejecutando y es accesible en tu PC de juegos.</translation>
+            <translation>Asegúrate de que Apollo se está ejecutando y es accesible en tu PC de juegos.</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="446" />
             <source>Your PC's current network connection seems to be blocking Artemis. Streaming over the Internet may not work while connected to this network.</source>
-            <translation>La conexi?n de red actual de tu PC parece estar bloqueando Artemis. La transmisi?n por Internet puede no funcionar mientras est?s conectado a esta red.</translation>
+            <translation>La conexión de red actual de tu PC parece estar bloqueando Artemis. La transmisión por Internet puede no funcionar mientras estés conectado a esta red.</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="517" />
             <source>Send '%1' to the host PC?</source>
-            <translation>?Enviar '%1' al PC anfitri?n?</translation>
+            <translation>¿Enviar '%1' al PC anfitrión?</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="518" />
             <source>Are you sure you want to run '%1' on the host PC?</source>
-            <translation>?Seguro que quieres ejecutar '%1' en el PC anfitri?n?</translation>
+            <translation>¿Seguro que quieres ejecutar '%1' en el PC anfitrión?</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="535" />
             <source>Apollo has not granted mouse and keyboard permissions to this client.</source>
-            <translation>Apollo no ha concedido permisos de rat?n y teclado a este cliente.</translation>
+            <translation>Apollo no ha concedido permisos de ratón y teclado a este cliente.</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="536" />
             <source>Open Apollo's web UI, go to Clients, select this device and enable Mouse and Keyboard under Input permissions. The change applies to the next stream.</source>
-            <translation>Abre la interfaz web de Apollo, entra en Clients, selecciona este dispositivo y activa Mouse y Keyboard en los permisos de entrada. El cambio se aplica en la siguiente transmisi?n.</translation>
+            <translation>Abre la interfaz web de Apollo, entra en Clients, selecciona este dispositivo y activa Mouse y Keyboard en los permisos de entrada. El cambio se aplica en la siguiente transmisión.</translation>
         </message>
         <message>
             <source>The version of GeForce Experience on %1 is not supported by this build of Moonlight. You must update Moonlight to stream from %1.</source>
@@ -416,7 +416,7 @@
         <message>
             <location filename="../gui/PcView.qml" line="332" />
             <source>The version of GeForce Experience on %1 is not supported by this build of Artemis. You must update Artemis to stream from %1.</source>
-            <translation>La versi?n de GeForce Experience en %1 no es compatible con esta compilaci?n de Artemis. Debes actualizar Artemis para transmitir desde %1.</translation>
+            <translation>La versión de GeForce Experience en %1 no es compatible con esta compilación de Artemis. Debes actualizar Artemis para transmitir desde %1.</translation>
         </message>
         <message>
             <location filename="../gui/PcView.qml" line="404" />
@@ -1147,7 +1147,7 @@
         <message>
             <location filename="../gui/SettingsView.qml" line="967" />
             <source>Mutes Artemis's audio when you Alt+Tab out of the stream or click on a different window.</source>
-            <translation>Silencia el audio de Artemis cuando cambias con Alt+Tab fuera de la transmisi?n o haces clic en otra ventana.</translation>
+            <translation>Silencia el audio de Artemis cuando cambias con Alt+Tab fuera de la transmisión o haces clic en otra ventana.</translation>
         </message>
         <message>
             <location filename="../gui/SettingsView.qml" line="997" />
@@ -1167,7 +1167,7 @@
         <message>
             <location filename="../gui/SettingsView.qml" line="1023" />
             <source>Apollo will create a temporary display that matches the streaming resolution and refresh rate. Requires Apollo with the SudoVDA driver installed. Ignored by other hosts.</source>
-            <translation>Apollo crear? una pantalla temporal que coincide con la resoluci?n y frecuencia de la transmisi?n. Requiere Apollo con el controlador SudoVDA instalado. Los dem?s hosts lo ignoran.</translation>
+            <translation>Apollo creará una pantalla temporal que coincide con la resolución y frecuencia de la transmisión. Requiere Apollo con el controlador SudoVDA instalado. Los demás hosts lo ignoran.</translation>
         </message>
         <message>
             <location filename="../gui/SettingsView.qml" line="1029" />
@@ -1177,7 +1177,7 @@
         <message>
             <location filename="../gui/SettingsView.qml" line="1039" />
             <source>While streaming, copy text between this PC and the Apollo host automatically. Requires Apollo and the clipboard permission for this client.</source>
-            <translation>Mientras transmites, copia texto entre este PC y el host Apollo autom?ticamente. Requiere Apollo y el permiso de portapapeles para este cliente.</translation>
+            <translation>Mientras transmites, copia texto entre este PC y el host Apollo automáticamente. Requiere Apollo y el permiso de portapapeles para este cliente.</translation>
         </message>
         <message>
             <location filename="../gui/SettingsView.qml" line="1058" />
@@ -1192,22 +1192,22 @@
         <message>
             <location filename="../gui/SettingsView.qml" line="1400" />
             <source>Capture keyboard and mouse automatically when the stream starts</source>
-            <translation>Capturar teclado y rat?n autom?ticamente al iniciar la transmisi?n</translation>
+            <translation>Capturar teclado y ratón automáticamente al iniciar la transmisión</translation>
         </message>
         <message>
             <location filename="../gui/SettingsView.qml" line="1410" />
             <source>Press Ctrl+Alt+Shift+Z while streaming to release or recapture the mouse and keyboard. Disable this if you prefer to click the stream window before sending input.</source>
-            <translation>Pulsa Ctrl+Alt+Shift+Z durante la transmisi?n para liberar o volver a capturar el rat?n y el teclado. Desact?valo si prefieres hacer clic en la ventana de transmisi?n antes de enviar entrada.</translation>
+            <translation>Pulsa Ctrl+Alt+Shift+Z durante la transmisión para liberar o volver a capturar el ratón y el teclado. Desactívalo si prefieres hacer clic en la ventana de transmisión antes de enviar entrada.</translation>
         </message>
         <message>
             <location filename="../gui/SettingsView.qml" line="1448" />
             <source>NOTE: Certain keyboard shortcuts like Ctrl+Alt+Del on Windows cannot be intercepted by any application, including Artemis.</source>
-            <translation>NOTA: Algunos atajos como Ctrl+Alt+Del en Windows no pueden ser interceptados por ninguna aplicaci?n, incluida Artemis.</translation>
+            <translation>NOTA: Algunos atajos como Ctrl+Alt+Del en Windows no pueden ser interceptados por ninguna aplicación, incluida Artemis.</translation>
         </message>
         <message>
             <location filename="../gui/SettingsView.qml" line="1609" />
             <source>Process gamepad input when Artemis is in the background</source>
-            <translation>Procesar la entrada del mando cuando Artemis est? en segundo plano</translation>
+            <translation>Procesar la entrada del mando cuando Artemis está en segundo plano</translation>
         </message>
         <message>
             <location filename="../gui/SettingsView.qml" line="1620" />
@@ -1313,7 +1313,7 @@
         <message>
             <location filename="../gui/StreamSegue.qml" line="65" />
             <source>This PC's Internet connection is blocking Artemis. Streaming over the Internet may not work while connected to this network.</source>
-            <translation>La conexi?n a Internet de este PC est? bloqueando Artemis. La transmisi?n por Internet puede no funcionar mientras est?s conectado a esta red.</translation>
+            <translation>La conexión a Internet de este PC está bloqueando Artemis. La transmisión por Internet puede no funcionar mientras estés conectado a esta red.</translation>
         </message>
         <message>
             <source>This PC's Internet connection is blocking Moonlight. Streaming over the Internet may not work while connected to this network.</source>
@@ -1412,12 +1412,12 @@
         <message>
             <location filename="../gui/main.qml" line="249" />
             <source>Add PC</source>
-            <translation>A?adir PC</translation>
+            <translation>Añadir PC</translation>
         </message>
         <message>
             <location filename="../gui/main.qml" line="259" />
             <source>Update: %1</source>
-            <translation>Actualizaci?n: %1</translation>
+            <translation>Actualización: %1</translation>
         </message>
         <message>
             <location filename="../gui/main.qml" line="484" />
@@ -1438,7 +1438,7 @@
         </message>
         <message>
             <source>Update available for Artemis: Version %1</source>
-            <translation type="vanished">Actualizaci?n disponible de Artemis: versi?n %1</translation>
+            <translation>Actualización disponible de Artemis: versión %1</translation>
         </message>
         <message>
             <location filename="../gui/main.qml" line="477" />
@@ -1448,12 +1448,12 @@
         </message>
         <message>
             <source>Enter: open · Right click: menu · Ctrl+F: search · Ctrl+,: settings</source>
-            <translation type="vanished">Enter: abrir · Clic derecho: men? · Ctrl+F: buscar · Ctrl+,: ajustes</translation>
+            <translation>Enter: abrir · Clic derecho: menú · Ctrl+F: buscar · Ctrl+,: ajustes</translation>
         </message>
         <message>
             <location filename="../gui/main.qml" line="557" />
             <source>Enter: open · Right click: menu · Ctrl+Shift+T: themes · Ctrl+,: settings</source>
-            <translation>Enter: abrir · Clic derecho: men? · Ctrl+Shift+T: temas · Ctrl+,: ajustes</translation>
+            <translation>Enter: abrir · Clic derecho: menú · Ctrl+Shift+T: temas · Ctrl+,: ajustes</translation>
         </message>
         <message>
             <location filename="../gui/main.qml" line="600" />
@@ -1473,7 +1473,7 @@
         <message>
             <location filename="../gui/main.qml" line="742" />
             <source>No functioning hardware accelerated video decoder was detected by Artemis. Your streaming performance may be severely degraded in this configuration.</source>
-            <translation>Artemis no ha detectado ning?n decodificador de v?deo con aceleraci?n por hardware que funcione. El rendimiento de la transmisi?n puede verse gravemente degradado en esta configuraci?n.</translation>
+            <translation>Artemis no ha detectado ningún decodificador de vídeo con aceleración por hardware que funcione. El rendimiento de la transmisión puede verse gravemente degradado en esta configuración.</translation>
         </message>
         <message>
             <location filename="../gui/main.qml" line="744" />
@@ -1488,12 +1488,12 @@
         <message>
             <location filename="../gui/main.qml" line="759" />
             <source>This version of Artemis isn't optimized for your PC. Please download the '%1' version of Artemis for the best streaming performance.</source>
-            <translation>Esta versi?n de Artemis no est? optimizada para tu PC. Descarga la versi?n '%1' de Artemis para obtener el mejor rendimiento de transmisi?n.</translation>
+            <translation>Esta versión de Artemis no está optimizada para tu PC. Descarga la versión '%1' de Artemis para obtener el mejor rendimiento de transmisión.</translation>
         </message>
         <message>
             <location filename="../gui/main.qml" line="768" />
             <source>Artemis detected gamepads without a mapping:</source>
-            <translation>Artemis ha detectado mandos sin asignaci?n:</translation>
+            <translation>Artemis ha detectado mandos sin asignación:</translation>
         </message>
         <message>
             <location filename="../gui/main.qml" line="770" />
