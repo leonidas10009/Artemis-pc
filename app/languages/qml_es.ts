@@ -3,74 +3,72 @@
     <context>
         <name>AppView</name>
         <message>
-            <location filename="../gui/AppView.qml" line="17" />
+            <location filename="../gui/AppView.qml" line="16" />
             <source> app</source>
             <translation> aplicaci?n</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="17" />
+            <location filename="../gui/AppView.qml" line="16" />
             <source> apps</source>
             <translation> aplicaciones</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="18" />
             <source> · filter: %1</source>
-            <translation> · filtro: %1</translation>
+            <translation type="vanished"> · filtro: %1</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="186" />
-            <location filename="../gui/AppView.qml" line="350" />
+            <location filename="../gui/AppView.qml" line="206" />
+            <location filename="../gui/AppView.qml" line="375" />
             <source>Resume Game</source>
             <translation>Reanudar juego</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="212" />
-            <location filename="../gui/AppView.qml" line="354" />
+            <location filename="../gui/AppView.qml" line="228" />
+            <location filename="../gui/AppView.qml" line="379" />
             <source>Quit Game</source>
             <translation>Salir del juego</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="350" />
+            <location filename="../gui/AppView.qml" line="375" />
             <source>Launch Game</source>
             <translation>Abrir juego</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="361" />
+            <location filename="../gui/AppView.qml" line="386" />
             <source>Direct Launch</source>
             <translation>Lanzamiento directo</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="365" />
+            <location filename="../gui/AppView.qml" line="390" />
             <source>Launch this app immediately when the host is selected, bypassing the app selection grid.</source>
             <translation>Inicie esta aplicación inmediatamente cuando se seleccione el host, sin pasar por la cuadrícula de selección de aplicaciones.</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="373" />
+            <location filename="../gui/AppView.qml" line="398" />
             <source>Hide Game</source>
             <translation>Ocultar juego</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="377" />
+            <location filename="../gui/AppView.qml" line="402" />
             <source>Hide this game from the app grid. To access hidden games, right-click on the host and choose %1.</source>
             <translation>Oculta este juego de la cuadrícula de aplicaciones. Para acceder a juegos ocultos, haga clic con el botón derecho en el host y elija %1.</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="377" />
+            <location filename="../gui/AppView.qml" line="402" />
             <source>View All Apps</source>
             <translation>Ver todas las aplicaciones</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="392" />
             <source>No apps match '%1'</source>
-            <translation>Ninguna aplicaci?n coincide con '%1'</translation>
+            <translation type="vanished">Ninguna aplicaci?n coincide con '%1'</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="393" />
+            <location filename="../gui/AppView.qml" line="417" />
             <source>This computer doesn't seem to have any applications or some applications are hidden</source>
             <translation>Esta computadora no parece tener ninguna aplicación o algunas aplicaciones que están ocultas</translation>
         </message>
         <message>
-            <location filename="../gui/AppView.qml" line="406" />
+            <location filename="../gui/AppView.qml" line="430" />
             <source>Are you sure you want to quit %1? Any unsaved progress will be lost.</source>
             <translation>¿Estás seguro de que quieres abandonar %1? Cualquier progreso no guardado se perderá.</translation>
         </message>
@@ -213,12 +211,12 @@
     <context>
         <name>PcView</name>
         <message>
-            <location filename="../gui/PcView.qml" line="25" />
+            <location filename="../gui/PcView.qml" line="23" />
             <source>Computers</source>
             <translation>Equipos</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="87" />
+            <location filename="../gui/PcView.qml" line="80" />
             <source>Unable to connect to the specified PC.</source>
             <translation>No se puede conectar con el PC especificado.</translation>
         </message>
@@ -227,142 +225,140 @@
             <translation type="vanished">La conexión a Internet de este PC está bloqueando Moonlight. Es posible que la transmisión por Internet no funcione mientras esté conectado a esta red.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="93" />
+            <location filename="../gui/PcView.qml" line="86" />
             <source>Click the Help button for possible solutions.</source>
             <translation>Haga clic en el botón de ayuda para encontrar posibles soluciones.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="126" />
+            <location filename="../gui/PcView.qml" line="117" />
             <source>Automatic PC discovery is disabled. Add your PC manually.</source>
             <translation>La detección automática de PCs está desactivada. Añada su PC manualmente.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="125" />
+            <location filename="../gui/PcView.qml" line="116" />
             <source>Searching for compatible hosts on your local network...</source>
             <translation>Buscando hosts compatibles en tu red local...</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="16" />
+            <location filename="../gui/PcView.qml" line="15" />
             <source> PC</source>
-            <translation> PC</translation>
+            <translation> equipo</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="16" />
+            <location filename="../gui/PcView.qml" line="15" />
             <source> PCs</source>
-            <translation> PC</translation>
+            <translation> equipos</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="17" />
             <source> · filter: %1</source>
-            <translation> · filtro: %1</translation>
+            <translation type="vanished"> · filtro: %1</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="90" />
+            <location filename="../gui/PcView.qml" line="83" />
             <source>This PC's Internet connection is blocking Artemis. Streaming over the Internet may not work while connected to this network.</source>
             <translation>La conexi?n a Internet de este PC est? bloqueando Artemis. La transmisi?n por Internet puede no funcionar mientras est?s conectado a esta red.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="124" />
             <source>No PCs match '%1'</source>
-            <translation>Ning?n PC coincide con '%1'</translation>
+            <translation type="vanished">Ning?n PC coincide con '%1'</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="221" />
+            <location filename="../gui/PcView.qml" line="212" />
             <source>Apollo 2026</source>
             <translation>Apollo 2026</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="239" />
+            <location filename="../gui/PcView.qml" line="230" />
             <source>1 app</source>
             <translation>1 aplicaci?n</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="239" />
+            <location filename="../gui/PcView.qml" line="230" />
             <source>%1 apps</source>
             <translation>%1 aplicaciones</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="248" />
+            <location filename="../gui/PcView.qml" line="239" />
             <source>Input permissions missing</source>
             <translation>Faltan permisos de entrada</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="277" />
+            <location filename="../gui/PcView.qml" line="268" />
             <source>Wake PC</source>
             <translation>Despertar PC</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="282" />
+            <location filename="../gui/PcView.qml" line="273" />
             <source>Test Network</source>
             <translation>Prueba de red</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="307" />
+            <location filename="../gui/PcView.qml" line="298" />
             <source>Apollo input permissions...</source>
             <translation>Permisos de entrada de Apollo...</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="313" />
+            <location filename="../gui/PcView.qml" line="304" />
             <source>Rename PC</source>
             <translation>Renombrar PC</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="321" />
+            <location filename="../gui/PcView.qml" line="312" />
             <source>Delete PC</source>
             <translation>Eliminar PC</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="329" />
+            <location filename="../gui/PcView.qml" line="320" />
             <source>View Details</source>
             <translation>Ver los detalles</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="414" />
+            <location filename="../gui/PcView.qml" line="405" />
             <source>If your host PC is running Apollo, open its web UI to enter the PIN.</source>
             <translation>Si tu PC anfitri?n ejecuta Apollo, abre su interfaz web para introducir el PIN.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="440" />
+            <location filename="../gui/PcView.qml" line="431" />
             <source>Artemis is testing your network connection to determine if any required ports are blocked.</source>
             <translation>Artemis est? probando tu conexi?n de red para determinar si alg?n puerto necesario est? bloqueado.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="447" />
+            <location filename="../gui/PcView.qml" line="438" />
             <source>The network test could not be performed because none of Artemis's connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
             <translation>No se pudo realizar la prueba de red porque no se pudo acceder a ninguno de los servidores de prueba de conexi?n de Artemis desde este PC. Comprueba tu conexi?n a Internet o int?ntalo de nuevo m?s tarde.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="451" />
+            <location filename="../gui/PcView.qml" line="442" />
             <source>This network does not appear to be blocking Artemis. If you still have trouble connecting, check your PC's firewall settings.</source>
             <translation>Esta red no parece estar bloqueando Artemis. Si sigues teniendo problemas para conectarte, comprueba el firewall de tu PC.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="451" />
+            <location filename="../gui/PcView.qml" line="442" />
             <source>Make sure Apollo is running and reachable on your gaming PC.</source>
             <translation>Aseg?rate de que Apollo se est? ejecutando y es accesible en tu PC de juegos.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="455" />
+            <location filename="../gui/PcView.qml" line="446" />
             <source>Your PC's current network connection seems to be blocking Artemis. Streaming over the Internet may not work while connected to this network.</source>
             <translation>La conexi?n de red actual de tu PC parece estar bloqueando Artemis. La transmisi?n por Internet puede no funcionar mientras est?s conectado a esta red.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="526" />
+            <location filename="../gui/PcView.qml" line="517" />
             <source>Send '%1' to the host PC?</source>
             <translation>?Enviar '%1' al PC anfitri?n?</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="527" />
+            <location filename="../gui/PcView.qml" line="518" />
             <source>Are you sure you want to run '%1' on the host PC?</source>
             <translation>?Seguro que quieres ejecutar '%1' en el PC anfitri?n?</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="544" />
+            <location filename="../gui/PcView.qml" line="535" />
             <source>Apollo has not granted mouse and keyboard permissions to this client.</source>
             <translation>Apollo no ha concedido permisos de rat?n y teclado a este cliente.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="545" />
+            <location filename="../gui/PcView.qml" line="536" />
             <source>Open Apollo's web UI, go to Clients, select this device and enable Mouse and Keyboard under Input permissions. The change applies to the next stream.</source>
             <translation>Abre la interfaz web de Apollo, entra en Clients, selecciona este dispositivo y activa Mouse y Keyboard en los permisos de entrada. El cambio se aplica en la siguiente transmisi?n.</translation>
         </message>
@@ -371,7 +367,7 @@
             <translation type="vanished">La versión de GeForce Experience en %1 no es compatible con esta versión de Moonlight. Debes actualizar Moonlight para transmitir desde %1.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="440" />
+            <location filename="../gui/PcView.qml" line="431" />
             <source>This may take a few seconds…</source>
             <translation>Esto puede llevar unos segundos…</translation>
         </message>
@@ -388,7 +384,7 @@
             <translation type="vanished">La conexión de red actual de tu PC parece estar bloqueando Moonlight. Es posible que la transmisión por Internet no funcione mientras esté conectado a esta red.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="455" />
+            <location filename="../gui/PcView.qml" line="446" />
             <source>The following network ports were blocked:</source>
             <translation>Los siguientes puertos de red fueron bloqueados:</translation>
         </message>
@@ -397,33 +393,33 @@
             <translation type="vanished">La prueba de red no pudo realizarse porque ninguno de los servidores de prueba de conexión de Moonlight era accesible desde este PC. Compruebe su conexión a Internet o inténtelo de nuevo más tarde.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="263" />
+            <location filename="../gui/PcView.qml" line="254" />
             <source>PC Status: %1</source>
             <translation>Estado del PC: %1</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="263" />
+            <location filename="../gui/PcView.qml" line="254" />
             <source>Online</source>
             <translation>En línea</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="230" />
-            <location filename="../gui/PcView.qml" line="263" />
+            <location filename="../gui/PcView.qml" line="221" />
+            <location filename="../gui/PcView.qml" line="254" />
             <source>Offline</source>
             <translation>Fuera de línea</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="268" />
+            <location filename="../gui/PcView.qml" line="259" />
             <source>View All Apps</source>
             <translation>Ver todas las aplicaciones</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="341" />
+            <location filename="../gui/PcView.qml" line="332" />
             <source>The version of GeForce Experience on %1 is not supported by this build of Artemis. You must update Artemis to stream from %1.</source>
             <translation>La versi?n de GeForce Experience en %1 no es compatible con esta compilaci?n de Artemis. Debes actualizar Artemis para transmitir desde %1.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="413" />
+            <location filename="../gui/PcView.qml" line="404" />
             <source>Please enter %1 on your host PC. This dialog will close when pairing is completed.</source>
             <translation>Por favor, introduzca %1 en el host de tu PC. Este cuadro de diálogo se cerrará cuando finalice el emparejamiento.</translation>
         </message>
@@ -432,7 +428,7 @@
             <translation type="vanished">Si el host del PC está ejecutando Sunshine, navegue hasta la interfaz de usuario web de Sunshine para introducir el PIN.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="426" />
+            <location filename="../gui/PcView.qml" line="417" />
             <source>Are you sure you want to remove '%1'?</source>
             <translation>¿Estás seguro de que quieres eliminar '%1'?</translation>
         </message>
@@ -441,7 +437,7 @@
             <translation type="vanished">Moonlight está probando tu conexión de red para determinar si algún puerto necesario está bloqueado.</translation>
         </message>
         <message>
-            <location filename="../gui/PcView.qml" line="467" />
+            <location filename="../gui/PcView.qml" line="458" />
             <source>Enter the new name for this PC:</source>
             <translation>Introduzca el nombre nuevo para este PC:</translation>
         </message>
@@ -1347,37 +1343,32 @@
     <context>
         <name>main</name>
         <message>
-            <location filename="../gui/main.qml" line="217" />
-            <location filename="../gui/main.qml" line="655" />
-            <location filename="../gui/main.qml" line="672" />
+            <location filename="../gui/main.qml" line="227" />
             <source>Settings</source>
             <translation>Ajustes</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="500" />
             <source>Version %1</source>
-            <translation>Versión %1</translation>
+            <translation type="vanished">Versión %1</translation>
         </message>
         <message>
             <source>Join our community on Discord</source>
             <translation type="vanished">Únete a nuestra comunidad en Discord</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="535" />
             <source>Add PC manually</source>
-            <translation>Agregar PC manualmente</translation>
+            <translation type="vanished">Agregar PC manualmente</translation>
         </message>
         <message>
             <source>Update available for Moonlight: Version %1</source>
             <translation type="vanished">Actualización disponible para Moonlight: versión %1</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="622" />
             <source>Gamepad Mapper</source>
-            <translation>Mapeador de mandos</translation>
+            <translation type="vanished">Mapeador de mandos</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="902" />
+            <location filename="../gui/main.qml" line="750" />
             <source>Hardware acceleration doesn't work on XWayland. Continuing on XWayland may result in poor streaming performance. Try running with QT_QPA_PLATFORM=wayland or switch to X11.</source>
             <translation>La aceleración por hardware no funciona en XWayland. Continuar con XWayland puede dar lugar a un rendimiento deficiente de la transmisión. Intente ejecutar con QT_QPA_PLATFORM=wayland o cambie a X11.</translation>
         </message>
@@ -1390,8 +1381,7 @@
             <translation type="vanished">Moonlight detectó mandos sin mapeo:</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="224" />
-            <location filename="../gui/main.qml" line="599" />
+            <location filename="../gui/main.qml" line="234" />
             <source>Help</source>
             <translation>Ayuda</translation>
         </message>
@@ -1400,114 +1390,123 @@
             <translation type="vanished">Moonlight no ha detectado ningún decodificador de vídeo acelerado por hardware que funcione. El rendimiento de la transmisión puede verse gravemente degradado con esta configuración.</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="28" />
+            <location filename="../gui/main.qml" line="32" />
             <source>Artemis - %1</source>
             <translation>Artemis - %1</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="28" />
+            <location filename="../gui/main.qml" line="32" />
             <source>Artemis</source>
             <translation>Artemis</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="189" />
+            <location filename="../gui/main.qml" line="199" />
             <source>PC 2026</source>
             <translation>PC 2026</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="207" />
+            <location filename="../gui/main.qml" line="217" />
             <source>Computers</source>
             <translation>Equipos</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="239" />
-            <location filename="../gui/main.qml" line="644" />
+            <location filename="../gui/main.qml" line="249" />
+            <source>Add PC</source>
+            <translation>A?adir PC</translation>
+        </message>
+        <message>
+            <location filename="../gui/main.qml" line="259" />
+            <source>Update: %1</source>
+            <translation>Actualizaci?n: %1</translation>
+        </message>
+        <message>
+            <location filename="../gui/main.qml" line="484" />
             <source>Theme: %1</source>
             <translation>Tema: %1</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="449" />
             <source>Search...</source>
-            <translation>Buscar...</translation>
+            <translation type="vanished">Buscar...</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="471" />
             <source>Filter the current list</source>
-            <translation>Filtrar la lista actual</translation>
+            <translation type="vanished">Filtrar la lista actual</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="516" />
             <source>Artemis 2026 on GitHub</source>
-            <translation>Artemis 2026 en GitHub</translation>
+            <translation type="vanished">Artemis 2026 en GitHub</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="575" />
             <source>Update available for Artemis: Version %1</source>
-            <translation>Actualizaci?n disponible de Artemis: versi?n %1</translation>
+            <translation type="vanished">Actualizaci?n disponible de Artemis: versi?n %1</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="637" />
-            <location filename="../gui/main.qml" line="744" />
+            <location filename="../gui/main.qml" line="477" />
+            <location filename="../gui/main.qml" line="592" />
             <source>Theme</source>
             <translation>Tema</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="709" />
             <source>Enter: open · Right click: menu · Ctrl+F: search · Ctrl+,: settings</source>
-            <translation>Enter: abrir · Clic derecho: men? · Ctrl+F: buscar · Ctrl+,: ajustes</translation>
+            <translation type="vanished">Enter: abrir · Clic derecho: men? · Ctrl+F: buscar · Ctrl+,: ajustes</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="752" />
+            <location filename="../gui/main.qml" line="557" />
+            <source>Enter: open · Right click: menu · Ctrl+Shift+T: themes · Ctrl+,: settings</source>
+            <translation>Enter: abrir · Clic derecho: men? · Ctrl+Shift+T: temas · Ctrl+,: ajustes</translation>
+        </message>
+        <message>
+            <location filename="../gui/main.qml" line="600" />
             <source>Random</source>
             <translation>Aleatorio</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="770" />
+            <location filename="../gui/main.qml" line="618" />
             <source>Dark themes</source>
             <translation>Temas oscuros</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="832" />
+            <location filename="../gui/main.qml" line="680" />
             <source>Light themes</source>
             <translation>Temas claros</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="894" />
+            <location filename="../gui/main.qml" line="742" />
             <source>No functioning hardware accelerated video decoder was detected by Artemis. Your streaming performance may be severely degraded in this configuration.</source>
             <translation>Artemis no ha detectado ning?n decodificador de v?deo con aceleraci?n por hardware que funcione. El rendimiento de la transmisi?n puede verse gravemente degradado en esta configuraci?n.</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="896" />
+            <location filename="../gui/main.qml" line="744" />
             <source>Click the Help button for more information on solving this problem.</source>
             <translation>Haga clic en el botón de ayuda para obtener más información sobre cómo resolver este problema.</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="904" />
+            <location filename="../gui/main.qml" line="752" />
             <source>Click the Help button for more information.</source>
             <translation>Haga clic en el botón de ayuda para obtener más información.</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="911" />
+            <location filename="../gui/main.qml" line="759" />
             <source>This version of Artemis isn't optimized for your PC. Please download the '%1' version of Artemis for the best streaming performance.</source>
             <translation>Esta versi?n de Artemis no est? optimizada para tu PC. Descarga la versi?n '%1' de Artemis para obtener el mejor rendimiento de transmisi?n.</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="920" />
+            <location filename="../gui/main.qml" line="768" />
             <source>Artemis detected gamepads without a mapping:</source>
             <translation>Artemis ha detectado mandos sin asignaci?n:</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="922" />
+            <location filename="../gui/main.qml" line="770" />
             <source>Click the Help button for information on how to map your gamepads.</source>
             <translation>Haz clic en el botón de ayuda para obtener información sobre cómo asignar tus mandos.</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="930" />
+            <location filename="../gui/main.qml" line="778" />
             <source>Are you sure you want to quit?</source>
             <translation>¿Estás seguro de que quieres salir?</translation>
         </message>
         <message>
-            <location filename="../gui/main.qml" line="960" />
+            <location filename="../gui/main.qml" line="808" />
             <source>Enter the IP address of your host PC:</source>
             <translation>Introduzca la dirección IP del host de tu PC:</translation>
         </message>

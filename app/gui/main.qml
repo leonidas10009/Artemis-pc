@@ -19,6 +19,10 @@ ApplicationWindow {
     // a retranslate() because AppView breaks for some reason.
     property bool clearOnBack: false
 
+    property bool updateAvailable: false
+    property string updateVersion: ""
+    property string updateUrl: ""
+
     id: window
     width: 1280
     height: 800
@@ -94,6 +98,13 @@ ApplicationWindow {
             SystemProperties.unmappedGamepadsChanged.connect(hasUnmappedGamepadsChanged)
             SystemProperties.startAsyncLoad()
         }
+
+        AutoUpdateChecker.onUpdateAvailable.connect(function(version, url) {
+            window.updateAvailable = true
+            window.updateVersion = version
+            window.updateUrl = url
+        })
+        AutoUpdateChecker.start()
     }
 
     onClosing: function(close) {
@@ -152,7 +163,6 @@ ApplicationWindow {
 
         Rectangle {
             id: sidebar
-            visible: window.width >= 1100
             Layout.preferredWidth: 220
             Layout.fillHeight: true
             color: Theme.colors.surface
@@ -227,20 +237,37 @@ ApplicationWindow {
                     onClicked: Qt.openUrlExternally("https://github.com/leonidas10009/Artemis-pc")
                 }
 
+                Rectangle {
+                    Layout.fillWidth: true
+                    height: 1
+                    color: Theme.colors.border
+                    Layout.topMargin: 4
+                    Layout.bottomMargin: 4
+                }
+
+                SidebarButton {
+                    text: qsTr("Add PC")
+                    iconSourceDark: "qrc:/res/ic_add_to_queue_white_48px.svg"
+                    iconSourceLight: "qrc:/res/ic_add_to_queue_white_48px-light.svg"
+                    visible: stackView.currentItem instanceof PcView
+                    onClicked: addPcDialog.open()
+                }
+
+                SidebarButton {
+                    id: sidebarUpdateButton
+                    visible: window.updateAvailable
+                    text: qsTr("Update: %1").arg(window.updateVersion)
+                    iconSourceDark: "qrc:/res/update.svg"
+                    iconSourceLight: "qrc:/res/update-light.svg"
+                    onClicked: Qt.openUrlExternally(window.updateUrl)
+                }
+
                 Item { Layout.fillHeight: true }
 
                 Rectangle {
                     Layout.fillWidth: true
                     height: 1
                     color: Theme.colors.border
-                }
-
-                Label {
-                    text: qsTr("Theme: %1").arg(Theme.displayName(Theme.name))
-                    font.pointSize: 9
-                    color: Theme.colors.textMuted
-                    Layout.fillWidth: true
-                    elide: Label.ElideRight
                 }
 
                 Label {
@@ -291,14 +318,14 @@ ApplicationWindow {
         }
 
         Keys.onMenuPressed: {
-            settingsButton.clicked()
+            navigateTo("qrc:/gui/SettingsView.qml", SettingsView)
         }
 
         // This is a keypress we've reserved for letting the
         // SdlGamepadKeyNavigation object tell us to show settings
         // when Menu is consumed by a focused control.
         Keys.onHangupPressed: {
-            settingsButton.clicked()
+            navigateTo("qrc:/gui/SettingsView.qml", SettingsView)
         }
     }
     }
@@ -443,193 +470,6 @@ ApplicationWindow {
                 text: !titleLabel.visible ? stackView.currentItem.objectName : ""
             }
 
-            TextField {
-                id: searchField
-                Layout.preferredWidth: 240
-                placeholderText: qsTr("Search...")
-                selectByMouse: true
-                visible: stackView.currentItem &&
-                         (stackView.currentItem instanceof PcView ||
-                          stackView.currentItem instanceof AppView)
-
-                text: stackView.currentItem && stackView.currentItem.searchText !== undefined
-                      ? stackView.currentItem.searchText : ""
-                onTextChanged: {
-                    if (stackView.currentItem && stackView.currentItem.searchText !== undefined) {
-                        stackView.currentItem.searchText = text
-                    }
-                }
-
-                Keys.onEscapePressed: {
-                    text = ""
-                    stackView.currentItem.forceActiveFocus(Qt.TabFocus)
-                }
-
-                ToolTip.delay: 1000
-                ToolTip.timeout: 3000
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Filter the current list") + (searchShortcut.nativeText ? (" ("+searchShortcut.nativeText+")") : "")
-
-                Shortcut {
-                    id: searchShortcut
-                    sequence: "Ctrl+F"
-                    onActivated: {
-                        searchField.forceActiveFocus()
-                        searchField.selectAll()
-                    }
-                }
-            }
-
-            Shortcut {
-                sequence: "Ctrl+T"
-                onActivated: {
-                    var keys = Theme.darkThemeKeys.concat(Theme.lightThemeKeys)
-                    var index = keys.indexOf(Theme.name)
-                    Theme.setTheme(keys[(index + 1) % keys.length])
-                }
-            }
-
-            Shortcut {
-                sequence: "Ctrl+Shift+T"
-                onActivated: themeMenu.open()
-            }
-
-            Label {
-                id: versionLabel
-                visible: stackView.currentItem instanceof SettingsView
-                text: qsTr("Version %1").arg(SystemProperties.versionString)
-                font.pointSize: 12
-                horizontalAlignment: Qt.AlignRight
-                verticalAlignment: Qt.AlignVCenter
-            }
-
-            NavigableToolButton {
-                id: discordButton
-                visible: SystemProperties.hasBrowser &&
-                         stackView.currentItem instanceof SettingsView
-
-                iconSource: "qrc:/res/github.svg"
-
-                ToolTip.delay: 1000
-                ToolTip.timeout: 3000
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Artemis 2026 on GitHub")
-
-                // TODO need to make sure browser is brought to foreground.
-                onClicked: Qt.openUrlExternally("https://github.com/leonidas10009/Artemis-pc");
-
-                Keys.onDownPressed: {
-                    stackView.currentItem.forceActiveFocus(Qt.TabFocus)
-                }
-            }
-
-            NavigableToolButton {
-                id: addPcButton
-                visible: stackView.currentItem instanceof PcView
-
-                iconSource:  "qrc:/res/ic_add_to_queue_white_48px.svg"
-
-                ToolTip.delay: 1000
-                ToolTip.timeout: 3000
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Add PC manually") + (newPcShortcut.nativeText ? (" ("+newPcShortcut.nativeText+")") : "")
-
-                Shortcut {
-                    id: newPcShortcut
-                    sequence: StandardKey.New
-                    onActivated: addPcButton.clicked()
-                }
-
-                onClicked: {
-                    addPcDialog.open()
-                }
-
-                Keys.onDownPressed: {
-                    stackView.currentItem.forceActiveFocus(Qt.TabFocus)
-                }
-            }
-
-            NavigableToolButton {
-                property string browserUrl: ""
-
-                id: updateButton
-
-                iconSource: "qrc:/res/update.svg"
-
-                ToolTip.delay: 1000
-                ToolTip.timeout: 3000
-                ToolTip.visible: hovered || visible
-
-                // Invisible until we get a callback notifying us that
-                // an update is available
-                visible: false
-
-                onClicked: {
-                    if (SystemProperties.hasBrowser) {
-                        Qt.openUrlExternally(browserUrl);
-                    }
-                }
-
-                function updateAvailable(version, url)
-                {
-                    ToolTip.text = qsTr("Update available for Artemis: Version %1").arg(version)
-                    updateButton.browserUrl = url
-                    updateButton.visible = true
-                }
-
-                Component.onCompleted: {
-                    AutoUpdateChecker.onUpdateAvailable.connect(updateAvailable)
-                    AutoUpdateChecker.start()
-                }
-
-                Keys.onDownPressed: {
-                    stackView.currentItem.forceActiveFocus(Qt.TabFocus)
-                }
-            }
-
-            NavigableToolButton {
-                id: helpButton
-                visible: SystemProperties.hasBrowser
-
-                iconSource: "qrc:/res/question_mark.svg"
-
-                ToolTip.delay: 1000
-                ToolTip.timeout: 3000
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Help") + (helpShortcut.nativeText ? (" ("+helpShortcut.nativeText+")") : "")
-
-                Shortcut {
-                    id: helpShortcut
-                    sequence: StandardKey.HelpContents
-                    onActivated: helpButton.clicked()
-                }
-
-                // TODO need to make sure browser is brought to foreground.
-                onClicked: Qt.openUrlExternally("https://github.com/leonidas10009/Artemis-pc");
-
-                Keys.onDownPressed: {
-                    stackView.currentItem.forceActiveFocus(Qt.TabFocus)
-                }
-            }
-
-            NavigableToolButton {
-                // TODO: Implement gamepad mapping then unhide this button
-                visible: false
-
-                ToolTip.delay: 1000
-                ToolTip.timeout: 3000
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Gamepad Mapper")
-
-                iconSource: "qrc:/res/ic_videogame_asset_white_48px.svg"
-
-                onClicked: navigateTo("qrc:/gui/GamepadMapper.qml", GamepadMapper)
-
-                Keys.onDownPressed: {
-                    stackView.currentItem.forceActiveFocus(Qt.TabFocus)
-                }
-            }
-
             NavigableToolButton {
                 id: themeButton
 
@@ -647,31 +487,39 @@ ApplicationWindow {
                     stackView.currentItem.forceActiveFocus(Qt.TabFocus)
                 }
             }
-
-            NavigableToolButton {
-                id: settingsButton
-
-                iconSource:  "qrc:/res/settings.svg"
-                Accessible.name: qsTr("Settings")
-
-                onClicked: navigateTo("qrc:/gui/SettingsView.qml", SettingsView)
-
-                Keys.onDownPressed: {
-                    stackView.currentItem.forceActiveFocus(Qt.TabFocus)
-                }
-
-                Shortcut {
-                    id: settingsShortcut
-                    sequence: StandardKey.Preferences
-                    onActivated: settingsButton.clicked()
-                }
-
-                ToolTip.delay: 1000
-                ToolTip.timeout: 3000
-                ToolTip.visible: hovered
-                ToolTip.text: qsTr("Settings") + (settingsShortcut.nativeText ? (" ("+settingsShortcut.nativeText+")") : "")
-            }
         }
+    }
+
+    Shortcut {
+        id: newPcShortcut
+        sequence: StandardKey.New
+        onActivated: addPcDialog.open()
+    }
+
+    Shortcut {
+        id: settingsShortcut
+        sequence: StandardKey.Preferences
+        onActivated: navigateTo("qrc:/gui/SettingsView.qml", SettingsView)
+    }
+
+    Shortcut {
+        id: helpShortcut
+        sequence: StandardKey.HelpContents
+        onActivated: Qt.openUrlExternally("https://github.com/leonidas10009/Artemis-pc")
+    }
+
+    Shortcut {
+        sequence: "Ctrl+T"
+        onActivated: {
+            var keys = Theme.darkThemeKeys.concat(Theme.lightThemeKeys)
+            var index = keys.indexOf(Theme.name)
+            Theme.setTheme(keys[(index + 1) % keys.length])
+        }
+    }
+
+    Shortcut {
+        sequence: "Ctrl+Shift+T"
+        onActivated: themeMenu.open()
     }
 
     footer: ToolBar {
@@ -706,7 +554,7 @@ ApplicationWindow {
             }
 
             Label {
-                text: qsTr("Enter: open · Right click: menu · Ctrl+F: search · Ctrl+,: settings")
+                text: qsTr("Enter: open · Right click: menu · Ctrl+Shift+T: themes · Ctrl+,: settings")
                 font.pointSize: 9
                 color: Theme.colors.textSubtle
                 elide: Label.ElideRight
@@ -725,7 +573,7 @@ ApplicationWindow {
         closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
         x: Math.max(8, Math.min(themeButton.mapToItem(window.contentItem, 0, 0).x + themeButton.width - width,
                                    window.contentItem.width - width - 8))
-        y: themeButton.mapToItem(window.contentItem, 0, 0).y + themeButton.height + 4
+        y: Math.max(8, themeButton.mapToItem(window.contentItem, 0, 0).y + themeButton.height + 4)
 
         background: Rectangle {
             color: Theme.colors.surface

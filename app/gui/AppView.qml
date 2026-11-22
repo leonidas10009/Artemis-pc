@@ -13,9 +13,7 @@ CenteredGridView {
     property bool activated
     property bool showHiddenGames
     property bool showGames
-    property string searchText: ""
-    property string statusText: appGrid.count + (appGrid.count === 1 ? qsTr(" app") : qsTr(" apps")) +
-                               (searchText.length > 0 ? qsTr(" · filter: %1").arg(searchText) : "")
+    property string statusText: appGrid.count + (appGrid.count === 1 ? qsTr(" app") : qsTr(" apps"))
 
     id: appGrid
     focus: true
@@ -24,11 +22,6 @@ CenteredGridView {
     bottomMargin: 5
     cellWidth: 230; cellHeight: 297;
 
-    onSearchTextChanged: {
-        if (appModel) {
-            appModel.filterText = searchText
-        }
-    }
 
     function computerLost()
     {
@@ -75,7 +68,6 @@ CenteredGridView {
     {
         var model = Qt.createQmlObject('import AppModel 1.0; AppModel {}', parent, '')
         model.initialize(ComputerManager, computerIndex, showHiddenGames)
-        model.filterText = searchText
         return model
     }
 
@@ -85,6 +77,7 @@ CenteredGridView {
         width: 220; height: 287;
         grid: appGrid
         padding: 0
+        clip: true
 
         property alias appContextMenu: appContextMenuLoader.item
         property alias appNameText: appNameTextLoader.item
@@ -112,17 +105,6 @@ CenteredGridView {
             visible: !appIcon.isPlaceholder
         }
 
-        Rectangle {
-            anchors.fill: parent
-            anchors.margins: 2
-            radius: 12
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: Theme.alpha(Theme.colors.bgBase, 0.05) }
-                GradientStop { position: 0.55; color: Theme.alpha(Theme.colors.bgBase, 0.35) }
-                GradientStop { position: 1.0; color: Theme.alpha(Theme.colors.bgBase, 0.95) }
-            }
-        }
-
         Image {
             property bool isPlaceholder: false
 
@@ -130,6 +112,7 @@ CenteredGridView {
             anchors.centerIn: parent
             source: model.boxart
             fillMode: Image.PreserveAspectFit
+            opacity: isPlaceholder ? 0 : 1
 
             onSourceSizeChanged: {
                 // Nearly all of Nvidia's official box art does not match the dimensions of placeholder
@@ -148,8 +131,8 @@ CenteredGridView {
                     isPlaceholder = false
                 }
 
-                width = 190
-                height = 253
+                width = parent.width - 12
+                height = parent.height - 12
             }
 
             // Display a tooltip with the full name if it's truncated
@@ -159,62 +142,95 @@ CenteredGridView {
             ToolTip.visible: (parent.hovered || parent.highlighted) && (!appNameText || appNameText.truncated)
         }
 
+        // Clean placeholder tile for apps without real box art
+        Rectangle {
+            id: placeholderTile
+            visible: appIcon.isPlaceholder
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: -14
+            width: 104
+            height: 104
+            radius: 24
+            color: Theme.colors.surfaceRaised
+            border.width: 1
+            border.color: Theme.colors.border
+
+            Label {
+                anchors.centerIn: parent
+                text: model.name.length > 0 ? model.name.charAt(0).toUpperCase() : "?"
+                font.pointSize: 44
+                font.bold: true
+                color: Theme.colors.primary
+            }
+        }
+
+        // Bottom scrim to keep the app name readable over any artwork
+        Rectangle {
+            anchors.fill: parent
+            anchors.margins: 2
+            radius: 12
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: "transparent" }
+                GradientStop { position: 0.58; color: Theme.alpha(Theme.colors.bgBase, 0.0) }
+                GradientStop { position: 0.78; color: Theme.alpha(Theme.colors.bgBase, 0.72) }
+                GradientStop { position: 1.0; color: Theme.alpha(Theme.colors.bgBase, 0.98) }
+            }
+        }
+
         Loader {
             active: model.running
             asynchronous: true
-            anchors.fill: appIcon
+            anchors.fill: parent
 
-            sourceComponent: Item {
+            sourceComponent: Row {
+                spacing: 12
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 58
+
                 RoundButton {
                     // Don't steal focus from the toolbar buttons
                     focusPolicy: Qt.NoFocus
 
-                    anchors.horizontalCenterOffset: appIcon.isPlaceholder ? -47 : 0
-                    anchors.verticalCenterOffset: appIcon.isPlaceholder ? -75 : -60
-                    anchors.centerIn: parent
-                    implicitWidth: 85
-                    implicitHeight: 85
+                    implicitWidth: 56
+                    implicitHeight: 56
 
                     icon.source: "qrc:/res/play_arrow_FILL1_wght700_GRAD200_opsz48.svg"
-                    icon.width: 75
-                    icon.height: 75
+                    icon.width: 40
+                    icon.height: 40
+                    icon.color: "#FFFFFF"
 
-                    onClicked: {
-                        launchOrResumeSelectedApp(true)
-                    }
+                    onClicked: launchOrResumeSelectedApp(true)
 
                     ToolTip.text: qsTr("Resume Game")
                     ToolTip.delay: 1000
                     ToolTip.timeout: 3000
                     ToolTip.visible: hovered
 
-                    Material.background: "#D0808080"
+                    Material.background: "#D0131620"
                 }
 
                 RoundButton {
                     // Don't steal focus from the toolbar buttons
                     focusPolicy: Qt.NoFocus
 
-                    anchors.horizontalCenterOffset: appIcon.isPlaceholder ? 47 : 0
-                    anchors.verticalCenterOffset: appIcon.isPlaceholder ? -75 : 60
-                    anchors.centerIn: parent
-                    implicitWidth: 85
-                    implicitHeight: 85
+                    implicitWidth: 56
+                    implicitHeight: 56
 
                     icon.source: "qrc:/res/stop_FILL1_wght700_GRAD200_opsz48.svg"
-                    icon.width: 75
-                    icon.height: 75
+                    icon.width: 40
+                    icon.height: 40
+                    icon.color: "#FFFFFF"
 
-                    onClicked: {
-                        doQuitGame()
-                    }
+                    onClicked: doQuitGame()
 
                     ToolTip.text: qsTr("Quit Game")
                     ToolTip.delay: 1000
                     ToolTip.timeout: 3000
                     ToolTip.visible: hovered
 
-                    Material.background: "#D0808080"
+                    Material.background: "#D0131620"
                 }
             }
         }
@@ -236,7 +252,7 @@ CenteredGridView {
             sourceComponent: Label {
                 id: appNameText
                 text: model.name
-                font.pointSize: 12
+                font.pointSize: 11
                 font.bold: true
                 color: Theme.colors.textBase
                 leftPadding: 6
@@ -247,6 +263,15 @@ CenteredGridView {
                 maximumLineCount: 2
                 elide: Text.ElideRight
             }
+        }
+
+        // Rounded border on top of the artwork
+        Rectangle {
+            anchors.fill: parent
+            radius: 14
+            color: "transparent"
+            border.width: highlighted ? 2 : 1
+            border.color: highlighted ? Theme.colors.primary : Theme.colors.border
         }
 
         scale: highlighted ? 1.015 : 1.0
@@ -389,8 +414,7 @@ CenteredGridView {
         visible: appGrid.count === 0
 
         Label {
-            text: searchText.length > 0 ? qsTr("No apps match '%1'").arg(searchText)
-                                        : qsTr("This computer doesn't seem to have any applications or some applications are hidden")
+            text: qsTr("This computer doesn't seem to have any applications or some applications are hidden")
             font.pointSize: 20
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap

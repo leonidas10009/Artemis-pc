@@ -12,9 +12,7 @@ import Artemis 1.0
 
 CenteredGridView {
     property ComputerModel computerModel : createModel()
-    property string searchText: ""
-    property string statusText: pcGrid.count + (pcGrid.count === 1 ? qsTr(" PC") : qsTr(" PCs")) +
-                               (searchText.length > 0 ? qsTr(" · filter: %1").arg(searchText) : "")
+    property string statusText: pcGrid.count + (pcGrid.count === 1 ? qsTr(" PC") : qsTr(" PCs"))
 
     id: pcGrid
     focus: true
@@ -24,11 +22,6 @@ CenteredGridView {
     cellWidth: 290; cellHeight: 310;
     objectName: qsTr("Computers")
 
-    onSearchTextChanged: {
-        if (computerModel) {
-            computerModel.filterText = searchText
-        }
-    }
 
     onCountChanged: {
         // Keep the highlighted item valid when filtering
@@ -101,7 +94,6 @@ CenteredGridView {
     {
         var model = Qt.createQmlObject('import ComputerModel 1.0; ComputerModel {}', parent, '')
         model.initialize(ComputerManager)
-        model.filterText = searchText
         model.pairingCompleted.connect(pairingComplete)
         model.connectionTestCompleted.connect(testConnectionDialog.connectionTestComplete)
         return model
@@ -121,9 +113,8 @@ CenteredGridView {
         Label {
             height: searchSpinner.height
             elide: Label.ElideRight
-            text: searchText.length > 0 ? qsTr("No PCs match '%1'").arg(searchText)
-                  : (StreamingPreferences.enableMdns ? qsTr("Searching for compatible hosts on your local network...")
-                                                    : qsTr("Automatic PC discovery is disabled. Add your PC manually."))
+            text: StreamingPreferences.enableMdns ? qsTr("Searching for compatible hosts on your local network...")
+                                                  : qsTr("Automatic PC discovery is disabled. Add your PC manually.")
             font.pointSize: 20
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap

@@ -17,13 +17,13 @@ Este es un fork no oficial. No está afiliado a Moonlight Stream, LizardByte ni 
 
 - **Interfaz Apollo 2026:** barra superior, sidebar, tarjetas, tipografía y estados inspirados en la Web UI de Apollo.
 - **22 temas claros y oscuros:** Apollo, Oscuro, Drácula, Moca, Ember, Pino rosado, Luz Lunar, Pizarra, Medianoche, Nord, Claro, Alucardo, Latte, Ember claro, Alba de pino, Resplandor, Índigo, Océano, Bosque, Rosa, Lavanda y Monocromo.
-  - Selector de tema en la barra superior y en Ajustes.
+  - Selector de tema en la esquina superior derecha y en Ajustes.
   - `Ctrl+T` cambia al siguiente tema.
   - `Ctrl+Shift+T` abre el selector.
   - El tema se guarda y se restaura al reiniciar.
-- **Búsqueda y filtrado:** busca PCs o aplicaciones con `Ctrl+F`.
+- **Navegación lateral:** Equipos, Ajustes, Ayuda y Añadir PC en la sidebar; la barra superior queda limpia con atrás, título y tema.
 - **Ventana de escritorio:** tamaño mínimo, geometría recordada y barra de estado con información contextual.
-- **Tarjetas de apps:** portada completa, fondo oscurecido, nombre visible y efecto hover.
+- **Tarjetas de apps:** portada completa, fondo oscurecido, nombre integrado en la parte inferior y efecto hover.
 - **Funciones Apollo:**
   - **Comandos de energía** desde el menú contextual del PC: apagar, reiniciar y cancelar apagado.
   - **Pantalla virtual Apollo** (SudoVDA) al iniciar el stream.

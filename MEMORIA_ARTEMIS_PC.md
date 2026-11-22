@@ -106,11 +106,13 @@ El código mantiene la estructura de Moonlight Qt. Los cambios están concentrad
 
 `main.qml` ahora tiene:
 
-- `ToolBar` superior con título, búsqueda, añadir PC, ayuda, tema y ajustes.
-- `RowLayout` central con **sidebar** de 220 px (visible a partir de 1100 px de ancho)
-  y `StackView`.
-- Sidebar: logo Artemis, “PC 2026”, Equipos, Ajustes, Ayuda, tema actual y versión.
-- `footer` de estado: número de PCs/apps, filtro activo y atajos.
+- `ToolBar` superior con título, botón atrás y **selector de tema** en la esquina derecha.
+- `RowLayout` central con **sidebar** de 220 px y `StackView`.
+- Sidebar: logo Artemis, “PC 2026”, Equipos, Ajustes, Ayuda, Añadir PC (solo en Equipos),
+  aviso de actualización y versión.
+- `footer` de estado: número de PCs/apps y atajos.
+- La búsqueda visible se retiró para dejar la sidebar limpia; el filtrado sigue
+  disponible en los modelos para futuras versiones.
 
 ### 3.2 Sistema de temas
 
@@ -132,7 +134,8 @@ El código mantiene la estructura de Moonlight Qt. Los cambios están concentrad
     `Material.primary`.
   - `ApplicationWindow.color`.
 - Selector de tema:
-  - Menú de dos columnas (`Popup`) desde el botón de paleta.
+  - Botón de paleta en la esquina superior derecha.
+  - Menú de dos columnas (`Popup`).
   - `Ctrl+T`: siguiente tema.
   - `Ctrl+Shift+T`: abrir selector.
   - ComboBox en Ajustes → UI.
