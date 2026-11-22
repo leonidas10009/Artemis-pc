@@ -9,7 +9,8 @@
 #include <QDir>
 #include <QGuiApplication>
 
-SdlInputHandler::SdlInputHandler(StreamingPreferences& prefs, int streamWidth, int streamHeight)
+SdlInputHandler::SdlInputHandler(StreamingPreferences& prefs, int streamWidth, int streamHeight,
+                                 bool remoteDesktopSession)
     : m_MultiController(prefs.multiController),
       m_GamepadMouse(prefs.gamepadMouse),
       m_SwapMouseButtons(prefs.swapMouseButtons),
@@ -22,6 +23,7 @@ SdlInputHandler::SdlInputHandler(StreamingPreferences& prefs, int streamWidth, i
       m_FakeMouseCaptureActive(false),
       m_KeyboardCaptureActive(false),
       m_CaptureSystemKeysMode(prefs.captureSysKeysMode),
+      m_QuickShortcutsEnabled(prefs.quickShortcuts && remoteDesktopSession),
       m_MouseCursorCapturedVisibilityState(SDL_DISABLE),
       m_LongPressTimer(0),
       m_StreamWidth(streamWidth),
@@ -134,6 +136,14 @@ SdlInputHandler::SdlInputHandler(StreamingPreferences& prefs, int streamWidth, i
     m_SpecialKeyCombos[KeyComboToggleKeyboardGrab].keyCode = SDLK_k;
     m_SpecialKeyCombos[KeyComboToggleKeyboardGrab].scanCode = SDL_SCANCODE_K;
     m_SpecialKeyCombos[KeyComboToggleKeyboardGrab].enabled = WMUtils::isRunningDesktopEnvironment();
+
+    // Short Ctrl+F5..F10 shortcuts for the most common actions.
+    m_QuickKeyCombos[0] = {KeyComboQuit, SDLK_F5, SDL_SCANCODE_F5};
+    m_QuickKeyCombos[1] = {KeyComboUngrabInput, SDLK_F6, SDL_SCANCODE_F6};
+    m_QuickKeyCombos[2] = {KeyComboToggleMouseMode, SDLK_F7, SDL_SCANCODE_F7};
+    m_QuickKeyCombos[3] = {KeyComboToggleFullScreen, SDLK_F8, SDL_SCANCODE_F8};
+    m_QuickKeyCombos[4] = {KeyComboToggleMinimize, SDLK_F9, SDL_SCANCODE_F9};
+    m_QuickKeyCombos[5] = {KeyComboToggleStatsOverlay, SDLK_F10, SDL_SCANCODE_F10};
 
     m_OldIgnoreDevices = SDL_GetHint(SDL_HINT_GAMECONTROLLER_IGNORE_DEVICES);
     m_OldIgnoreDevicesExcept = SDL_GetHint(SDL_HINT_GAMECONTROLLER_IGNORE_DEVICES_EXCEPT);

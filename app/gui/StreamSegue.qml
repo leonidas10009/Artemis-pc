@@ -4,6 +4,7 @@ import QtQuick.Window 2.2
 
 import SdlGamepadKeyNavigation 1.0
 import Session 1.0
+import StreamingPreferences 1.0
 import SystemProperties 1.0
 
 Item {
@@ -152,9 +153,16 @@ Item {
             // in the hintText control itself to synchronize
             // with Session.exec() which requires no concurrent
             // gamepad usage.
-            hintText.text = qsTr("Tip:") + " " + qsTr("Press %1 to disconnect your session").arg(SdlGamepadKeyNavigation.getConnectedGamepads() > 0 ?
-                                                  qsTr("Start+Select+L1+R1") : qsTr("Ctrl+Alt+Shift+Q")) + "\n" +
-                            qsTr("Ctrl+Alt+Shift+Z releases the mouse · Ctrl+Alt+Shift+M toggles remote desktop mouse")
+            var isDesktop = /^(desktop|escritorio|remote desktop|escritorio remoto)$/i.test(appName.trim())
+            var quick = StreamingPreferences.quickShortcuts && isDesktop
+            var disconnectHint = SdlGamepadKeyNavigation.getConnectedGamepads() > 0 ?
+                        qsTr("Start+Select+L1+R1") :
+                        (quick ? qsTr("Ctrl+F5") : qsTr("Ctrl+Alt+Shift+Q"))
+            var mouseHint = quick ?
+                        qsTr("Ctrl+F6 releases the mouse · Ctrl+F7 toggles remote desktop mouse") :
+                        qsTr("Ctrl+Alt+Shift+Z releases the mouse · Ctrl+Alt+Shift+M toggles remote desktop mouse")
+
+            hintText.text = qsTr("Tip:") + " " + qsTr("Press %1 to disconnect your session").arg(disconnectHint) + "\n" + mouseHint
 
             // Stop GUI gamepad usage now
             SdlGamepadKeyNavigation.disable()

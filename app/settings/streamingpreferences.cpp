@@ -53,6 +53,7 @@
 #define SER_VIRTUALDISPLAY "virtualdisplay"
 #define SER_CLIPBOARDSYNC "clipboardsync"
 #define SER_AUTOCAPTUREINPUT "autocaptureinput"
+#define SER_QUICKSHORTCUTS "quickshortcuts"
 #define SER_LANGUAGE "language"
 #define SER_RENDERER "renderer"
 
@@ -157,6 +158,7 @@ void StreamingPreferences::reload()
     virtualDisplay = settings.value(SER_VIRTUALDISPLAY, false).toBool();
     clipboardSync = settings.value(SER_CLIPBOARDSYNC, false).toBool();
     autoCaptureInput = settings.value(SER_AUTOCAPTUREINPUT, true).toBool();
+    quickShortcuts = settings.value(SER_QUICKSHORTCUTS, true).toBool();
     enableHdr = settings.value(SER_HDR, false).toBool();
     captureSysKeysMode = static_cast<CaptureSysKeysMode>(settings.value(SER_CAPTURESYSKEYS,
                                                          static_cast<int>(CaptureSysKeysMode::CSK_OFF)).toInt());
@@ -371,6 +373,7 @@ void StreamingPreferences::save()
     settings.setValue(SER_VIRTUALDISPLAY, virtualDisplay);
     settings.setValue(SER_CLIPBOARDSYNC, clipboardSync);
     settings.setValue(SER_AUTOCAPTUREINPUT, autoCaptureInput);
+    settings.setValue(SER_QUICKSHORTCUTS, quickShortcuts);
 }
 
 int StreamingPreferences::getDefaultBitrate(int width, int height, int fps, bool yuv444)

@@ -84,7 +84,8 @@ struct DualSenseOutputReport{
 class SdlInputHandler
 {
 public:
-    explicit SdlInputHandler(StreamingPreferences& prefs, int streamWidth, int streamHeight);
+    explicit SdlInputHandler(StreamingPreferences& prefs, int streamWidth, int streamHeight,
+                            bool remoteDesktopSession = false);
 
     ~SdlInputHandler();
 
@@ -225,6 +226,7 @@ private:
     QString m_OldIgnoreDevicesExcept;
     QStringList m_IgnoreDeviceGuids;
     StreamingPreferences::CaptureSysKeysMode m_CaptureSystemKeysMode;
+    bool m_QuickShortcutsEnabled;
     int m_MouseCursorCapturedVisibilityState;
 
     struct {
@@ -233,6 +235,16 @@ private:
         SDL_Scancode scanCode;
         bool enabled;
     } m_SpecialKeyCombos[KeyComboMax];
+
+    // Short Ctrl+F5...F10 shortcuts. They are deliberately separate from the
+    // Ctrl+Alt+Shift combos so users can disable them if a host app needs
+    // those keys.
+    enum { QuickKeyComboMax = 6 };
+    struct {
+        KeyCombo keyCombo;
+        SDL_Keycode keyCode;
+        SDL_Scancode scanCode;
+    } m_QuickKeyCombos[QuickKeyComboMax];
 
     SDL_TouchFingerEvent m_LastTouchDownEvent;
     SDL_TouchFingerEvent m_LastTouchUpEvent;

@@ -588,14 +588,14 @@ CenteredGridView {
 
     NavigableMessageDialog {
         id: streamShortcutsDialog
-        text: qsTr("While streaming:") + "\n\n" +
-              "Ctrl+Alt+Shift+Q  " + qsTr("Disconnect (the host app keeps running)") + "\n" +
-              "Ctrl+Alt+Shift+E  " + qsTr("Quit the host app and disconnect") + "\n" +
-              "Ctrl+Alt+Shift+Z  " + qsTr("Release or recapture the mouse and keyboard") + "\n" +
-              "Ctrl+Alt+Shift+M  " + qsTr("Toggle game / remote desktop mouse") + "\n" +
-              "Ctrl+Alt+Shift+X  " + qsTr("Toggle fullscreen") + "\n" +
-              "Ctrl+Alt+Shift+D  " + qsTr("Minimize the stream window") + "\n" +
-              "Ctrl+Alt+Shift+S  " + qsTr("Toggle the performance overlay") + "\n\n" +
+        text: qsTr("Remote desktop (Desktop app):") + "\n\n" +
+              "Ctrl+F5   " + qsTr("Disconnect (the host app keeps running)") + "\n" +
+              "Ctrl+F6   " + qsTr("Release or recapture the mouse and keyboard") + "\n" +
+              "Ctrl+F7   " + qsTr("Toggle game / remote desktop mouse") + "\n" +
+              "Ctrl+F8   " + qsTr("Toggle fullscreen") + "\n" +
+              "Ctrl+F9   " + qsTr("Minimize the stream window") + "\n" +
+              "Ctrl+F10  " + qsTr("Toggle the performance overlay") + "\n\n" +
+              qsTr("Games and other apps: Ctrl+Alt+Shift+Q/E/Z/M/X/D/S") + "\n" +
               qsTr("Gamepad: Start+Select+L1+R1 to disconnect.")
         standardButtons: Dialog.Ok
         imageSrc: "qrc:/res/baseline-help_outline-24px.svg"

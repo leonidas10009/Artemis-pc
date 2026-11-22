@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QSettings>
+#include <QStringList>
 
 class NvApp
 {
@@ -28,6 +29,20 @@ public:
         // We use isNull() instead of isEmpty() here because we want
         // to detect cases where the name is unassigned, not empty.
         return id != 0 && !name.isNull();
+    }
+
+    bool isDesktopApp() const
+    {
+        // Apollo/Sunshine expose the host desktop as a regular app. Keep this
+        // list in sync with AppModel::getDesktopAppIndex().
+        static const QStringList desktopNames = {
+            QStringLiteral("desktop"),
+            QStringLiteral("escritorio"),
+            QStringLiteral("remote desktop"),
+            QStringLiteral("escritorio remoto")
+        };
+
+        return desktopNames.contains(name.trimmed().toLower());
     }
 
     void

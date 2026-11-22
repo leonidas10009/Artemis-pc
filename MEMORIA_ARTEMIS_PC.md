@@ -4,7 +4,7 @@
 > Última actualización: **2026-11-22**.
 > Ruta del proyecto: `E:\ProyectoProgramacion\apolo_V2026\artemis_pc_V2026\artemis-pc-2026`
 > Repositorio: <https://github.com/leonidas10009/Artemis-pc>
-> Versión actual: **1.1.0**.
+> Versión actual: **1.2.0**.
 
 ---
 
@@ -16,7 +16,7 @@
 - **Temas:** 22 (10 oscuros, 12 claros) con tokens copiados de `sunshine.css` de Apollo.
 - **Funciones Apollo:** comandos de energía, pantalla virtual, portapapeles y detección de permisos.
 - **Entrada:** captura automática de teclado/ratón al iniciar el stream.
-- **Estado:** compila y arranca en Windows 11. Portable e instalador 1.1.0 generados,
+- **Estado:** compila y arranca en Windows 11. Portable e instalador 1.2.0 generados,
   probados y publicados en GitHub. CI de Windows verificada (portable + instalador).
 
 ---
@@ -27,16 +27,16 @@
 |---|---|
 | Nombre | Artemis PC 2026 |
 | Ejecutable | `Artemis.exe` |
-| Versión | 1.1.0 |
+| Versión | 1.2.0 |
 | Repositorio | `https://github.com/leonidas10009/Artemis-pc` |
 | Proyecto | `E:\ProyectoProgramacion\apolo_V2026\artemis_pc_V2026\artemis-pc-2026` |
 | Salida de compilación | `build\build-x64-release\app\release\Artemis.exe` |
 | Instalador MSI | `build\build-x64-release\Artemis.msi` |
 | Instalador EXE | `dist\installer\ArtemisSetup.exe` |
 | Distribución portable | `dist\ArtemisPortable` |
-| Paquete portable | `Release\Artemis-1.1.0-win64.zip` |
-| Paquete instalador | `Release\ArtemisSetup-1.1.0-win64.exe` |
-| Release pública | `https://github.com/leonidas10009/Artemis-pc/releases/tag/v1.1.0` |
+| Paquete portable | `Release\Artemis-1.2.0-win64.zip` |
+| Paquete instalador | `Release\ArtemisSetup-1.2.0-win64.exe` |
+| Release pública | `https://github.com/leonidas10009/Artemis-pc/releases/tag/v1.2.0` |
 | SHA-256 | Se publica junto a cada asset en la release |
 | Config portable | `dist\ArtemisPortable\Artemis 2026 Project\Artemis.ini` |
 | Host Apollo | `E:\ProyectoProgramacion\apolo_V2026\_update\Release` |
@@ -74,7 +74,7 @@ Submódulos:
 
 Cambios de identidad:
 
-- `app/version.txt` → `1.1.0`.
+- `app/version.txt` → `1.2.0`.
 - `app/app.pro`: `TARGET = Artemis`, icono `artemis.ico`, empresa y descripción.
 - `app/main.cpp`: nombre de organización, dominio, aplicación, logs `Artemis-*.log`,
   icono `:/res/artemis.png`, `com.leonidas10009.Artemis`.
@@ -343,6 +343,17 @@ En tags `v*` crea la release de GitHub con los binarios, `SHA256SUMS.txt` y
 
 ## 8. Estado y pendientes
 
+### Versión 1.2.0 (2026-11-22)
+
+- Atajos cortos **solo en Remote desktop / app Desktop**: `Ctrl+F5` desconectar,
+  `Ctrl+F6` liberar ratón, `Ctrl+F7` modo ratón, `Ctrl+F8` pantalla completa,
+  `Ctrl+F9` minimizar y `Ctrl+F10` overlay.
+- Opción en Ajustes → Entrada para desactivar los atajos cortos si una app del
+  host necesita `Ctrl+F5…F10`.
+- En juegos y apps normales se mantienen los atajos largos
+  `Ctrl+Alt+Shift+…`, de modo que `Ctrl+F5…F10` llegan al juego.
+- La detección de la app Desktop se centraliza en `NvApp::isDesktopApp()`.
+
 ### Versión 1.1.0 (2026-11-22)
 
 - **Remote desktop** con botón en la tarjeta del PC, entrada en el menú
@@ -372,8 +383,8 @@ En tags `v*` crea la release de GitHub con los binarios, `SHA256SUMS.txt` y
 - Captura automática de entrada.
 - Iconos claros/oscuras.
 - README y esta memoria.
-- Paquete portable `Artemis-1.1.0-win64.zip`.
-- Instalador `ArtemisSetup-1.1.0-win64.exe` (MSI + bootstrapper WiX).
+- Paquete portable `Artemis-1.2.0-win64.zip`.
+- Instalador `ArtemisSetup-1.2.0-win64.exe` (MSI + bootstrapper WiX).
 - Traducciones al español de las cadenas nuevas.
 - CI propia de Windows (Qt 6.11.3 + MSVC + WiX).
 
@@ -422,7 +433,7 @@ Estado actual:
 
 - `origin` apunta a `Artemis-pc`; `upstream` conserva Moonlight Qt.
 - Rama `main` con un commit inicial limpio (sin historial de Moonlight).
-- Release `v1.1.0` publicada con instalador y portable.
+- Release `v1.2.0` publicada con instalador y portable.
 - CI propia en `.github/workflows/windows.yml`.
 
 Para actualizar:

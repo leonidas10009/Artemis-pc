@@ -158,6 +158,7 @@ public:
     Q_PROPERTY(bool virtualDisplay MEMBER virtualDisplay NOTIFY virtualDisplayChanged)
     Q_PROPERTY(bool clipboardSync MEMBER clipboardSync NOTIFY clipboardSyncChanged)
     Q_PROPERTY(bool autoCaptureInput MEMBER autoCaptureInput NOTIFY autoCaptureInputChanged)
+    Q_PROPERTY(bool quickShortcuts MEMBER quickShortcuts NOTIFY quickShortcutsChanged)
     Q_PROPERTY(CaptureSysKeysMode captureSysKeysMode MEMBER captureSysKeysMode NOTIFY captureSysKeysModeChanged)
     Q_PROPERTY(Language language MEMBER language NOTIFY languageChanged);
 
@@ -194,6 +195,7 @@ public:
     bool virtualDisplay;
     bool clipboardSync;
     bool autoCaptureInput;
+    bool quickShortcuts;
     int packetSize;
     AudioConfig audioConfig;
     VideoCodecConfig videoCodecConfig;
@@ -245,6 +247,7 @@ signals:
     void virtualDisplayChanged();
     void clipboardSyncChanged();
     void autoCaptureInputChanged();
+    void quickShortcutsChanged();
     void languageChanged();
     void rendererSelectionChanged();
 

@@ -3,7 +3,7 @@
 Cliente de escritorio para **Apollo/Sunshine**, basado en **Moonlight Qt 6.2.0**.
 Es la versión PC del proyecto **Artemis 2026**, con la interfaz y los temas de Apollo 2026.
 
-> **Versión:** `1.1.0`
+> **Versión:** `1.2.0`
 > **Base:** Moonlight Qt `6.2.0`
 > **Repositorio:** <https://github.com/leonidas10009/Artemis-pc>
 > **Host recomendado:** [Apollo 2026](https://github.com/leonidas10009/Apollo_2026)
@@ -26,6 +26,7 @@ Este es un fork no oficial. No está afiliado a Moonlight Stream, LizardByte ni 
 - **Tarjetas de apps:** portada completa, fondo oscurecido, nombre integrado en la parte inferior y efecto hover.
 - **Lanzamiento directo:** un clic en una tarjeta de app la lanza o reanuda; botón **Remote desktop** en la tarjeta del PC.
 - **Reanudar app en ejecución:** menú contextual del PC → **Resume Running App**.
+- **Atajos cortos en Remote desktop:** `Ctrl+F5…F10`; en juegos se mantienen los atajos largos para no interferir.
 - **Funciones Apollo:**
   - **Comandos de energía** desde el menú contextual del PC: apagar, reiniciar y cancelar apagado.
   - **Pantalla virtual Apollo** (SudoVDA) al iniciar el stream.
@@ -62,7 +63,7 @@ La versión portable y el instalador se publican en
 
 ### Instalador (recomendado)
 
-1. Descarga `ArtemisSetup-1.1.0-win64.exe`.
+1. Descarga `ArtemisSetup-1.2.0-win64.exe`.
 2. Ejecútalo y sigue el asistente.
 3. Se instala en `Program Files\Artemis 2026` y crea acceso directo.
 4. Desinstala desde **Configuración → Aplicaciones**.
@@ -72,7 +73,7 @@ La versión portable y el instalador se publican en
 
 ### Versión portable
 
-1. Descarga `Artemis-1.1.0-win64.zip`.
+1. Descarga `Artemis-1.2.0-win64.zip`.
 2. Extrae en una carpeta propia.
 3. Ejecuta `Artemis.exe`.
 4. Añade tu PC Apollo por descubrimiento automático o manualmente.
@@ -101,19 +102,27 @@ al iniciar el stream cuando detecta que faltan estos permisos.
 
 ### Teclado y ratón
 
-- Por defecto, Artemis captura teclado y ratón al iniciar el stream.
-- `Ctrl+Alt+Shift+Z` libera o vuelve a capturar el ratón y el teclado.
-- `Ctrl+Alt+Shift+M` cambia entre modo ratón para juegos y modo escritorio remoto.
-- `Ctrl+Alt+Shift+K` activa o desactiva la captura de atajos del sistema.
-- `Ctrl+Alt+Shift+Q` desconecta la sesión (la app del host sigue abierta).
-- `Ctrl+Alt+Shift+E` cierra la app del host y desconecta.
-- `Ctrl+Alt+Shift+X` alterna pantalla completa.
-- `Ctrl+Alt+Shift+D` minimiza la ventana del stream.
-- `Ctrl+Alt+Shift+S` muestra u oculta el overlay de rendimiento.
-- `Ctrl+Alt+Shift+V` pega el texto del portapapeles local en el host.
-- Con mando: `Start+Select+L1+R1` desconecta.
-- Si prefieres capturar manualmente, desactiva
-  **“Capture keyboard and mouse automatically when the stream starts”** en Ajustes → Entrada.
+Atajos cortos (solo para **Remote desktop / app Desktop**):
+
+- `Ctrl+F5` desconecta la sesión (la app del host sigue abierta).
+- `Ctrl+F6` libera o vuelve a capturar el ratón y el teclado.
+- `Ctrl+F7` cambia entre ratón para juegos y escritorio remoto.
+- `Ctrl+F8` alterna pantalla completa.
+- `Ctrl+F9` minimiza la ventana del stream.
+- `Ctrl+F10` muestra u oculta el overlay de rendimiento.
+
+En **juegos y otras apps** se usan los atajos alternativos, de modo que
+`Ctrl+F5…F10` se envían al juego sin interferencias:
+`Ctrl+Alt+Shift+Q/E/Z/M/X/D/S`.
+`Ctrl+Alt+Shift+K` activa o desactiva la captura de atajos del sistema y
+`Ctrl+Alt+Shift+V` pega el portapapeles local. Con mando:
+`Start+Select+L1+R1` desconecta.
+
+Los atajos cortos se pueden desactivar en **Ajustes → Entrada** si una app o
+juego del host necesita `Ctrl+F5…F10` incluso en Remote desktop.
+
+Si prefieres capturar manualmente, desactiva
+**“Capture keyboard and mouse automatically when the stream starts”** en Ajustes → Entrada.
 
 ### Escritorio remoto
 
@@ -126,11 +135,11 @@ Para usar Artemis como un acceso remoto sencillo:
    host, sin quedar atrapado en la ventana.
 3. Si el host no tiene una app Desktop, créala en Apollo/Sunshine o lanza
    cualquier app desde la parrilla.
-4. Para salir: `Ctrl+Alt+Shift+Q` (desconectar) o `Ctrl+Alt+Shift+E` (cerrar
-   la app del host y salir). `Ctrl+Alt+Shift+Z` libera el ratón si necesitas
-   usar la barra de título o el botón de cerrar.
-5. `Ctrl+Alt+Shift+M` vuelve al modo de ratón para juegos y
-   `Ctrl+Alt+Shift+X` alterna pantalla completa.
+4. Para salir: `Ctrl+F5` (desconectar) o `Ctrl+Alt+Shift+E` (cerrar la app del
+   host y salir). `Ctrl+F6` libera el ratón si necesitas usar la barra de título
+   o el botón de cerrar.
+5. `Ctrl+F7` vuelve al modo de ratón para juegos y `Ctrl+F8` alterna pantalla
+   completa.
 6. También puedes usar el menú contextual de cualquier app →
    **Open in remote desktop mode**.
 
@@ -250,7 +259,7 @@ Genera:
 
 - `build\build-x64-release\Artemis.msi`
 - `dist\installer\ArtemisSetup.exe`
-- `Release\ArtemisSetup-1.1.0-win64.exe`
+- `Release\ArtemisSetup-1.2.0-win64.exe`
 - `Release\SHA256SUMS.txt`
 - `Release\BUILD_INFO.txt`
 

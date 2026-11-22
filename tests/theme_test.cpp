@@ -3,6 +3,7 @@
 #include <QTemporaryDir>
 
 #include "backend/theme.h"
+#include "backend/nvapp.h"
 
 class ThemeTest : public QObject
 {
@@ -49,6 +50,26 @@ private slots:
                          qPrintable(QString("%1 is missing token %2").arg(key, token)));
             }
         }
+    }
+
+    void desktopAppDetection()
+    {
+        NvApp app;
+
+        app.name = "Desktop";
+        QVERIFY(app.isDesktopApp());
+
+        app.name = "Escritorio";
+        QVERIFY(app.isDesktopApp());
+
+        // A game whose name merely starts with "Desktop" must not be treated
+        // as the remote desktop, because that would enable Ctrl+F5...F10 in a
+        // game and steal its shortcuts.
+        app.name = "Desktop Dungeons";
+        QVERIFY(!app.isDesktopApp());
+
+        app.name = "Steam";
+        QVERIFY(!app.isDesktopApp());
     }
 
     void displayNamesAndAlpha()

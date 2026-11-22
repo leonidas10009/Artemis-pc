@@ -1,5 +1,17 @@
 # Changelog — Artemis PC 2026
 
+## 1.2.0 — 2026-11-22
+
+### Añadido
+
+- Atajos cortos **solo en Remote desktop / app Desktop**: `Ctrl+F5` desconectar,
+  `Ctrl+F6` liberar ratón, `Ctrl+F7` modo ratón, `Ctrl+F8` pantalla completa,
+  `Ctrl+F9` minimizar y `Ctrl+F10` overlay de rendimiento.
+- Opción **Use short stream shortcuts in Remote desktop** en Ajustes → Entrada
+  para desactivar `Ctrl+F5…F10` si una app del host las necesita.
+- En juegos y otras apps se mantienen los atajos largos
+  `Ctrl+Alt+Shift+…`, de modo que `Ctrl+F5…F10` llegan al juego sin interferencias.
+
 ## 1.1.0 — 2026-11-22
 
 ### Añadido

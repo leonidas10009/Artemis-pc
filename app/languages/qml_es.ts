@@ -335,198 +335,198 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="263" />
-        <location filename="../gui/PcView.qml" line="300" />
+        <location filename="../gui/PcView.qml" line="301" />
         <source>Remote desktop</source>
         <translation>Escritorio remoto</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="312" />
+        <location filename="../gui/PcView.qml" line="314" />
         <source>Open the host Desktop in remote desktop mouse mode</source>
         <translation>Abre el escritorio del host en modo de ratón para escritorio remoto</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="318" />
+        <location filename="../gui/PcView.qml" line="320" />
         <source>Resume Running App</source>
         <translation>Reanudar app en ejecución</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="334" />
+        <location filename="../gui/PcView.qml" line="336" />
         <source>Stream shortcuts...</source>
         <translation>Atajos del stream...</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="338" />
+        <location filename="../gui/PcView.qml" line="340" />
         <source>Wake PC</source>
         <translation>Despertar PC</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="343" />
+        <location filename="../gui/PcView.qml" line="345" />
         <source>Test Network</source>
         <translation>Prueba de red</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="368" />
+        <location filename="../gui/PcView.qml" line="370" />
         <source>Apollo input permissions...</source>
         <translation>Permisos de entrada de Apollo...</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="374" />
+        <location filename="../gui/PcView.qml" line="376" />
         <source>Rename PC</source>
         <translation>Renombrar PC</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="382" />
+        <location filename="../gui/PcView.qml" line="384" />
         <source>Delete PC</source>
         <translation>Eliminar PC</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="390" />
+        <location filename="../gui/PcView.qml" line="392" />
         <source>View Details</source>
         <translation>Ver los detalles</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="482" />
+        <location filename="../gui/PcView.qml" line="484" />
         <source>If your host PC is running Apollo, open its web UI to enter the PIN.</source>
         <translation>Si tu PC anfitrión ejecuta Apollo, abre su interfaz web para introducir el PIN.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="508" />
+        <location filename="../gui/PcView.qml" line="510" />
         <source>Artemis is testing your network connection to determine if any required ports are blocked.</source>
         <translation>Artemis está probando tu conexión de red para determinar si algún puerto necesario está bloqueado.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="515" />
+        <location filename="../gui/PcView.qml" line="517" />
         <source>The network test could not be performed because none of Artemis's connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
         <translation>No se pudo realizar la prueba de red porque no se pudo acceder a ninguno de los servidores de prueba de conexión de Artemis desde este PC. Comprueba tu conexión a Internet o inténtalo de nuevo más tarde.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="519" />
+        <location filename="../gui/PcView.qml" line="521" />
         <source>This network does not appear to be blocking Artemis. If you still have trouble connecting, check your PC's firewall settings.</source>
         <translation>Esta red no parece estar bloqueando Artemis. Si sigues teniendo problemas para conectarte, comprueba el firewall de tu PC.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="519" />
+        <location filename="../gui/PcView.qml" line="521" />
         <source>Make sure Apollo is running and reachable on your gaming PC.</source>
         <translation>Asegúrate de que Apollo se está ejecutando y es accesible en tu PC de juegos.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="523" />
+        <location filename="../gui/PcView.qml" line="525" />
         <source>Your PC's current network connection seems to be blocking Artemis. Streaming over the Internet may not work while connected to this network.</source>
         <translation>La conexión de red actual de tu PC parece estar bloqueando Artemis. La transmisión por Internet puede no funcionar mientras estés conectado a esta red.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="589" />
-        <source>While streaming:</source>
-        <translation>Durante el stream:</translation>
+        <location filename="../gui/PcView.qml" line="591" />
+        <source>Remote desktop (Desktop app):</source>
+        <translation>Escritorio remoto (app Desktop):</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="590" />
+        <location filename="../gui/PcView.qml" line="598" />
+        <source>Games and other apps: Ctrl+Alt+Shift+Q/E/Z/M/X/D/S</source>
+        <translation>Juegos y otras apps: Ctrl+Alt+Shift+Q/E/Z/M/X/D/S</translation>
+    </message>
+    <message>
+        <location filename="../gui/PcView.qml" line="592" />
         <source>Disconnect (the host app keeps running)</source>
         <translation>Desconectar (la app del host sigue abierta)</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="591" />
-        <source>Quit the host app and disconnect</source>
-        <translation>Cerrar la app del host y desconectar</translation>
-    </message>
-    <message>
-        <location filename="../gui/PcView.qml" line="592" />
+        <location filename="../gui/PcView.qml" line="593" />
         <source>Release or recapture the mouse and keyboard</source>
         <translation>Liberar o recapturar el ratón y el teclado</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="593" />
+        <location filename="../gui/PcView.qml" line="594" />
         <source>Toggle game / remote desktop mouse</source>
-        <translation>Alternar ratón para juegos / escritorio remoto</translation>
+        <translation>Alternar rat?n para juegos / escritorio remoto</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="594" />
+        <location filename="../gui/PcView.qml" line="595" />
         <source>Toggle fullscreen</source>
         <translation>Alternar pantalla completa</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="595" />
+        <location filename="../gui/PcView.qml" line="596" />
         <source>Minimize the stream window</source>
         <translation>Minimizar la ventana del stream</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="596" />
+        <location filename="../gui/PcView.qml" line="597" />
         <source>Toggle the performance overlay</source>
         <translation>Mostrar u ocultar el overlay de rendimiento</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="597" />
+        <location filename="../gui/PcView.qml" line="599" />
         <source>Gamepad: Start+Select+L1+R1 to disconnect.</source>
         <translation>Mando: Start+Select+L1+R1 para desconectar.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="609" />
+        <location filename="../gui/PcView.qml" line="611" />
         <source>Send '%1' to the host PC?</source>
         <translation>¿Enviar '%1' al PC anfitrión?</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="610" />
+        <location filename="../gui/PcView.qml" line="612" />
         <source>Are you sure you want to run '%1' on the host PC?</source>
         <translation>¿Seguro que quieres ejecutar '%1' en el PC anfitrión?</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="627" />
+        <location filename="../gui/PcView.qml" line="629" />
         <source>Apollo has not granted mouse and keyboard permissions to this client.</source>
         <translation>Apollo no ha concedido permisos de ratón y teclado a este cliente.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="628" />
+        <location filename="../gui/PcView.qml" line="630" />
         <source>Open Apollo's web UI, go to Clients, select this device and enable Mouse and Keyboard under Input permissions. The change applies to the next stream.</source>
         <translation>Abre la interfaz web de Apollo, entra en Clients, selecciona este dispositivo y activa Mouse y Keyboard en los permisos de entrada. El cambio se aplica en la siguiente transmisión.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="508" />
+        <location filename="../gui/PcView.qml" line="510" />
         <source>This may take a few seconds…</source>
         <translation>Esto puede llevar unos segundos…</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="523" />
+        <location filename="../gui/PcView.qml" line="525" />
         <source>The following network ports were blocked:</source>
         <translation>Los siguientes puertos de red fueron bloqueados:</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="286" />
+        <location filename="../gui/PcView.qml" line="287" />
         <source>PC Status: %1</source>
         <translation>Estado del PC: %1</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="286" />
+        <location filename="../gui/PcView.qml" line="287" />
         <source>Online</source>
         <translation>En línea</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="221" />
-        <location filename="../gui/PcView.qml" line="286" />
+        <location filename="../gui/PcView.qml" line="287" />
         <source>Offline</source>
         <translation>Fuera de línea</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="291" />
+        <location filename="../gui/PcView.qml" line="292" />
         <source>View All Apps</source>
         <translation>Ver todas las aplicaciones</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="402" />
+        <location filename="../gui/PcView.qml" line="404" />
         <source>The version of GeForce Experience on %1 is not supported by this build of Artemis. You must update Artemis to stream from %1.</source>
         <translation>La versión de GeForce Experience de %1 no es compatible con esta versión de Artemis. Actualiza Artemis para transmitir desde %1.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="481" />
+        <location filename="../gui/PcView.qml" line="483" />
         <source>Please enter %1 on your host PC. This dialog will close when pairing is completed.</source>
         <translation>Por favor, introduzca %1 en el host de tu PC. Este cuadro de diálogo se cerrará cuando finalice el emparejamiento.</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="494" />
+        <location filename="../gui/PcView.qml" line="496" />
         <source>Are you sure you want to remove '%1'?</source>
         <translation>¿Estás seguro de que quieres eliminar '%1'?</translation>
     </message>
     <message>
-        <location filename="../gui/PcView.qml" line="535" />
+        <location filename="../gui/PcView.qml" line="537" />
         <source>Enter the new name for this PC:</source>
         <translation>Introduzca el nombre nuevo para este PC:</translation>
     </message>
@@ -567,9 +567,6 @@
         <translation>El juego que se está ejecutando no fue iniciado por este PC. Debes salir del juego en el PC anfitrión manualmente o utilizar el dispositivo que inició originalmente el juego.</translation>
     </message>
 </context>
-<context>
-    <name>QObject</name>
-    </context>
 <context>
     <name>QPlatformTheme</name>
     <message>
@@ -830,7 +827,7 @@
         <translation>La selección del códec y la configuración de la decodificación forzada por hardware no son compatibles. La GPU de este PC no es compatible con la descodificación del códec elegido.</translation>
     </message>
     <message>
-        <location filename="../streaming/session.cpp" line="2456" />
+        <location filename="../streaming/session.cpp" line="2457" />
         <source>Unable to initialize video decoder. Please check your streaming settings and try again.</source>
         <translation>No se ha podido inicializar el decodificador de vídeo. Por favor, compruebe la configuración de la transmisión y vuelva a intentarlo.</translation>
     </message>
@@ -1045,17 +1042,31 @@
         <translation>Ajustes de entrada</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1442" />
+        <source>Use short stream shortcuts (Ctrl+F5…F10)</source>
+        <translation>Usar atajos cortos en Escritorio remoto (Ctrl+F5?F10)</translation>
+    </message>
+    <message>
+        <location filename="../gui/SettingsView.qml" line="1460" />
         <source>This enables seamless mouse control without capturing the client's mouse cursor. It is ideal for remote desktop usage but will not work in most games.</source>
         <translation>Esto permite un control perfecto del ratón sin capturar el cursor del ratón del cliente. Es ideal para el uso del escritorio remoto, pero no funcionará en la mayoría de los juegos.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1444" />
+        <location filename="../gui/SettingsView.qml" line="1462" />
         <source>NOTE: Due to a bug in GeForce Experience, this option may not work properly if your host PC has multiple monitors.</source>
         <translation>NOTA: Debido a un error en GeForce Experience, es posible que esta opción no funcione correctamente si su PC host tiene varios monitores.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1759" />
+        <location filename="../gui/SettingsView.qml" line="1590" />
+        <source>Toggle game / remote desktop mouse</source>
+        <translation>Alternar rat?n para juegos / escritorio remoto</translation>
+    </message>
+    <message>
+        <location filename="../gui/SettingsView.qml" line="1593" />
+        <source>Toggle performance overlay</source>
+        <translation>Mostrar u ocultar el overlay de rendimiento</translation>
+    </message>
+    <message>
+        <location filename="../gui/SettingsView.qml" line="1778" />
         <source>AV1</source>
         <translation>AV1</translation>
     </message>
@@ -1075,77 +1086,82 @@
         <translation>La transmisión HDR no esta soportada en este PC.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1830" />
+        <location filename="../gui/SettingsView.qml" line="1587" />
+        <source>Stream shortcuts (Remote desktop):</source>
+        <translation>Atajos del stream (Escritorio remoto):</translation>
+    </message>
+    <message>
+        <location filename="../gui/SettingsView.qml" line="1849" />
         <source>Enable YUV 4:4:4</source>
         <translation>Activar YUV 4:4:4</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1911" />
+        <location filename="../gui/SettingsView.qml" line="1930" />
         <source>Show performance stats while streaming</source>
         <translation>Mostrar estadísticas de rendimiento en streaming</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1921" />
+        <location filename="../gui/SettingsView.qml" line="1940" />
         <source>Display real-time stream performance information while streaming.</source>
         <translation>Muestra información sobre el rendimiento del flujo en tiempo real mientras se transmite.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1922" />
+        <location filename="../gui/SettingsView.qml" line="1941" />
         <source>You can toggle it at any time while streaming using Ctrl+Alt+Shift+S or Select+L1+R1+X.</source>
         <translation>Puedes cambiarla en cualquier momento mientras transmites con Ctrl+Alt+Mayús+S o Select+L1+R1+X.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1923" />
+        <location filename="../gui/SettingsView.qml" line="1942" />
         <source>The performance overlay is not supported on Steam Link or Raspberry Pi.</source>
         <translation>La superposición de rendimiento no es compatible con Steam Link o Raspberry Pi.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1526" />
+        <location filename="../gui/SettingsView.qml" line="1544" />
         <source>Use touchscreen as a virtual trackpad</source>
         <translation>Utilice la pantalla táctil como un trackpad virtual</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1543" />
+        <location filename="../gui/SettingsView.qml" line="1561" />
         <source>Swap left and right mouse buttons</source>
         <translation>Intercambiar los botones izquierdo y derecho del ratón</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1555" />
+        <location filename="../gui/SettingsView.qml" line="1573" />
         <source>Reverse mouse scrolling direction</source>
         <translation>Invertir la dirección de desplazamiento del ratón</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1584" />
+        <location filename="../gui/SettingsView.qml" line="1603" />
         <source>Gamepad Settings</source>
         <translation>Configuración del mando</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1594" />
+        <location filename="../gui/SettingsView.qml" line="1613" />
         <source>Swap A/B and X/Y gamepad buttons</source>
         <translation>Cambiar los botones del mando A / B y X / Y</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1604" />
+        <location filename="../gui/SettingsView.qml" line="1623" />
         <source>This switches gamepads into a Nintendo-style button layout</source>
         <translation>Esto cambia los mandos a un diseño de botones al estilo de Nintendo</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1610" />
+        <location filename="../gui/SettingsView.qml" line="1629" />
         <source>Force gamepad #1 always connected</source>
         <translation>Forzar que el mando #1 esté siempre conectado</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1620" />
+        <location filename="../gui/SettingsView.qml" line="1639" />
         <source>Forces a single gamepad to always stay connected to the host, even if no gamepads are actually connected to this PC.</source>
         <translation>Obliga a un solo mando a permanecer siempre conectado al host, aunque no haya ningún mando conectado a este PC.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1443" />
+        <location filename="../gui/SettingsView.qml" line="1461" />
         <source>You can toggle this while streaming using Ctrl+Alt+Shift+M.</source>
         <translation>Puedes alternar esto mientras transmites usando Ctrl+Alt+Mayús+M.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1628" />
+        <location filename="../gui/SettingsView.qml" line="1647" />
         <source>Enable mouse control with gamepads by holding the 'Start' button</source>
         <translation>Activa el control del ratón con los mandos manteniendo pulsado el botón 'Start'</translation>
     </message>
@@ -1155,7 +1171,7 @@
         <translation>Configuración de host</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1659" />
+        <location filename="../gui/SettingsView.qml" line="1678" />
         <source>Advanced Settings</source>
         <translation>Configuración avanzada</translation>
     </message>
@@ -1180,12 +1196,12 @@
         <translation>Actualiza tu estado de Discord para mostrar el nombre del juego que estás transmitiendo.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1621" />
+        <location filename="../gui/SettingsView.qml" line="1640" />
         <source>Only enable this option when streaming a game that doesn't support gamepads being connected after startup.</source>
         <translation>Sólo active esta opción cuando transmita un juego que no admita la conexión de mandos después del inicio.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1432" />
+        <location filename="../gui/SettingsView.qml" line="1450" />
         <source>Optimize mouse for remote desktop instead of games</source>
         <translation>Optimizar el ratón para el escritorio remoto en lugar de los juegos</translation>
     </message>
@@ -1228,27 +1244,27 @@
         <translation>Prevenir que el protector de pantallas inicie o la pantalla entre en modo dormir durante la transmisión.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1454" />
+        <location filename="../gui/SettingsView.qml" line="1472" />
         <source>Capture system keyboard shortcuts</source>
         <translation>Capturar los atajos de teclado del sistema</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1462" />
+        <location filename="../gui/SettingsView.qml" line="1480" />
         <source>This enables the capture of system-wide keyboard shortcuts like Alt+Tab that would normally be handled by the client OS while streaming.</source>
         <translation>Esto permite capturar los atajos de teclado de todo el sistema, como Alt+Tab, que normalmente serían manejados por el sistema operativo del cliente durante la transmisión.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1492" />
+        <location filename="../gui/SettingsView.qml" line="1510" />
         <source>in fullscreen</source>
         <translation>en pantalla completa</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1496" />
+        <location filename="../gui/SettingsView.qml" line="1514" />
         <source>always</source>
         <translation>siempre</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1536" />
+        <location filename="../gui/SettingsView.qml" line="1554" />
         <source>When checked, the touchscreen acts like a trackpad. When unchecked, the touchscreen will directly control the mouse pointer.</source>
         <translation>Cuando está marcada, la pantalla táctil actúa como un trackpad. Si no está marcada, la pantalla táctil controlará directamente el puntero del ratón.</translation>
     </message>
@@ -1318,124 +1334,129 @@
         <translation>Pulsa Ctrl+Alt+Shift+Z durante la transmisión para liberar o volver a capturar el ratón y el teclado. Desactívalo si prefieres hacer clic en la ventana de transmisión antes de enviar entrada.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1463" />
+        <location filename="../gui/SettingsView.qml" line="1432" />
+        <source>Use short stream shortcuts in Remote desktop (Ctrl+F5…F10)</source>
+        <translation>Usar atajos cortos en Escritorio remoto (Ctrl+F5?F10)</translation>
+    </message>
+    <message>
+        <location filename="../gui/SettingsView.qml" line="1442" />
+        <source>Only applies to the Desktop app / Remote desktop mode, so games keep Ctrl+F5…F10. Disable this if a browser or app on the host needs those keys.</source>
+        <translation>Solo se aplica a la app Desktop / modo Escritorio remoto, as? que los juegos conservan Ctrl+F5?F10. Desact?valo si un navegador o una app del host necesita esas teclas.</translation>
+    </message>
+    <message>
+        <location filename="../gui/SettingsView.qml" line="1443" />
+        <source>The longer Ctrl+Alt+Shift shortcuts remain available in every session.</source>
+        <translation>Los atajos largos Ctrl+Alt+Shift siguen disponibles en todas las sesiones.</translation>
+    </message>
+    <message>
+        <location filename="../gui/SettingsView.qml" line="1481" />
         <source>NOTE: Certain keyboard shortcuts like Ctrl+Alt+Del on Windows cannot be intercepted by any application, including Artemis.</source>
         <translation>NOTA: Algunos atajos como Ctrl+Alt+Del en Windows no pueden ser interceptados por ninguna aplicación, incluida Artemis.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1569" />
-        <source>Stream shortcuts:</source>
-        <translation>Atajos del stream:</translation>
-    </message>
-    <message>
-        <location filename="../gui/SettingsView.qml" line="1570" />
+        <location filename="../gui/SettingsView.qml" line="1588" />
         <source>Disconnect</source>
         <translation>Desconectar</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1571" />
-        <source>Quit host app and disconnect</source>
-        <translation>Cerrar app del host y desconectar</translation>
-    </message>
-    <message>
-        <location filename="../gui/SettingsView.qml" line="1572" />
+        <location filename="../gui/SettingsView.qml" line="1589" />
         <source>Release/recapture mouse and keyboard</source>
         <translation>Liberar/recapturar ratón y teclado</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1573" />
-        <source>Toggle remote desktop mouse</source>
-        <translation>Alternar ratón de escritorio remoto</translation>
-    </message>
-    <message>
-        <location filename="../gui/SettingsView.qml" line="1574" />
+        <location filename="../gui/SettingsView.qml" line="1591" />
         <source>Toggle fullscreen</source>
         <translation>Alternar pantalla completa</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1575" />
+        <location filename="../gui/SettingsView.qml" line="1592" />
         <source>Minimize</source>
         <translation>Minimizar</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1639" />
+        <location filename="../gui/SettingsView.qml" line="1594" />
+        <source>Games / alternative: Ctrl+Alt+Shift+Q/E/Z/M/X/D/S</source>
+        <translation>Juegos / alternativa: Ctrl+Alt+Shift+Q/E/Z/M/X/D/S</translation>
+    </message>
+    <message>
+        <location filename="../gui/SettingsView.qml" line="1658" />
         <source>Process gamepad input when Artemis is in the background</source>
         <translation>Procesar la entrada del mando cuando Artemis está en segundo plano</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1650" />
+        <location filename="../gui/SettingsView.qml" line="1669" />
         <source>Allows Artemis to capture gamepad inputs even if it's not the current window in focus</source>
         <translation>Permite a Artemis capturar la entrada del mando incluso cuando no es la ventana activa</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1669" />
+        <location filename="../gui/SettingsView.qml" line="1688" />
         <source>Video decoder</source>
         <translation>Descodificador de vídeo</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1694" />
-        <location filename="../gui/SettingsView.qml" line="1747" />
-        <location filename="../gui/SettingsView.qml" line="1805" />
+        <location filename="../gui/SettingsView.qml" line="1713" />
+        <location filename="../gui/SettingsView.qml" line="1766" />
+        <location filename="../gui/SettingsView.qml" line="1824" />
         <source>Automatic (Recommended)</source>
         <translation>Automático (recomendado)</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1698" />
+        <location filename="../gui/SettingsView.qml" line="1717" />
         <source>Force software decoding</source>
         <translation>Forzar la decodificación por software</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1702" />
+        <location filename="../gui/SettingsView.qml" line="1721" />
         <source>Force hardware decoding</source>
         <translation>Forzar la decodificación por hardware</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1717" />
+        <location filename="../gui/SettingsView.qml" line="1736" />
         <source>Video codec</source>
         <translation>Códec de vídeo</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1751" />
+        <location filename="../gui/SettingsView.qml" line="1770" />
         <source>H.264</source>
         <translation>H.264</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1755" />
+        <location filename="../gui/SettingsView.qml" line="1774" />
         <source>HEVC (H.265)</source>
         <translation>HEVC (H.265)</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1774" />
+        <location filename="../gui/SettingsView.qml" line="1793" />
         <source>Renderer</source>
         <translation>Renderizador</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1852" />
+        <location filename="../gui/SettingsView.qml" line="1871" />
         <source>Good for streaming desktop and text-heavy games, but not recommended for fast-paced games.</source>
         <translation>Bueno para la transmisión de juegos de escritorio y de texto pesado, pero no se recomienda para juegos de ritmo rápido.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1854" />
+        <location filename="../gui/SettingsView.qml" line="1873" />
         <source>YUV 4:4:4 is not supported on this PC.</source>
         <translation>YUV 4:4:4 no es compatible con este PC.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1860" />
+        <location filename="../gui/SettingsView.qml" line="1879" />
         <source>Unlock bitrate limit (Experimental)</source>
         <translation>Desbloqueo del límite de bits (Experimental)</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1873" />
+        <location filename="../gui/SettingsView.qml" line="1892" />
         <source>This unlocks extremely high video bitrates for use with Sunshine hosts. It should only be used when streaming over an Ethernet LAN connection.</source>
         <translation>Esto desbloquea tasas de bits de vídeo extremadamente altas para su uso con hosts Sunshine. Solo debe utilizarse cuando se transmita a través de una conexión LAN Ethernet.</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1879" />
+        <location filename="../gui/SettingsView.qml" line="1898" />
         <source>Automatically find PCs on the local network (Recommended)</source>
         <translation>Encuentre automáticamente los ordenadores de la red local (recomendado)</translation>
     </message>
     <message>
-        <location filename="../gui/SettingsView.qml" line="1900" />
+        <location filename="../gui/SettingsView.qml" line="1919" />
         <source>Automatically detect blocked connections (Recommended)</source>
         <translation>Detectar automáticamente las conexiones bloqueadas (recomendado)</translation>
     </message>
@@ -1443,53 +1464,63 @@
 <context>
     <name>StreamSegue</name>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="12" />
+        <location filename="../gui/StreamSegue.qml" line="13" />
         <source>Resuming %1...</source>
         <translation>Reanudando %1...</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="13" />
-        <location filename="../gui/StreamSegue.qml" line="20" />
+        <location filename="../gui/StreamSegue.qml" line="14" />
+        <location filename="../gui/StreamSegue.qml" line="21" />
         <source>Starting %1...</source>
         <translation>Comenzando %1...</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="26" />
+        <location filename="../gui/StreamSegue.qml" line="27" />
         <source>Starting %1 failed: Error %2</source>
         <translation>Ha fallado el arranque de %1: Error %2</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="29" />
+        <location filename="../gui/StreamSegue.qml" line="30" />
         <source>Check your firewall and port forwarding rules for port(s): %1</source>
         <translation>Compruebe su cortafuegos y las reglas de reenvío de puertos para los puertos: %1</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="65" />
+        <location filename="../gui/StreamSegue.qml" line="66" />
         <source>This PC's Internet connection is blocking Artemis. Streaming over the Internet may not work while connected to this network.</source>
         <translation>La conexión a Internet de este PC está bloqueando Artemis. La transmisión por Internet puede no funcionar mientras estés conectado a esta red.</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="157" />
+        <location filename="../gui/StreamSegue.qml" line="160" />
+        <source>Ctrl+F5</source>
+        <translation>Ctrl+F5</translation>
+    </message>
+    <message>
+        <location filename="../gui/StreamSegue.qml" line="162" />
+        <source>Ctrl+F6 releases the mouse · Ctrl+F7 toggles remote desktop mouse</source>
+        <translation>Ctrl+F6 libera el rat?n ? Ctrl+F7 alterna el rat?n de escritorio remoto</translation>
+    </message>
+    <message>
+        <location filename="../gui/StreamSegue.qml" line="163" />
         <source>Ctrl+Alt+Shift+Z releases the mouse · Ctrl+Alt+Shift+M toggles remote desktop mouse</source>
         <translation>Ctrl+Alt+Shift+Z libera el ratón · Ctrl+Alt+Shift+M alterna el ratón de escritorio remoto</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="155" />
+        <location filename="../gui/StreamSegue.qml" line="165" />
         <source>Tip:</source>
         <translation>Consejo:</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="155" />
+        <location filename="../gui/StreamSegue.qml" line="165" />
         <source>Press %1 to disconnect your session</source>
         <translation>Pulse %1 para desconectar su sesión</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="156" />
+        <location filename="../gui/StreamSegue.qml" line="159" />
         <source>Start+Select+L1+R1</source>
         <translation>Start+Select+L1+R1</translation>
     </message>
     <message>
-        <location filename="../gui/StreamSegue.qml" line="156" />
+        <location filename="../gui/StreamSegue.qml" line="160" />
         <source>Ctrl+Alt+Shift+Q</source>
         <translation>Ctrl+Alt+Mayús+Q</translation>
     </message>

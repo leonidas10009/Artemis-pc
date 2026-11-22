@@ -78,16 +78,9 @@ int AppModel::getDirectLaunchAppIndex()
 
 int AppModel::getDesktopAppIndex()
 {
-    // Apollo/Sunshine expose the host desktop as a regular app. Match the
-    // common English and Spanish names exactly to avoid selecting games such
-    // as "Desktop Dungeons".
-    static const QStringList desktopNames = {
-        "desktop", "escritorio", "remote desktop", "escritorio remoto"
-    };
-
+    // Apollo/Sunshine expose the host desktop as a regular app.
     for (int i = 0; i < m_VisibleApps.count(); i++) {
-        const QString name = m_VisibleApps[i].name.trimmed().toLower();
-        if (desktopNames.contains(name)) {
+        if (m_VisibleApps[i].isDesktopApp()) {
             return i;
         }
     }

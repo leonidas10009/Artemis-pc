@@ -195,6 +195,20 @@ void SdlInputHandler::handleKeyEvent(SDL_KeyboardEvent* event)
         return;
     }
 
+    // Short shortcuts: Ctrl+F5..F10, with Ctrl as the only modifier. Requiring
+    // exactly Ctrl avoids clashing with AltGr (Ctrl+Alt) on Spanish keyboards.
+    if ((event->state == SDL_PRESSED) && m_QuickShortcutsEnabled &&
+            (event->keysym.mod & KMOD_CTRL) &&
+            !(event->keysym.mod & (KMOD_ALT | KMOD_SHIFT | KMOD_GUI))) {
+        for (int i = 0; i < QuickKeyComboMax; i++) {
+            if (event->keysym.sym == m_QuickKeyCombos[i].keyCode ||
+                    event->keysym.scancode == m_QuickKeyCombos[i].scanCode) {
+                performSpecialKeyCombo(m_QuickKeyCombos[i].keyCombo);
+                return;
+            }
+        }
+    }
+
     // Check for our special key combos
     if ((event->state == SDL_PRESSED) &&
             (event->keysym.mod & KMOD_CTRL) &&

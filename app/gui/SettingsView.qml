@@ -1426,6 +1426,24 @@ Flickable {
                 }
 
                 CheckBox {
+                    id: quickShortcutsCheck
+                    hoverEnabled: true
+                    width: parent.width
+                    text: qsTr("Use short stream shortcuts in Remote desktop (Ctrl+F5…F10)")
+                    font.pointSize: 12
+                    checked: StreamingPreferences.quickShortcuts
+                    onCheckedChanged: {
+                        StreamingPreferences.quickShortcuts = checked
+                    }
+
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 10000
+                    ToolTip.visible: hovered
+                    ToolTip.text: qsTr("Only applies to the Desktop app / Remote desktop mode, so games keep Ctrl+F5…F10. Disable this if a browser or app on the host needs those keys.") + "\n\n" +
+                                  qsTr("The longer Ctrl+Alt+Shift shortcuts remain available in every session.")
+                }
+
+                CheckBox {
                     id: absoluteMouseCheck
                     hoverEnabled: true
                     width: parent.width
@@ -1566,13 +1584,14 @@ Flickable {
                     font.pointSize: 10
                     color: Theme.colors.textMuted
                     wrapMode: Text.Wrap
-                    text: qsTr("Stream shortcuts:") + "\n" +
-                          "Ctrl+Alt+Shift+Q  " + qsTr("Disconnect") + "\n" +
-                          "Ctrl+Alt+Shift+E  " + qsTr("Quit host app and disconnect") + "\n" +
-                          "Ctrl+Alt+Shift+Z  " + qsTr("Release/recapture mouse and keyboard") + "\n" +
-                          "Ctrl+Alt+Shift+M  " + qsTr("Toggle remote desktop mouse") + "\n" +
-                          "Ctrl+Alt+Shift+X  " + qsTr("Toggle fullscreen") + "\n" +
-                          "Ctrl+Alt+Shift+D  " + qsTr("Minimize")
+                    text: qsTr("Stream shortcuts (Remote desktop):") + "\n" +
+                          "Ctrl+F5   " + qsTr("Disconnect") + "\n" +
+                          "Ctrl+F6   " + qsTr("Release/recapture mouse and keyboard") + "\n" +
+                          "Ctrl+F7   " + qsTr("Toggle game / remote desktop mouse") + "\n" +
+                          "Ctrl+F8   " + qsTr("Toggle fullscreen") + "\n" +
+                          "Ctrl+F9   " + qsTr("Minimize") + "\n" +
+                          "Ctrl+F10  " + qsTr("Toggle performance overlay") + "\n\n" +
+                          qsTr("Games / alternative: Ctrl+Alt+Shift+Q/E/Z/M/X/D/S")
                 }
             }
         }
