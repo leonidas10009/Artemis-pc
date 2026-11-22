@@ -1081,7 +1081,15 @@ Get-ChildItem app -Recurse -File -Include *.cpp,*.h,*.qml | ...
 | F-14/F-15 — cadena de suministro y CI | **Parcial** | Permisos de CI separados y release en job propio; faltan hashes de dependencias y pinning por SHA. |
 | F-16 — instalador | **Parcial** | Runtime VC++ desde el redistributable oficial; queda condicionar `RemoveFolderEx` en upgrades. |
 
-### 15.2 Nuevas funciones de escritorio remoto
+### 15.2 Actualización 1.2.0
+
+- Atajos cortos `Ctrl+F5…F10` **solo para Remote desktop / app Desktop**.
+- En juegos y apps normales se mantienen los atajos largos
+  `Ctrl+Alt+Shift+…`, evitando interferencias con `Ctrl+F5…F10`.
+- Opción en Ajustes → Entrada para desactivar los atajos cortos.
+- Detección centralizada de la app Desktop en `NvApp::isDesktopApp()`.
+
+### 15.3 Nuevas funciones de escritorio remoto
 
 - Botón **Remote desktop** en la tarjeta del PC y entrada en el menú contextual.
 - Apertura automática de la app **Desktop** del host en modo de ratón absoluto.
