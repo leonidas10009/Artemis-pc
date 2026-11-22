@@ -16,8 +16,8 @@
 - **Temas:** 22 (10 oscuros, 12 claros) con tokens copiados de `sunshine.css` de Apollo.
 - **Funciones Apollo:** comandos de energía, pantalla virtual, portapapeles y detección de permisos.
 - **Entrada:** captura automática de teclado/ratón al iniciar el stream.
-- **Estado:** compila y arranca en Windows 11. Paquete portable 1.0.0 generado;
-  falta publicar release e instalador MSI.
+- **Estado:** compila y arranca en Windows 11. Portable e instalador 1.0.0 generados,
+  probados y publicados en GitHub. CI de Windows verificada (portable + instalador).
 
 ---
 
@@ -36,6 +36,8 @@
 | Distribución portable | `dist\ArtemisPortable` |
 | Paquete portable | `Release\Artemis-1.0.0-win64.zip` |
 | Paquete instalador | `Release\ArtemisSetup-1.0.0-win64.exe` |
+| Release pública | `https://github.com/leonidas10009/Artemis-pc/releases/tag/v1.0.0` |
+| SHA-256 | Se publica junto a cada asset en la release |
 | Config portable | `dist\ArtemisPortable\Artemis 2026 Project\Artemis.ini` |
 | Host Apollo | `E:\ProyectoProgramacion\apolo_V2026\_update\Release` |
 
@@ -156,17 +158,17 @@ No se modificó ningún archivo del servidor.
 
 ---
 
-## 4. Búsqueda, ventana y comodidad de escritorio
+## 4. Ventana, filtrado y comodidad de escritorio
 
-### 4.1 Búsqueda
+### 4.1 Filtrado
 
 - `ComputerModel` y `AppModel` tienen `filterText` con notificación.
 - `ComputerModel` mantiene `m_Computers` (todos) y `m_FilteredComputers` (visibles).
   Los índices de QML se mapean con `computerAt()`.
 - `AppModel` reconstruye `m_VisibleApps` al cambiar el filtro.
-- La barra superior expone un `TextField` contextual:
-  - `Ctrl+F` enfoca y selecciona.
-  - `Esc` limpia el filtro.
+- La barra de búsqueda visible se retiró por diseño. `Ctrl+F` y el campo contextual
+  ya no forman parte de la interfaz; el filtrado queda en los modelos para una
+  futura versión.
 - Los modelos emiten `filterTextChanged` y reinician filas.
 
 ### 4.2 Ventana
@@ -360,7 +362,6 @@ manual o por tag, para no generar correos de fallos.
 ### Pendiente
 
 - Firmar el instalador con un certificado comercial (opcional, evita SmartScreen).
-- Publicar la release con el instalador además del portable.
 - Verificar el menú de temas con navegación completa por teclado/gamepad.
 - Añadir capturas reales al README.
 - Probar energía, portapapeles y pantalla virtual end-to-end con Apollo.
@@ -373,14 +374,19 @@ manual o por tag, para no generar correos de fallos.
 
 El repositorio remoto es <https://github.com/leonidas10009/Artemis-pc>.
 
-Recomendación:
+Estado actual:
+
+- `origin` apunta a `Artemis-pc`; `upstream` conserva Moonlight Qt.
+- Rama `main` con un commit inicial limpio (sin historial de Moonlight).
+- Release `v1.0.0` publicada con instalador y portable.
+- CI propia en `.github/workflows/windows.yml`.
+
+Para actualizar:
 
 ```powershell
-git remote rename origin upstream
-git remote add origin https://github.com/leonidas10009/Artemis-pc.git
 git add -A
-git commit -m "Artemis PC 2026 1.0.0"
-git push -u origin main
+git commit -m "Descripción del cambio"
+git push
 ```
 
 Antes de publicar, comprobar que no se suben:
@@ -390,6 +396,7 @@ Antes de publicar, comprobar que no se suben:
 - `libs/windows/`
 - `*.log`
 - `*.ini` de configuración
+- `wix/**/obj/` y `wix/**/bin/`
 - capturas temporales
 
 ---

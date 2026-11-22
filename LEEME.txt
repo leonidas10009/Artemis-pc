@@ -7,21 +7,29 @@ REQUISITOS
 - Apollo 2026 recomendado para pantalla virtual, portapapeles y comandos de energía.
 - Permisos de ratón y teclado concedidos al cliente en Apollo (Web UI > Clients).
 
-INSTALACIÓN PORTABLE
-1. Extrae todo el contenido en una carpeta propia.
+INSTALADOR (RECOMENDADO)
+1. Ejecuta ArtemisSetup-1.0.0-win64.exe.
+2. Sigue el asistente. Se instala en Program Files\Artemis 2026.
+3. Abre Artemis desde el menú Inicio o el acceso directo.
+4. Desinstala desde Configuración > Aplicaciones.
+- El instalador no está firmado con un certificado comercial; SmartScreen puede avisar.
+
+VERSIÓN PORTABLE
+1. Extrae Artemis-1.0.0-win64.zip en una carpeta propia.
 2. Ejecuta Artemis.exe.
 3. Añade tu PC Apollo y empareja el cliente.
 4. Introduce el PIN en la Web UI de Apollo.
 
 CONFIGURACIÓN
-- La configuración se guarda en "Artemis 2026 Project\Artemis.ini".
+- Portable: la configuración se guarda en "Artemis 2026 Project\Artemis.ini".
 - El modo portable se activa con el archivo portable.dat.
+- Instalador: la configuración se guarda en el perfil del usuario.
 
 TECLADO Y RATÓN
 - Ctrl+Alt+Shift+Z: liberar o recapturar ratón y teclado.
 - Ctrl+Alt+Shift+M: alternar modo ratón para juegos / escritorio remoto.
 - Ctrl+Alt+Shift+K: activar o desactivar la captura de atajos del sistema.
-- Si no llega la entrada, revisa los permisos del cliente en Apollo.
+- Si no llega la entrada, revisa los permisos del cliente en Apollo > Clients.
 
 TEMAS
 - Botón de paleta en la esquina superior derecha.
@@ -30,7 +38,8 @@ TEMAS
 - También disponible en Ajustes > UI.
 
 MÁS INFORMACIÓN
-- https://github.com/leonidas10009/Artemis-pc
-- README.md y MEMORIA_ARTEMIS_PC.md incluidos en el ZIP y en el repositorio.
+- Repositorio: https://github.com/leonidas10009/Artemis-pc
+- Release: https://github.com/leonidas10009/Artemis-pc/releases/tag/v1.0.0
+- README.md y MEMORIA_ARTEMIS_PC.md incluidos en el repositorio.
 
 Licencia GPL-3.0. Fork no oficial de Moonlight Qt.

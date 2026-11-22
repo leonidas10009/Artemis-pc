@@ -135,7 +135,7 @@ permisos `clipboard_set` / `clipboard_read` para el cliente.
 - **Qt 6.11.3 MSVC 2022 64-bit** (probado con Qt 6.11.3).
 - **Visual Studio 2026** con cargas de trabajo de C++ y Windows SDK.
 - **PowerShell** para descargar las librerías precompiladas.
-- **7-Zip** solo si se generan instaladores.
+- **7-Zip** no es necesario en local; el script de CI lo usa para instalar Qt en el runner (GitHub ya lo incluye).
 
 Rutas usadas en este equipo:
 
@@ -203,8 +203,33 @@ Copia también las DLL del runtime de Visual C++ (`msvcp140.dll`,
 
 ### Script rápido
 
-`scripts\build-artemis.bat` automatiza la compilación y el despliegue en este equipo.
+`scripts\build-artemis.bat` automatiza la compilación y el despliegue portable.
 Ajusta las rutas de Qt y Visual Studio al principio del archivo si cambian.
+
+### 4. Generar el instalador
+
+Con el portable ya desplegado:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\deploy-artemis.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\build-installer.ps1
+```
+
+Genera:
+
+- `build\build-x64-release\Artemis.msi`
+- `dist\installer\ArtemisSetup.exe`
+- `Release\ArtemisSetup-1.0.0-win64.exe`
+
+### 5. CI en GitHub Actions
+
+`.github/workflows/windows.yml` compila en un runner `windows-2025` con
+Qt 6.11.3, MSVC y WiX. Genera el portable y el instalador, los sube como
+artefactos de Actions y, en tags `v*`, crea la release automáticamente.
+
+Se ejecuta manualmente (`workflow_dispatch`) o al crear un tag; no en cada push.
+GitHub Actions es gratuito para repositorios públicos con uso razonable.
+La ejecución manual de CI terminó correctamente generando el portable y el instalador.
 
 ---
 
