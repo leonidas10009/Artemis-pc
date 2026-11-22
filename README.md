@@ -25,6 +25,7 @@ Este es un fork no oficial. No está afiliado a Moonlight Stream, LizardByte ni 
 - **Ventana de escritorio:** tamaño mínimo, geometría recordada y barra de estado con información contextual.
 - **Tarjetas de apps:** portada completa, fondo oscurecido, nombre integrado en la parte inferior y efecto hover.
 - **Lanzamiento directo:** un clic en una tarjeta de app la lanza o reanuda; botón **Remote desktop** en la tarjeta del PC.
+- **Reanudar app en ejecución:** menú contextual del PC → **Resume Running App**.
 - **Funciones Apollo:**
   - **Comandos de energía** desde el menú contextual del PC: apagar, reiniciar y cancelar apagado.
   - **Pantalla virtual Apollo** (SudoVDA) al iniciar el stream.
@@ -337,7 +338,9 @@ artemis-pc-2026/
 ├─ wix/                 # Instalador WiX
 ├─ dist/                # Salida portable (no versionada)
 ├─ docs/reviews/        # Revisiones técnicas
+├─ CHANGELOG.md          # Historial de versiones
 ├─ THIRD_PARTY_NOTICES.md
+├─ LEEME.txt             # Guía rápida para el usuario
 └─ MEMORIA_ARTEMIS_PC.md
 ```
 

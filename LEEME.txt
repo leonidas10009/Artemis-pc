@@ -39,6 +39,8 @@ TECLADO Y RATÓN
 ESCRITORIO REMOTO
 - Pasa el ratón por la tarjeta del PC y pulsa "Remote desktop", o usa el menú
   contextual del PC.
+- Para reanudar una app que ya está abierta: menú contextual del PC →
+  "Resume Running App".
 - Artemis abre la app Desktop del host y activa el ratón absoluto: el cursor
   del cliente controla directamente el escritorio del host.
 - Para salir: Ctrl+Alt+Shift+Q (desconectar) o Ctrl+Alt+Shift+E (cerrar la app

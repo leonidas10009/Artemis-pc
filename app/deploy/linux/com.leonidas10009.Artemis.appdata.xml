@@ -39,17 +39,6 @@
 		<color type="primary" scheme_preference="dark">#55285d</color>
 	</branding>
 
-	<screenshots>
-		<screenshot type="default">
-			<image>https://github.com/leonidas10009/Artemis-pc/appstream_resources/moonlight_screenshot_1.png</image>
-			<caption>Host selection page showing local PCs</caption>
-		</screenshot>
-		<screenshot>
-			<image>https://github.com/leonidas10009/Artemis-pc/appstream_resources/moonlight_screenshot_2.png</image>
-			<caption>Settings page displaying streaming options</caption>
-		</screenshot>
-	</screenshots>
-
 	<releases>
 		<release version="1.1.0" date="2026-11-22">
 			<description>

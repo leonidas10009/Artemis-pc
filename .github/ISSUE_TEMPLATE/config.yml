@@ -1,1 +1,9 @@
 blank_issues_enabled: false
+
+contact_links:
+  - name: Descargas de Artemis PC 2026
+    url: https://github.com/leonidas10009/Artemis-pc/releases
+    about: Instalador, versión portable, hashes y notas de cada versión.
+  - name: Apollo 2026
+    url: https://github.com/leonidas10009/Apollo_2026
+    about: Host recomendado para Artemis PC 2026.

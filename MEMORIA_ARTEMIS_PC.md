@@ -346,6 +346,7 @@ En tags `v*` crea la release de GitHub con los binarios, `SHA256SUMS.txt` y
 - **Remote desktop** con botón en la tarjeta del PC, entrada en el menú
   contextual y modo de ratón absoluto.
 - Entrada **Open in remote desktop mode** para cualquier app.
+- Entrada **Resume Running App** para reanudar una app ya abierta.
 - Un clic en una tarjeta de app lanza o reanuda la app.
 - Diálogo **Stream shortcuts...**, guía en Ajustes → Entrada y aviso al iniciar
   el stream.
