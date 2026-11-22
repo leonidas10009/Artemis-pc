@@ -1,0 +1,36 @@
+ARTEMIS PC 2026 - 1.0.0
+
+Cliente de escritorio para Apollo/Sunshine, basado en Moonlight Qt 6.2.0.
+
+REQUISITOS
+- Windows 10/11 de 64 bits.
+- Apollo 2026 recomendado para pantalla virtual, portapapeles y comandos de energía.
+- Permisos de ratón y teclado concedidos al cliente en Apollo (Web UI > Clients).
+
+INSTALACIÓN PORTABLE
+1. Extrae todo el contenido en una carpeta propia.
+2. Ejecuta Artemis.exe.
+3. Añade tu PC Apollo y empareja el cliente.
+4. Introduce el PIN en la Web UI de Apollo.
+
+CONFIGURACIÓN
+- La configuración se guarda en "Artemis 2026 Project\Artemis.ini".
+- El modo portable se activa con el archivo portable.dat.
+
+TECLADO Y RATÓN
+- Ctrl+Alt+Shift+Z: liberar o recapturar ratón y teclado.
+- Ctrl+Alt+Shift+M: alternar modo ratón para juegos / escritorio remoto.
+- Ctrl+Alt+Shift+K: activar o desactivar la captura de atajos del sistema.
+- Si no llega la entrada, revisa los permisos del cliente en Apollo.
+
+TEMAS
+- Botón de paleta en la esquina superior derecha.
+- Ctrl+T: siguiente tema.
+- Ctrl+Shift+T: abrir el selector de temas.
+- También disponible en Ajustes > UI.
+
+MÁS INFORMACIÓN
+- https://github.com/leonidas10009/Artemis-pc
+- README.md y MEMORIA_ARTEMIS_PC.md incluidos en el ZIP y en el repositorio.
+
+Licencia GPL-3.0. Fork no oficial de Moonlight Qt.

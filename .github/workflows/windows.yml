@@ -1,0 +1,82 @@
+name: Artemis PC Windows CI
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-2025
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Cache Qt
+        uses: actions/cache@v4
+        with:
+          path: C:\Qt\6.11.3
+          key: qt-6.11.3-msvc2022-x64-v1
+
+      - name: Cache Moonlight dependencies
+        uses: actions/cache@v4
+        with:
+          path: libs/windows
+          key: moonlight-deps-v19
+
+      - name: Install Qt 6.11.3
+        shell: pwsh
+        run: ./scripts/install-qt-ci.ps1
+
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Fetch dependencies
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "libs\windows\lib\x64")) {
+            ./setup-deps.ps1
+          }
+
+      - name: Configure
+        shell: pwsh
+        run: |
+          $env:PATH = "C:\Qt\6.11.3\msvc2022_64\bin;$env:PATH"
+          New-Item -ItemType Directory -Force -Path build\ci | Out-Null
+          Set-Location build\ci
+          qmake ..\..\moonlight-qt.pro CONFIG+=release
+
+      - name: Build
+        shell: pwsh
+        run: |
+          $env:PATH = "C:\Qt\6.11.3\msvc2022_64\bin;$env:PATH"
+          Set-Location build\ci
+          nmake release
+
+      - name: Deploy portable build
+        shell: pwsh
+        run: ./scripts/deploy-artemis.ps1 -Root "${{ github.workspace }}" -QtRoot "C:\Qt\6.11.3\msvc2022_64" -BuildDir "build\ci"
+
+      - name: Upload portable ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: Artemis-win64
+          path: Release/*.zip
+          if-no-files-found: error
+
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Release/*.zip
+          generate_release_notes: true
