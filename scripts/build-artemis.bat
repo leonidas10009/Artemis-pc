@@ -40,32 +40,10 @@ nmake release
 if errorlevel 1 goto :error
 popd
 
-if exist "%DEPLOY%" rmdir /s /q "%DEPLOY%"
-mkdir "%DEPLOY%"
-
-copy "%ROOT%\libs\windows\lib\x64\*.dll" "%DEPLOY%" >nul
-copy "%BUILD%\AntiHooking\release\AntiHooking.dll" "%DEPLOY%" >nul
-copy "%ROOT%\app\SDL_GameControllerDB\gamecontrollerdb.txt" "%DEPLOY%" >nul
-copy "%BUILD%\app\release\Artemis.exe" "%DEPLOY%" >nul
-
-windeployqt --dir "%DEPLOY%" --release --qmldir "%ROOT%\app\gui" ^
-  --no-opengl-sw --no-compiler-runtime --no-sql ^
-  --no-system-d3d-compiler --no-system-dxc-compiler --no-ffmpeg ^
-  --skip-plugin-types qmltooling,generic ^
-  --no-quickcontrols2fusion --no-quickcontrols2imagine --no-quickcontrols2universal ^
-  --no-quickcontrols2fusionstyleimpl --no-quickcontrols2imaginestyleimpl ^
-  --no-quickcontrols2universalstyleimpl --no-quickcontrols2windowsstyleimpl ^
-  --no-quickcontrols2fluentwinui3styleimpl ^
-  "%DEPLOY%\Artemis.exe"
+rem Deploy with the same script used by CI, so the portable build always gets
+rem the official VC++ runtime, licenses and checksums.
+powershell -ExecutionPolicy Bypass -File "%ROOT%\scripts\deploy-artemis.ps1" -Root "%ROOT%" -QtRoot "%QTDIR%" -BuildDir "build\build-x64-release"
 if errorlevel 1 goto :error
-
-rem Copy the Visual C++ runtime DLLs so the portable build works on clean PCs
-for %%F in (msvcp140.dll msvcp140_1.dll msvcp140_2.dll msvcp140_atomic_wait.dll msvcp140_codecvt_ids.dll vcruntime140.dll vcruntime140_1.dll vcruntime140_threads.dll concrt140.dll) do (
-    if exist "%SystemRoot%\System32\%%F" copy "%SystemRoot%\System32\%%F" "%DEPLOY%" >nul
-)
-
-rem Portable mode: settings live next to Artemis.exe
-type nul > "%DEPLOY%\portable.dat"
 
 echo.
 echo Build OK: %DEPLOY%\Artemis.exe

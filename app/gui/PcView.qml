@@ -244,6 +244,39 @@ CenteredGridView {
             }
         }
 
+        RoundButton {
+            id: remoteDesktopButton
+            z: 1
+            visible: model.online && model.paired && (parent.hovered || parent.highlighted)
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.margins: 12
+            implicitWidth: 44
+            implicitHeight: 44
+            focusPolicy: Qt.NoFocus
+
+            icon.source: Theme.isDark ? "qrc:/res/desktop_windows-48px.svg"
+                                      : "qrc:/res/desktop_windows-48px-light.svg"
+            icon.width: 26
+            icon.height: 26
+
+            ToolTip.text: qsTr("Remote desktop")
+            ToolTip.delay: 500
+            ToolTip.timeout: 3000
+            ToolTip.visible: hovered
+
+            onClicked: {
+                var component = Qt.createComponent("AppView.qml")
+                var appView = component.createObject(stackView, {
+                    "computerIndex": pcIndex,
+                    "objectName": model.name,
+                    "remoteDesktop": true,
+                    "showHiddenGames": true
+                })
+                stackView.push(appView)
+            }
+        }
+
         Loader {
             id: pcContextMenuLoader
             asynchronous: true
@@ -263,6 +296,45 @@ CenteredGridView {
                         stackView.push(appView)
                     }
                     visible: model.online && model.paired
+                }
+                NavigableMenuItem {
+                    text: qsTr("Remote desktop")
+                    onTriggered: {
+                        var component = Qt.createComponent("AppView.qml")
+                        var appView = component.createObject(stackView, {
+                            "computerIndex": index,
+                            "objectName": model.name,
+                            "remoteDesktop": true,
+                            "showHiddenGames": true
+                        })
+                        stackView.push(appView)
+                    }
+                    visible: model.online && model.paired
+
+                    ToolTip.text: qsTr("Open the host Desktop in remote desktop mouse mode")
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.visible: hovered
+                }
+                NavigableMenuItem {
+                    text: qsTr("Resume Running App")
+                    onTriggered: {
+                        var session = computerModel.createSessionForCurrentGame(index)
+                        if (session) {
+                            var component = Qt.createComponent("StreamSegue.qml")
+                            var segue = component.createObject(stackView, {
+                                "appName": model.name,
+                                "session": session,
+                                "isResume": true
+                            })
+                            stackView.push(segue)
+                        }
+                    }
+                    visible: model.online && model.paired && model.busy
+                }
+                NavigableMenuItem {
+                    text: qsTr("Stream shortcuts...")
+                    onTriggered: streamShortcutsDialog.open()
                 }
                 NavigableMenuItem {
                     text: qsTr("Wake PC")
@@ -369,6 +441,13 @@ CenteredGridView {
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.RightButton;
+
+            // Let left clicks reach the ItemDelegate so the card opens the
+            // host or the remote desktop button.
+            onPressed: function(mouse) {
+                mouse.accepted = (mouse.button === Qt.RightButton)
+            }
+
             onClicked: {
                 parent.pressAndHold()
             }
@@ -505,6 +584,21 @@ CenteredGridView {
         text: showPcDetailsDialog.pcDetails
         imageSrc: "qrc:/res/baseline-help_outline-24px.svg"
         standardButtons: Dialog.Ok
+    }
+
+    NavigableMessageDialog {
+        id: streamShortcutsDialog
+        text: qsTr("While streaming:") + "\n\n" +
+              "Ctrl+Alt+Shift+Q  " + qsTr("Disconnect (the host app keeps running)") + "\n" +
+              "Ctrl+Alt+Shift+E  " + qsTr("Quit the host app and disconnect") + "\n" +
+              "Ctrl+Alt+Shift+Z  " + qsTr("Release or recapture the mouse and keyboard") + "\n" +
+              "Ctrl+Alt+Shift+M  " + qsTr("Toggle game / remote desktop mouse") + "\n" +
+              "Ctrl+Alt+Shift+X  " + qsTr("Toggle fullscreen") + "\n" +
+              "Ctrl+Alt+Shift+D  " + qsTr("Minimize the stream window") + "\n" +
+              "Ctrl+Alt+Shift+S  " + qsTr("Toggle the performance overlay") + "\n\n" +
+              qsTr("Gamepad: Start+Select+L1+R1 to disconnect.")
+        standardButtons: Dialog.Ok
+        imageSrc: "qrc:/res/baseline-help_outline-24px.svg"
     }
 
     NavigableMessageDialog {

@@ -1,4 +1,4 @@
-ARTEMIS PC 2026 - 1.0.0
+ARTEMIS PC 2026 - 1.1.0
 
 Cliente de escritorio para Apollo/Sunshine, basado en Moonlight Qt 6.2.0.
 
@@ -8,14 +8,14 @@ REQUISITOS
 - Permisos de ratón y teclado concedidos al cliente en Apollo (Web UI > Clients).
 
 INSTALADOR (RECOMENDADO)
-1. Ejecuta ArtemisSetup-1.0.0-win64.exe.
+1. Ejecuta ArtemisSetup-1.1.0-win64.exe.
 2. Sigue el asistente. Se instala en Program Files\Artemis 2026.
 3. Abre Artemis desde el menú Inicio o el acceso directo.
 4. Desinstala desde Configuración > Aplicaciones.
 - El instalador no está firmado con un certificado comercial; SmartScreen puede avisar.
 
 VERSIÓN PORTABLE
-1. Extrae Artemis-1.0.0-win64.zip en una carpeta propia.
+1. Extrae Artemis-1.1.0-win64.zip en una carpeta propia.
 2. Ejecuta Artemis.exe.
 3. Añade tu PC Apollo y empareja el cliente.
 4. Introduce el PIN en la Web UI de Apollo.
@@ -29,7 +29,22 @@ TECLADO Y RATÓN
 - Ctrl+Alt+Shift+Z: liberar o recapturar ratón y teclado.
 - Ctrl+Alt+Shift+M: alternar modo ratón para juegos / escritorio remoto.
 - Ctrl+Alt+Shift+K: activar o desactivar la captura de atajos del sistema.
+- Ctrl+Alt+Shift+Q: desconectar la sesión (la app del host sigue abierta).
+- Ctrl+Alt+Shift+E: cerrar la app del host y desconectar.
+- Ctrl+Alt+Shift+X: alternar pantalla completa.
+- Ctrl+Alt+Shift+D: minimizar la ventana del stream.
+- Ctrl+Alt+Shift+S: mostrar u ocultar el overlay de rendimiento.
 - Si no llega la entrada, revisa los permisos del cliente en Apollo > Clients.
+
+ESCRITORIO REMOTO
+- Pasa el ratón por la tarjeta del PC y pulsa "Remote desktop", o usa el menú
+  contextual del PC.
+- Artemis abre la app Desktop del host y activa el ratón absoluto: el cursor
+  del cliente controla directamente el escritorio del host.
+- Para salir: Ctrl+Alt+Shift+Q (desconectar) o Ctrl+Alt+Shift+E (cerrar la app
+  del host y salir). Ctrl+Alt+Shift+Z libera el ratón si necesitas la barra de
+  título o el botón de cerrar.
+- Ctrl+Alt+Shift+M vuelve al modo de ratón para juegos.
 
 TEMAS
 - Botón de paleta en la esquina superior derecha.
@@ -39,7 +54,7 @@ TEMAS
 
 MÁS INFORMACIÓN
 - Repositorio: https://github.com/leonidas10009/Artemis-pc
-- Release: https://github.com/leonidas10009/Artemis-pc/releases/tag/v1.0.0
+- Release: https://github.com/leonidas10009/Artemis-pc/releases/tag/v1.1.0
 - README.md y MEMORIA_ARTEMIS_PC.md incluidos en el repositorio.
 
 Licencia GPL-3.0. Fork no oficial de Moonlight Qt.

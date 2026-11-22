@@ -6,7 +6,35 @@
 #include <QSettings>
 #include <QCoreApplication>
 
+#ifdef Q_OS_WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#endif
+
 QString Path::s_CacheDir;
+
+QString Path::getExecutableDir()
+{
+#ifdef Q_OS_WIN32
+    wchar_t path[32768];
+    DWORD length = GetModuleFileNameW(nullptr, path, ARRAYSIZE(path));
+    if (length > 0 && length < ARRAYSIZE(path)) {
+        return QFileInfo(QString::fromWCharArray(path, int(length))).absolutePath();
+    }
+#elif defined(Q_OS_LINUX)
+    // QCoreApplication is not available yet when this is called for portable
+    // mode, so resolve /proc/self/exe directly.
+    QFileInfo exeInfo(QStringLiteral("/proc/self/exe"));
+    if (exeInfo.exists()) {
+        return exeInfo.canonicalPath();
+    }
+#endif
+
+    // Fallback for platforms where the executable path cannot be resolved
+    // before QCoreApplication exists.
+    return QDir::currentPath();
+}
+
 QString Path::s_LogDir;
 QString Path::s_BoxArtCacheDir;
 QString Path::s_QmlCacheDir;
@@ -75,6 +103,13 @@ QString Path::getDataFilePath(QString fileName)
         return candidatePath;
     }
 
+    // Check the executable directory (portable mode and installed data files)
+    candidatePath = QDir(getExecutableDir()).absoluteFilePath(fileName);
+    if (QFile::exists(candidatePath)) {
+        qInfo() << "Found" << fileName << "at" << candidatePath;
+        return candidatePath;
+    }
+
     // Check the current directory
     candidatePath = QDir(QDir::currentPath()).absoluteFilePath(fileName);
     if (QFile::exists(candidatePath)) {
@@ -105,13 +140,14 @@ QString Path::getDataFilePath(QString fileName)
 void Path::initialize(bool portable)
 {
     if (portable) {
-        s_LogDir = QDir::currentPath();
-        s_BoxArtCacheDir = QDir::currentPath() + "/boxart";
-        s_QmlCacheDir = QDir::currentPath() + "/qmlcache";
+        const QString baseDir = getExecutableDir();
+        s_LogDir = baseDir;
+        s_BoxArtCacheDir = baseDir + "/boxart";
+        s_QmlCacheDir = baseDir + "/qmlcache";
 
         // In order for the If-Modified-Since logic to work in MappingFetcher,
-        // the cache directory must be different than the current directory.
-        s_CacheDir = QDir::currentPath() + "/cache";
+        // the cache directory must be different than the application directory.
+        s_CacheDir = baseDir + "/cache";
     }
     else {
 #ifdef Q_OS_DARWIN

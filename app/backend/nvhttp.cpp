@@ -18,6 +18,21 @@
 #define RESUME_TIMEOUT_MS 30000
 #define QUIT_TIMEOUT_MS 30000
 
+// Upper bound for clipboard payloads. A host must not be able to make the
+// client allocate or process arbitrary amounts of text.
+static constexpr int kMaxClipboardBytes = 256 * 1024;
+
+// Some Apollo/GameStream endpoints return HTTP 200 with an XML error document
+// (<root status_code="...">). Validate only when the response actually looks
+// like one of those documents so plain-text responses keep working.
+static void verifyApolloResponseIfPresent(const QString& response)
+{
+    const QString trimmed = response.trimmed();
+    if (trimmed.contains("<root") && trimmed.contains("status_code")) {
+        NvHTTP::verifyResponseStatus(trimmed);
+    }
+}
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #define XML_NAME_EQUALS(x, y) ((x) == (y))
 #else
@@ -260,28 +275,44 @@ NvHTTP::execServerCmd(int commandIndex)
                                    true);
 
     qInfo() << "Server command" << commandIndex << "response:" << response;
+
+    // Throws if Apollo rejected the command with an application-level error.
+    verifyApolloResponseIfPresent(response);
 }
 
 QString
 NvHTTP::getClipboardText()
 {
-    return openConnectionToString(m_BaseUrlHttps,
-                                  "actions/clipboard",
-                                  "type=text",
-                                  REQUEST_TIMEOUT_MS,
-                                  NvLogLevel::NVLL_ERROR);
+    const QString text =
+            openConnectionToString(m_BaseUrlHttps,
+                                   "actions/clipboard",
+                                   "type=text",
+                                   REQUEST_TIMEOUT_MS,
+                                   NvLogLevel::NVLL_ERROR);
+
+    // Throws if the host returned an XML error document instead of text.
+    verifyApolloResponseIfPresent(text);
+
+    if (text.toUtf8().size() > kMaxClipboardBytes) {
+        throw GfeHttpResponseException(413, "Clipboard text exceeds the maximum supported size");
+    }
+
+    return text;
 }
 
 void
 NvHTTP::setClipboardText(const QString& text)
 {
-    openConnectionToString(m_BaseUrlHttps,
-                           "actions/clipboard",
-                           "type=text",
-                           REQUEST_TIMEOUT_MS,
-                           NvLogLevel::NVLL_ERROR,
-                           text.toUtf8(),
-                           true);
+    const QString response =
+            openConnectionToString(m_BaseUrlHttps,
+                                   "actions/clipboard",
+                                   "type=text",
+                                   REQUEST_TIMEOUT_MS,
+                                   NvLogLevel::NVLL_ERROR,
+                                   text.toUtf8(),
+                                   true);
+
+    verifyApolloResponseIfPresent(response);
 }
 
 void

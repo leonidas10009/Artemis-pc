@@ -11,6 +11,7 @@ wix/**/bin/
 Release/
 *.log
 *.ini
+!app/gui/.qmllint.ini
 portable.dat
 screenshot*.png
 window_*.png

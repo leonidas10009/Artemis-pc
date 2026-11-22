@@ -76,6 +76,25 @@ int AppModel::getDirectLaunchAppIndex()
     return -1;
 }
 
+int AppModel::getDesktopAppIndex()
+{
+    // Apollo/Sunshine expose the host desktop as a regular app. Match the
+    // common English and Spanish names exactly to avoid selecting games such
+    // as "Desktop Dungeons".
+    static const QStringList desktopNames = {
+        "desktop", "escritorio", "remote desktop", "escritorio remoto"
+    };
+
+    for (int i = 0; i < m_VisibleApps.count(); i++) {
+        const QString name = m_VisibleApps[i].name.trimmed().toLower();
+        if (desktopNames.contains(name)) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 int AppModel::rowCount(const QModelIndex &parent) const
 {
     // For list models only the root node (an invalid parent) should return the list's size. For all

@@ -696,7 +696,7 @@ Flickable {
                         from : 500
                         to: StreamingPreferences.unlockBitrate ? 500000 : 150000
 
-                        snapMode: "SnapOnRelease"
+                        snapMode: Slider.SnapOnRelease
                         width: Math.min(bitrateDesc.implicitWidth, parent.width - (resetBitrateButton.visible ? resetBitrateButton.width + parent.spacing : 0))
 
                         onValueChanged: {
@@ -1064,14 +1064,21 @@ Flickable {
                     id: themeComboBox
                     textRole: "text"
 
+                    function syncThemeIndex() {
+                        for (var i = 0; i < themeListModel.count; i++) {
+                            if (themeListModel.get(i).val === Theme.name) {
+                                currentIndex = i
+                                return
+                            }
+                        }
+                    }
+
                     Component.onCompleted: {
                         var keys = Theme.darkThemeKeys.concat(Theme.lightThemeKeys)
                         for (var i = 0; i < keys.length; i++) {
                             themeListModel.append({ "text": Theme.displayName(keys[i]), "val": keys[i] })
-                            if (keys[i] === Theme.name) {
-                                currentIndex = i
-                            }
                         }
+                        syncThemeIndex()
                     }
 
                     model: ListModel {
@@ -1081,6 +1088,14 @@ Flickable {
                     onActivated: {
                         if (enabled && currentIndex >= 0) {
                             Theme.setTheme(themeListModel.get(currentIndex).val)
+                        }
+                    }
+
+                    Connections {
+                        target: Theme
+
+                        function onThemeChanged() {
+                            themeComboBox.syncThemeIndex()
                         }
                     }
                 }
@@ -1543,6 +1558,21 @@ Flickable {
                     onCheckedChanged: {
                         StreamingPreferences.reverseScrollDirection = checked
                     }
+                }
+
+                Label {
+                    width: parent.width
+                    topPadding: 8
+                    font.pointSize: 10
+                    color: Theme.colors.textMuted
+                    wrapMode: Text.Wrap
+                    text: qsTr("Stream shortcuts:") + "\n" +
+                          "Ctrl+Alt+Shift+Q  " + qsTr("Disconnect") + "\n" +
+                          "Ctrl+Alt+Shift+E  " + qsTr("Quit host app and disconnect") + "\n" +
+                          "Ctrl+Alt+Shift+Z  " + qsTr("Release/recapture mouse and keyboard") + "\n" +
+                          "Ctrl+Alt+Shift+M  " + qsTr("Toggle remote desktop mouse") + "\n" +
+                          "Ctrl+Alt+Shift+X  " + qsTr("Toggle fullscreen") + "\n" +
+                          "Ctrl+Alt+Shift+D  " + qsTr("Minimize")
                 }
             }
         }

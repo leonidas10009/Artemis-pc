@@ -74,5 +74,8 @@ if (-not (Test-Path $installer)) {
 
 $out = Join-Path $releaseDir "ArtemisSetup-$version-win64.exe"
 Copy-Item $installer $out -Force
+$installerHash = (Get-FileHash $out -Algorithm SHA256).Hash
+$sumsPath = Join-Path $releaseDir "SHA256SUMS.txt"
+"$installerHash  $(Split-Path $out -Leaf)" | Add-Content -Path $sumsPath -Encoding ASCII
 Write-Host "Installer: $out"
-Write-Host "SHA256: $((Get-FileHash $out -Algorithm SHA256).Hash)"
+Write-Host "SHA256: $installerHash"

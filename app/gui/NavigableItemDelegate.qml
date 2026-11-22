@@ -4,6 +4,7 @@ import QtQuick.Controls 2.2
 ItemDelegate {
     property GridView grid
 
+    hoverEnabled: true
     highlighted: grid.activeFocus && grid.currentItem === this
 
     Keys.onLeftPressed: {

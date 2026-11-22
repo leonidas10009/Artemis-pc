@@ -6,6 +6,10 @@
 class Path
 {
 public:
+    // Directory containing the running executable. This is safe to call before
+    // QCoreApplication is constructed, which matters for portable mode.
+    static QString getExecutableDir();
+
     static QString getLogDir();
     static QString getBoxArtCacheDir();
     static QString getQmlCacheDir();

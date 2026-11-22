@@ -1,6 +1,8 @@
 #include "session.h"
 #include "settings/streamingpreferences.h"
 #include "streaming/streamutils.h"
+#include "backend/nvcomputer.h"
+#include "backend/nvhttp.h"
 #include "backend/richpresencemanager.h"
 
 #include <Limelight.h>
@@ -43,6 +45,8 @@
 #include <QTimer>
 #include <QClipboard>
 #include <QPointer>
+
+#include <exception>
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QQuickOpenGLUtils>
@@ -582,9 +586,13 @@ Session::Session(NvComputer* computer, NvApp& app, StreamingPreferences *prefere
       m_MouseEmulationRefCount(0),
       m_FlushingWindowEventsRef(0),
       m_ShouldExit(false),
+      m_ClipboardAddress(),
+      m_ClipboardHttpsPort(0),
+      m_ClipboardCertificate(),
+      m_ClipboardUseTrueUid(false),
       m_ClipboardPollTimer(nullptr),
       m_ClipboardSendTimer(nullptr),
-      m_ClipboardRequestInFlight(false),
+      m_ClipboardState(),
       m_SuppressClipboardSend(false),
       m_AsyncConnectionSuccess(false),
       m_PortTestResults(0),
@@ -1780,11 +1788,33 @@ void Session::setShouldExit(bool quitHostApp)
     m_ShouldExit = true;
 }
 
+void Session::captureClipboardConnection()
+{
+    if (!m_Computer) {
+        return;
+    }
+
+    QReadLocker locker(&m_Computer->lock);
+    m_ClipboardAddress = m_Computer->activeAddress;
+    m_ClipboardHttpsPort = m_Computer->activeHttpsPort;
+    m_ClipboardCertificate = m_Computer->serverCert;
+    m_ClipboardUseTrueUid = !m_Computer->isNvidiaServerSoftware;
+}
+
 void Session::startClipboardSync()
 {
     if (!m_Preferences->clipboardSync || !m_Computer->isApolloHost) {
         return;
     }
+
+    // Snapshot the connection while the host is still guaranteed to be alive.
+    // The clipboard worker must never dereference Session or NvComputer.
+    captureClipboardConnection();
+
+    // The worker only writes into this reference-counted state. It never
+    // touches Session or NvComputer, so it remains safe if the host or the
+    // session is destroyed while a request is in flight.
+    m_ClipboardState = QSharedPointer<ClipboardSyncState>::create();
 
     // Poll the host clipboard and mirror it locally. Polling (rather than
     // only reading on demand) is what makes copy/paste feel bidirectional
@@ -1825,81 +1855,80 @@ void Session::stopClipboardSync()
         m_ClipboardSendTimer->deleteLater();
         m_ClipboardSendTimer = nullptr;
     }
+
+    // An in-flight worker keeps its own strong reference to the state and
+    // simply finishes without touching the UI.
+    m_ClipboardState.clear();
 }
 
 void Session::pollHostClipboard()
 {
-    if (m_ClipboardRequestInFlight) {
+    // Apply a result from the previous request on the GUI thread before
+    // dispatching another one.
+    applyPendingRemoteClipboard();
+
+    auto state = m_ClipboardState;
+    if (!state || m_ClipboardAddress.isNull()) {
         return;
     }
 
-    m_ClipboardRequestInFlight = true;
+    {
+        QMutexLocker locker(&state->mutex);
+        if (state->requestInFlight) {
+            return;
+        }
+        state->requestInFlight = true;
+    }
 
-    QPointer<Session> session(this);
-    NvComputer* computer = m_Computer;
-    QThreadPool::globalInstance()->start(QRunnable::create([session, computer]() {
+    const NvAddress address = m_ClipboardAddress;
+    const uint16_t httpsPort = m_ClipboardHttpsPort;
+    const QSslCertificate certificate = m_ClipboardCertificate;
+    const bool useTrueUid = m_ClipboardUseTrueUid;
+
+    QThreadPool::globalInstance()->start(QRunnable::create(
+        [state, address, httpsPort, certificate, useTrueUid]() {
         QString text;
+        bool success = false;
+
         try {
-            NvHTTP http(computer);
+            NvHTTP http(address, httpsPort, certificate, useTrueUid);
             text = http.getClipboardText();
+            success = true;
+        } catch (const std::exception& e) {
+            qWarning() << "Clipboard poll failed:" << e.what();
         } catch (...) {
-            // Clipboard sync is best-effort.
+            qWarning() << "Clipboard poll failed with an unknown error";
         }
 
-        if (!session) {
+        QMutexLocker locker(&state->mutex);
+        state->requestInFlight = false;
+
+        if (success && !text.isEmpty()) {
+            state->pendingRemoteText = text;
+            state->hasPendingRemoteText = true;
+        }
+    }));
+}
+
+void Session::applyPendingRemoteClipboard()
+{
+    auto state = m_ClipboardState;
+    if (!state) {
+        return;
+    }
+
+    QString text;
+    {
+        QMutexLocker locker(&state->mutex);
+        if (!state->hasPendingRemoteText) {
             return;
         }
 
-        QMetaObject::invokeMethod(session.data(), [session, text]() {
-            if (!session) {
-                return;
-            }
-
-            session->m_ClipboardRequestInFlight = false;
-
-            if (text.isEmpty() || text == session->m_LastHostClipboard) {
-                return;
-            }
-
-            session->m_LastHostClipboard = text;
-
-            QClipboard* clipboard = QGuiApplication::clipboard();
-            if (clipboard->text() != text) {
-                session->m_SuppressClipboardSend = true;
-                clipboard->setText(text);
-                session->m_SuppressClipboardSend = false;
-            }
-        }, Qt::QueuedConnection);
-    }));
-}
-
-void Session::sendLocalClipboard()
-{
-    if (!m_Preferences->clipboardSync || !m_Computer->isApolloHost) {
-        return;
+        text = state->pendingRemoteText;
+        state->pendingRemoteText.clear();
+        state->hasPendingRemoteText = false;
     }
 
-    const QString text = QGuiApplication::clipboard()->text();
-    if (text.isEmpty() || text == m_LastHostClipboard || text.size() > 256 * 1024) {
-        return;
-    }
-
-    m_LastHostClipboard = text;
-
-    NvComputer* computer = m_Computer;
-    QThreadPool::globalInstance()->start(QRunnable::create([computer, text]() {
-        try {
-            NvHTTP http(computer);
-            http.setClipboardText(text);
-        } catch (...) {
-            // Clipboard sync is best-effort.
-        }
-    }));
-}
-
-void Session::handleClipboardFromHost(const QString& text)
-{
-    // Kept for compatibility with future host-initiated clipboard messages.
     if (text.isEmpty() || text == m_LastHostClipboard) {
         return;
     }
@@ -1912,6 +1941,41 @@ void Session::handleClipboardFromHost(const QString& text)
         clipboard->setText(text);
         m_SuppressClipboardSend = false;
     }
+}
+
+void Session::sendLocalClipboard()
+{
+    if (!m_Preferences->clipboardSync || !m_Computer->isApolloHost || !m_ClipboardState) {
+        return;
+    }
+
+    const QString text = QGuiApplication::clipboard()->text();
+    if (text.isEmpty() || text == m_LastHostClipboard || text.toUtf8().size() > 256 * 1024) {
+        return;
+    }
+
+    m_LastHostClipboard = text;
+
+    const NvAddress address = m_ClipboardAddress;
+    const uint16_t httpsPort = m_ClipboardHttpsPort;
+    const QSslCertificate certificate = m_ClipboardCertificate;
+    const bool useTrueUid = m_ClipboardUseTrueUid;
+
+    if (address.isNull()) {
+        return;
+    }
+
+    QThreadPool::globalInstance()->start(QRunnable::create(
+        [address, httpsPort, certificate, useTrueUid, text]() {
+        try {
+            NvHTTP http(address, httpsPort, certificate, useTrueUid);
+            http.setClipboardText(text);
+        } catch (const std::exception& e) {
+            qWarning() << "Clipboard send failed:" << e.what();
+        } catch (...) {
+            qWarning() << "Clipboard send failed with an unknown error";
+        }
+    }));
 }
 
 void Session::start()

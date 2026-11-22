@@ -5,6 +5,7 @@ import QtQuick.Controls.Material 2.2
 import AppModel 1.0
 import ComputerManager 1.0
 import SdlGamepadKeyNavigation 1.0
+import StreamingPreferences 1.0
 import Artemis 1.0
 
 CenteredGridView {
@@ -13,6 +14,7 @@ CenteredGridView {
     property bool activated
     property bool showHiddenGames
     property bool showGames
+    property bool remoteDesktop
     property string statusText: appGrid.count + (appGrid.count === 1 ? qsTr(" app") : qsTr(" apps"))
 
     id: appGrid
@@ -45,7 +47,25 @@ CenteredGridView {
             currentIndex = 0
         }
 
-        if (!showGames && !showHiddenGames) {
+        if (remoteDesktop && !showGames) {
+            // "Remote desktop" from the PC context menu: use the host's
+            // Desktop app and absolute mouse mode for a TeamViewer-like
+            // experience.
+            var desktopIndex = model.getDesktopAppIndex()
+            if (desktopIndex >= 0) {
+                StreamingPreferences.absoluteMouseMode = true
+                StreamingPreferences.save()
+                currentIndex = desktopIndex
+                currentItem.launchOrResumeSelectedApp(true)
+            }
+            else {
+                remoteDesktopUnavailableDialog.open()
+            }
+
+            // Don't retry automatically when returning from the stream.
+            showGames = true
+        }
+        else if (!showGames && !showHiddenGames) {
             // Check if there's a direct launch app
             var directLaunchAppIndex = model.getDirectLaunchAppIndex();
             if (directLaunchAppIndex >= 0) {
@@ -181,6 +201,7 @@ CenteredGridView {
         Loader {
             active: model.running
             asynchronous: true
+            z: 1
             anchors.fill: parent
 
             sourceComponent: Row {
@@ -304,13 +325,10 @@ CenteredGridView {
         }
 
         onClicked: {
-            // Only allow clicking on the box art for non-running games.
-            // For running games, buttons will appear to resume or quit which
-            // will handle starting the game and clicks on the box art will
-            // be ignored.
-            if (!model.running) {
-                launchOrResumeSelectedApp(true)
-            }
+            // Single click launches a stopped app or resumes the running
+            // one. The explicit Resume/Quit buttons remain available on the
+            // card for running games.
+            launchOrResumeSelectedApp(true)
         }
 
         onPressAndHold: {
@@ -327,31 +345,24 @@ CenteredGridView {
         MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.RightButton;
+
+            // Let left clicks reach the ItemDelegate so a single click can
+            // launch or resume the app.
+            onPressed: function(mouse) {
+                mouse.accepted = (mouse.button === Qt.RightButton)
+            }
+
             onClicked: {
                 parent.pressAndHold()
             }
         }
 
         Keys.onReturnPressed: {
-            // Open the app context menu if activated via the gamepad or keyboard
-            // for running games. If the game isn't running, the above onClicked
-            // method will handle the launch.
-            if (model.running) {
-                // This will be keyboard/gamepad driven so use
-                // open() instead of popup()
-                appContextMenu.open()
-            }
+            clicked()
         }
 
         Keys.onEnterPressed: {
-            // Open the app context menu if activated via the gamepad or keyboard
-            // for running games. If the game isn't running, the above onClicked
-            // method will handle the launch.
-            if (model.running) {
-                // This will be keyboard/gamepad driven so use
-                // open() instead of popup()
-                appContextMenu.open()
-            }
+            clicked()
         }
 
         Keys.onMenuPressed: {
@@ -374,6 +385,19 @@ CenteredGridView {
                 NavigableMenuItem {
                     text: model.running ? qsTr("Resume Game") : qsTr("Launch Game")
                     onTriggered: launchOrResumeSelectedApp(true)
+                }
+                NavigableMenuItem {
+                    text: qsTr("Open in remote desktop mode")
+                    onTriggered: {
+                        StreamingPreferences.absoluteMouseMode = true
+                        StreamingPreferences.save()
+                        launchOrResumeSelectedApp(true)
+                    }
+
+                    ToolTip.text: qsTr("Use absolute mouse mode so the client cursor controls the host desktop directly")
+                    ToolTip.delay: 1000
+                    ToolTip.timeout: 5000
+                    ToolTip.visible: hovered
                 }
                 NavigableMenuItem {
                     text: qsTr("Quit Game")
@@ -448,6 +472,13 @@ CenteredGridView {
         }
 
         onAccepted: quitApp()
+    }
+
+    NavigableMessageDialog {
+        id: remoteDesktopUnavailableDialog
+        text: qsTr("This host does not expose a Desktop app. Add a desktop app in Apollo/Sunshine or launch an app manually.")
+        standardButtons: Dialog.Ok
+        imageSrc: "qrc:/res/baseline-warning-24px.svg"
     }
 
     ScrollBar.vertical: ScrollBar {}

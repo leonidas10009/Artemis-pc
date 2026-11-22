@@ -433,10 +433,15 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("artemis2026.local");
     QCoreApplication::setApplicationName("Artemis");
 
-    if (QFile(QDir::currentPath() + "/portable.dat").exists()) {
+    // Portable mode is determined by the executable directory, not by the
+    // process working directory. Otherwise launching the portable build from
+    // a shortcut or another directory would silently use the installed
+    // configuration instead.
+    const QString appDir = Path::getExecutableDir();
+    if (QFile(appDir + "/portable.dat").exists()) {
         QSettings::setDefaultFormat(QSettings::IniFormat);
-        QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, QDir::currentPath());
-        QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, QDir::currentPath());
+        QSettings::setPath(QSettings::IniFormat, QSettings::UserScope, appDir);
+        QSettings::setPath(QSettings::IniFormat, QSettings::SystemScope, appDir);
 
         // Initialize paths for portable mode
         Path::initialize(true);

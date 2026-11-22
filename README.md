@@ -3,7 +3,7 @@
 Cliente de escritorio para **Apollo/Sunshine**, basado en **Moonlight Qt 6.2.0**.
 Es la versión PC del proyecto **Artemis 2026**, con la interfaz y los temas de Apollo 2026.
 
-> **Versión:** `1.0.0`
+> **Versión:** `1.1.0`
 > **Base:** Moonlight Qt `6.2.0`
 > **Repositorio:** <https://github.com/leonidas10009/Artemis-pc>
 > **Host recomendado:** [Apollo 2026](https://github.com/leonidas10009/Apollo_2026)
@@ -24,6 +24,7 @@ Este es un fork no oficial. No está afiliado a Moonlight Stream, LizardByte ni 
 - **Navegación lateral:** Equipos, Ajustes, Ayuda y Añadir PC en la sidebar; la barra superior queda limpia con atrás, título y tema.
 - **Ventana de escritorio:** tamaño mínimo, geometría recordada y barra de estado con información contextual.
 - **Tarjetas de apps:** portada completa, fondo oscurecido, nombre integrado en la parte inferior y efecto hover.
+- **Lanzamiento directo:** un clic en una tarjeta de app la lanza o reanuda; botón **Remote desktop** en la tarjeta del PC.
 - **Funciones Apollo:**
   - **Comandos de energía** desde el menú contextual del PC: apagar, reiniciar y cancelar apagado.
   - **Pantalla virtual Apollo** (SudoVDA) al iniciar el stream.
@@ -60,7 +61,7 @@ La versión portable y el instalador se publican en
 
 ### Instalador (recomendado)
 
-1. Descarga `ArtemisSetup-1.0.0-win64.exe`.
+1. Descarga `ArtemisSetup-1.1.0-win64.exe`.
 2. Ejecútalo y sigue el asistente.
 3. Se instala en `Program Files\Artemis 2026` y crea acceso directo.
 4. Desinstala desde **Configuración → Aplicaciones**.
@@ -70,7 +71,7 @@ La versión portable y el instalador se publican en
 
 ### Versión portable
 
-1. Descarga `Artemis-1.0.0-win64.zip`.
+1. Descarga `Artemis-1.1.0-win64.zip`.
 2. Extrae en una carpeta propia.
 3. Ejecuta `Artemis.exe`.
 4. Añade tu PC Apollo por descubrimiento automático o manualmente.
@@ -103,8 +104,37 @@ al iniciar el stream cuando detecta que faltan estos permisos.
 - `Ctrl+Alt+Shift+Z` libera o vuelve a capturar el ratón y el teclado.
 - `Ctrl+Alt+Shift+M` cambia entre modo ratón para juegos y modo escritorio remoto.
 - `Ctrl+Alt+Shift+K` activa o desactiva la captura de atajos del sistema.
+- `Ctrl+Alt+Shift+Q` desconecta la sesión (la app del host sigue abierta).
+- `Ctrl+Alt+Shift+E` cierra la app del host y desconecta.
+- `Ctrl+Alt+Shift+X` alterna pantalla completa.
+- `Ctrl+Alt+Shift+D` minimiza la ventana del stream.
+- `Ctrl+Alt+Shift+S` muestra u oculta el overlay de rendimiento.
+- `Ctrl+Alt+Shift+V` pega el texto del portapapeles local en el host.
+- Con mando: `Start+Select+L1+R1` desconecta.
 - Si prefieres capturar manualmente, desactiva
   **“Capture keyboard and mouse automatically when the stream starts”** en Ajustes → Entrada.
+
+### Escritorio remoto
+
+Para usar Artemis como un acceso remoto sencillo:
+
+1. En la tarjeta del PC, pulsa el botón **Remote desktop** que aparece al pasar
+   el ratón, o usa el menú contextual → **Remote desktop**.
+2. Artemis abrirá la app **Desktop** del host y activará el modo de ratón
+   absoluto. El cursor del cliente se mueve directamente por el escritorio del
+   host, sin quedar atrapado en la ventana.
+3. Si el host no tiene una app Desktop, créala en Apollo/Sunshine o lanza
+   cualquier app desde la parrilla.
+4. Para salir: `Ctrl+Alt+Shift+Q` (desconectar) o `Ctrl+Alt+Shift+E` (cerrar
+   la app del host y salir). `Ctrl+Alt+Shift+Z` libera el ratón si necesitas
+   usar la barra de título o el botón de cerrar.
+5. `Ctrl+Alt+Shift+M` vuelve al modo de ratón para juegos y
+   `Ctrl+Alt+Shift+X` alterna pantalla completa.
+6. También puedes usar el menú contextual de cualquier app →
+   **Open in remote desktop mode**.
+
+También puedes activar **“Optimize mouse for remote desktop instead of games”**
+en Ajustes → Entrada para usar ese modo por defecto en cualquier app.
 
 ### Comandos de energía
 
@@ -219,17 +249,43 @@ Genera:
 
 - `build\build-x64-release\Artemis.msi`
 - `dist\installer\ArtemisSetup.exe`
-- `Release\ArtemisSetup-1.0.0-win64.exe`
+- `Release\ArtemisSetup-1.1.0-win64.exe`
+- `Release\SHA256SUMS.txt`
+- `Release\BUILD_INFO.txt`
 
-### 5. CI en GitHub Actions
+### 5. Pruebas
+
+El proyecto incluye una primera suite de pruebas con Qt Test:
+
+```powershell
+$env:PATH = "E:\Qt\6.11.3\msvc2022_64\bin;$env:PATH"
+mkdir build\tests
+cd build\tests
+qmake ..\..\tests\tests.pro CONFIG+=release
+nmake release
+.\release\artemis_tests.exe -o test-results.txt,txt
+Get-Content test-results.txt
+```
+
+Cubre el catálogo de temas, los tokens obligatorios, los nombres visibles,
+la selección persistente y la señal `themeChanged`. La suite se ejecuta en CI
+en cada push y pull request.
+
+### 6. CI en GitHub Actions
 
 `.github/workflows/windows.yml` compila en un runner `windows-2025` con
-Qt 6.11.3, MSVC y WiX. Genera el portable y el instalador, los sube como
-artefactos de Actions y, en tags `v*`, crea la release automáticamente.
+Qt 6.11.3, MSVC y WiX. En cada push a `main` y en cada pull request:
 
-Se ejecuta manualmente (`workflow_dispatch`) o al crear un tag; no en cada push.
+- valida las traducciones con `lrelease`;
+- ejecuta `qmllint` sobre todas las vistas QML;
+- compila y ejecuta las pruebas unitarias;
+- compila el portable y el instalador.
+
+En tags `v*` publica la release con el ZIP, el instalador, `SHA256SUMS.txt` y
+`BUILD_INFO.txt`. El workflow se puede lanzar manualmente con
+`workflow_dispatch`.
+
 GitHub Actions es gratuito para repositorios públicos con uso razonable.
-La ejecución manual de CI terminó correctamente generando el portable y el instalador.
 
 ---
 
@@ -273,12 +329,15 @@ artemis-pc-2026/
 │  ├─ res/              # Iconos y recursos
 │  ├─ themes.json       # Tokens de los 22 temas
 │  └─ app.pro
+├─ tests/               # Pruebas unitarias con Qt Test
 ├─ moonlight-common-c/  # Núcleo (submódulo)
 ├─ qmdnsengine/         # Descubrimiento mDNS (submódulo)
 ├─ libs/windows/        # Dependencias precompiladas (no versionadas)
 ├─ scripts/             # Scripts de compilación
 ├─ wix/                 # Instalador WiX
 ├─ dist/                # Salida portable (no versionada)
+├─ docs/reviews/        # Revisiones técnicas
+├─ THIRD_PARTY_NOTICES.md
 └─ MEMORIA_ARTEMIS_PC.md
 ```
 

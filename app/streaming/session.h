@@ -2,11 +2,15 @@
 
 #include <QSemaphore>
 #include <QQuickWindow>
+#include <QMutex>
+#include <QSharedPointer>
+#include <QSslCertificate>
 
 class QTimer;
 
 #include <Limelight.h>
 #include <opus_multistream.h>
+#include "backend/nvaddress.h"
 #include "settings/streamingpreferences.h"
 #include "input/input.h"
 #include "video/decoder.h"
@@ -91,6 +95,17 @@ public:
     }
 };
 
+// Shared between the GUI thread and the clipboard worker. The worker must not
+// hold a pointer to Session or NvComputer: both can disappear while a request
+// is in flight. It only writes a result into this reference-counted state.
+struct ClipboardSyncState
+{
+    QMutex mutex;
+    bool requestInFlight = false;
+    bool hasPendingRemoteText = false;
+    QString pendingRemoteText;
+};
+
 class Session : public QObject
 {
     Q_OBJECT
@@ -126,8 +141,6 @@ public:
     void flushWindowEvents();
 
     void setShouldExit(bool quitHostApp = false);
-
-    void handleClipboardFromHost(const QString& text);
 
 signals:
     void stageStarting(QString stage);
@@ -169,9 +182,11 @@ private:
     void getWindowDimensions(int& x, int& y,
                              int& width, int& height);
 
+    void captureClipboardConnection();
     void startClipboardSync();
     void stopClipboardSync();
     void pollHostClipboard();
+    void applyPendingRemoteClipboard();
     void sendLocalClipboard();
 
     void toggleFullscreen();
@@ -274,10 +289,16 @@ private:
     QStringList m_LaunchWarnings;
     bool m_ShouldExit;
 
+    // Immutable snapshot of the host connection used by clipboard workers.
+    NvAddress m_ClipboardAddress;
+    uint16_t m_ClipboardHttpsPort;
+    QSslCertificate m_ClipboardCertificate;
+    bool m_ClipboardUseTrueUid;
+
     QTimer* m_ClipboardPollTimer;
     QTimer* m_ClipboardSendTimer;
     QString m_LastHostClipboard;
-    bool m_ClipboardRequestInFlight;
+    QSharedPointer<ClipboardSyncState> m_ClipboardState;
     bool m_SuppressClipboardSend;
 
     bool m_AsyncConnectionSuccess;

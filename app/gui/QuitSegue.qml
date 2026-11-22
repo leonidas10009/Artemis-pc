@@ -7,7 +7,7 @@ import Session 1.0
 Item {
     property string appName
     property var quitRunningAppFn
-    property Session nextSession : null
+    property Session nextSession
     property string nextAppName : ""
 
     property string stageText : qsTr("Quitting %1...").arg(appName)

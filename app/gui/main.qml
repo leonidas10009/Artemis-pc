@@ -131,19 +131,28 @@ ApplicationWindow {
         }
     }
 
-    // It would be better to use TextMetrics here, but it always lays out
-    // the text slightly more compactly than real Text does in ToolTip,
-    // causing unexpected line breaks to be inserted
-    Text {
-        id: tooltipTextLayoutHelper
+    // ToolTip.toolTip is an attached property that must live on an Item, not
+    // on ApplicationWindow (which is a Window). Keep the configuration and
+    // the text measurement helper inside this invisible Item.
+    Item {
+        id: tooltipConfig
         visible: false
-        font: ToolTip.toolTip.font
-        text: ToolTip.toolTip.text
-    }
 
-    // This configures the maximum width of the singleton attached QML ToolTip. If left unconstrained,
-    // it will never insert a line break and just extend on forever.
-    ToolTip.toolTip.contentWidth: Math.min(tooltipTextLayoutHelper.width, 400)
+        // It would be better to use TextMetrics here, but it always lays out
+        // the text slightly more compactly than real Text does in ToolTip,
+        // causing unexpected line breaks to be inserted
+        Text {
+            id: tooltipTextLayoutHelper
+            visible: false
+            font: ToolTip.toolTip.font
+            text: ToolTip.toolTip.text
+        }
+
+        // This configures the maximum width of the singleton attached QML
+        // ToolTip. If left unconstrained, it will never insert a line break
+        // and just extend on forever.
+        ToolTip.toolTip.contentWidth: Math.min(tooltipTextLayoutHelper.width, 400)
+    }
 
     function goBack() {
         if (clearOnBack) {
@@ -207,7 +216,7 @@ ApplicationWindow {
 
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 1
+                    Layout.preferredHeight: 1
                     color: Theme.colors.border
                     Layout.topMargin: 4
                     Layout.bottomMargin: 4
@@ -239,7 +248,7 @@ ApplicationWindow {
 
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 1
+                    Layout.preferredHeight: 1
                     color: Theme.colors.border
                     Layout.topMargin: 4
                     Layout.bottomMargin: 4
@@ -266,7 +275,7 @@ ApplicationWindow {
 
                 Rectangle {
                     Layout.fillWidth: true
-                    height: 1
+                    Layout.preferredHeight: 1
                     color: Theme.colors.border
                 }
 
@@ -492,19 +501,19 @@ ApplicationWindow {
 
     Shortcut {
         id: newPcShortcut
-        sequence: StandardKey.New
+        sequences: Qt.platform.os === "osx" ? ["Meta+N"] : ["Ctrl+N"]
         onActivated: addPcDialog.open()
     }
 
     Shortcut {
         id: settingsShortcut
-        sequence: StandardKey.Preferences
+        sequences: Qt.platform.os === "osx" ? ["Meta+,"] : ["Ctrl+,"]
         onActivated: navigateTo("qrc:/gui/SettingsView.qml", SettingsView)
     }
 
     Shortcut {
         id: helpShortcut
-        sequence: StandardKey.HelpContents
+        sequences: Qt.platform.os === "osx" ? ["Meta+?"] : ["F1"]
         onActivated: Qt.openUrlExternally("https://github.com/leonidas10009/Artemis-pc")
     }
 
@@ -648,8 +657,8 @@ ApplicationWindow {
                             contentItem: RowLayout {
                                 spacing: 8
                                 Rectangle {
-                                    width: 12
-                                    height: 12
+                                    Layout.preferredWidth: 12
+                                    Layout.preferredHeight: 12
                                     radius: 6
                                     color: darkThemeItem.tokenColors.primary
                                 }
@@ -710,8 +719,8 @@ ApplicationWindow {
                             contentItem: RowLayout {
                                 spacing: 8
                                 Rectangle {
-                                    width: 12
-                                    height: 12
+                                    Layout.preferredWidth: 12
+                                    Layout.preferredHeight: 12
                                     radius: 6
                                     color: lightThemeItem.tokenColors.primary
                                 }

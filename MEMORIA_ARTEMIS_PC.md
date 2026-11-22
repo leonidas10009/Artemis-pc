@@ -4,7 +4,7 @@
 > Última actualización: **2026-11-22**.
 > Ruta del proyecto: `E:\ProyectoProgramacion\apolo_V2026\artemis_pc_V2026\artemis-pc-2026`
 > Repositorio: <https://github.com/leonidas10009/Artemis-pc>
-> Versión actual: **1.0.0**.
+> Versión actual: **1.1.0**.
 
 ---
 
@@ -16,7 +16,7 @@
 - **Temas:** 22 (10 oscuros, 12 claros) con tokens copiados de `sunshine.css` de Apollo.
 - **Funciones Apollo:** comandos de energía, pantalla virtual, portapapeles y detección de permisos.
 - **Entrada:** captura automática de teclado/ratón al iniciar el stream.
-- **Estado:** compila y arranca en Windows 11. Portable e instalador 1.0.0 generados,
+- **Estado:** compila y arranca en Windows 11. Portable e instalador 1.1.0 generados,
   probados y publicados en GitHub. CI de Windows verificada (portable + instalador).
 
 ---
@@ -27,16 +27,16 @@
 |---|---|
 | Nombre | Artemis PC 2026 |
 | Ejecutable | `Artemis.exe` |
-| Versión | 1.0.0 |
+| Versión | 1.1.0 |
 | Repositorio | `https://github.com/leonidas10009/Artemis-pc` |
 | Proyecto | `E:\ProyectoProgramacion\apolo_V2026\artemis_pc_V2026\artemis-pc-2026` |
 | Salida de compilación | `build\build-x64-release\app\release\Artemis.exe` |
 | Instalador MSI | `build\build-x64-release\Artemis.msi` |
 | Instalador EXE | `dist\installer\ArtemisSetup.exe` |
 | Distribución portable | `dist\ArtemisPortable` |
-| Paquete portable | `Release\Artemis-1.0.0-win64.zip` |
-| Paquete instalador | `Release\ArtemisSetup-1.0.0-win64.exe` |
-| Release pública | `https://github.com/leonidas10009/Artemis-pc/releases/tag/v1.0.0` |
+| Paquete portable | `Release\Artemis-1.1.0-win64.zip` |
+| Paquete instalador | `Release\ArtemisSetup-1.1.0-win64.exe` |
+| Release pública | `https://github.com/leonidas10009/Artemis-pc/releases/tag/v1.1.0` |
 | SHA-256 | Se publica junto a cada asset en la release |
 | Config portable | `dist\ArtemisPortable\Artemis 2026 Project\Artemis.ini` |
 | Host Apollo | `E:\ProyectoProgramacion\apolo_V2026\_update\Release` |
@@ -72,7 +72,7 @@ Submódulos:
 
 Cambios de identidad:
 
-- `app/version.txt` → `1.0.0`.
+- `app/version.txt` → `1.1.0`.
 - `app/app.pro`: `TARGET = Artemis`, icono `artemis.ico`, empresa y descripción.
 - `app/main.cpp`: nombre de organización, dominio, aplicación, logs `Artemis-*.log`,
   icono `:/res/artemis.png`, `com.leonidas10009.Artemis`.
@@ -331,14 +331,29 @@ ya lleva las DLL del runtime.
 
 ### 7.5 CI
 
-`.github/workflows/windows.yml` compila en `windows-2025` con Qt 6.11.3 y MSVC,
-genera el portable y el instalador, y los sube como artefactos. En tags `v*`
-también crea una release de GitHub. No se ejecuta en cada push normal, solo
-manual o por tag, para no generar correos de fallos.
+`.github/workflows/windows.yml` compila en `windows-2025` con Qt 6.11.3 y MSVC.
+En cada push a `main` y en cada pull request valida traducciones con `lrelease`,
+ejecuta `qmllint` y las pruebas unitarias, y genera el portable y el instalador.
+En tags `v*` crea la release de GitHub con los binarios, `SHA256SUMS.txt` y
+`BUILD_INFO.txt`.
 
 ---
 
 ## 8. Estado y pendientes
+
+### Versión 1.1.0 (2026-11-22)
+
+- **Remote desktop** con botón en la tarjeta del PC, entrada en el menú
+  contextual y modo de ratón absoluto.
+- Entrada **Open in remote desktop mode** para cualquier app.
+- Un clic en una tarjeta de app lanza o reanuda la app.
+- Diálogo **Stream shortcuts...**, guía en Ajustes → Entrada y aviso al iniciar
+  el stream.
+- Correcciones P1: modo portable, validación Apollo, concurrencia del
+  portapapeles y límite de 256 KB.
+- CI en push/PR, `qmllint`, `lrelease` y pruebas Qt Test.
+- `LICENSE` y `THIRD_PARTY_NOTICES.md` en portable/MSI; `SHA256SUMS.txt` y
+  `BUILD_INFO.txt` en la release.
 
 ### Hecho
 
@@ -354,10 +369,35 @@ manual o por tag, para no generar correos de fallos.
 - Captura automática de entrada.
 - Iconos claros/oscuras.
 - README y esta memoria.
-- Paquete portable `Artemis-1.0.0-win64.zip`.
-- Instalador `ArtemisSetup-1.0.0-win64.exe` (MSI + bootstrapper WiX).
+- Paquete portable `Artemis-1.1.0-win64.zip`.
+- Instalador `ArtemisSetup-1.1.0-win64.exe` (MSI + bootstrapper WiX).
 - Traducciones al español de las cadenas nuevas.
 - CI propia de Windows (Qt 6.11.3 + MSVC + WiX).
+
+### Correcciones aplicadas (2026-11-22)
+
+- El modo portable se detecta por el directorio del ejecutable, no por el
+  directorio de trabajo (`Path::getExecutableDir`).
+- Los endpoints Apollo (`servercmd`, portapapeles) validan el `status_code`
+  de aplicación cuando la respuesta es un documento XML.
+- El portapapeles usa una instantánea inmutable de la conexión y un estado
+  compartido; los hilos ya no capturan `NvComputer*` ni `Session*`.
+- Límite de 256 KB para el texto recibido del portapapeles y registro de
+  errores en lugar de `catch (...)` vacío.
+- El CI se ejecuta en push a `main` y en pull requests; valida traducciones con
+  `lrelease`, ejecuta `qmllint`, compila y ejecuta pruebas con Qt Test.
+- El despliegue portable incluye `LICENSE`, `THIRD_PARTY_NOTICES.md` y usa el
+  runtime VC++ oficial; genera `SHA256SUMS.txt` y `BUILD_INFO.txt`.
+- El selector de tema de Ajustes se sincroniza si el tema cambia desde la
+  barra superior, y se corrigieron los avisos de layout de `main.qml`.
+- Un clic en una tarjeta de app la lanza o reanuda directamente; ya no hace
+  falta pulsar el botón de play para una app en ejecución.
+- Nuevo botón **Remote desktop** en la tarjeta del PC y entrada en el menú
+  contextual: abre la app Desktop del host con ratón absoluto.
+- Nuevo diálogo **Stream shortcuts** en el menú contextual del PC y guía de
+  atajos en Ajustes → Entrada y en la pantalla de inicio del stream.
+- Atajos documentados: `Ctrl+Alt+Shift+Q/E/Z/M/X/D/S/V` y
+  `Start+Select+L1+R1` en mando.
 
 ### Pendiente
 
@@ -365,8 +405,9 @@ manual o por tag, para no generar correos de fallos.
 - Verificar el menú de temas con navegación completa por teclado/gamepad.
 - Añadir capturas reales al README.
 - Probar energía, portapapeles y pantalla virtual end-to-end con Apollo.
-- Revisar el aviso `ToolTip attached property must be attached to an object deriving from Item`
-  (preexistente, no bloqueante).
+- Añadir pruebas de integración para portapapeles, comandos Apollo y Remote desktop.
+- Condicionar la limpieza de `%LOCALAPPDATA%` del instalador a `NOT UPGRADINGPRODUCTCODE`.
+- Crear una rama vendor de Moonlight o una serie de parches para absorber correcciones upstream.
 
 ---
 
@@ -378,7 +419,7 @@ Estado actual:
 
 - `origin` apunta a `Artemis-pc`; `upstream` conserva Moonlight Qt.
 - Rama `main` con un commit inicial limpio (sin historial de Moonlight).
-- Release `v1.0.0` publicada con instalador y portable.
+- Release `v1.1.0` publicada con instalador y portable.
 - CI propia en `.github/workflows/windows.yml`.
 
 Para actualizar:

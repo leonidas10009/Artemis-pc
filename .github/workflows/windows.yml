@@ -3,11 +3,18 @@ name: Artemis PC Windows CI
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     tags:
       - "v*"
+  pull_request:
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -41,6 +48,56 @@ jobs:
         with:
           arch: x64
 
+      - name: Validate translations
+        shell: pwsh
+        run: |
+          $lrelease = "C:\Qt\6.11.3\msvc2022_64\bin\lrelease.exe"
+          Get-ChildItem app\languages -Filter *.ts | ForEach-Object {
+            & $lrelease -silent $_.FullName
+            if ($LASTEXITCODE -ne 0) {
+              throw "lrelease failed for $($_.Name)"
+            }
+          }
+
+      - name: Lint QML
+        shell: pwsh
+        run: |
+          Push-Location app\gui
+          try {
+            $files = Get-ChildItem -Filter *.qml | ForEach-Object { $_.Name }
+            $log = Join-Path $env:RUNNER_TEMP "qmllint.txt"
+            & "C:\Qt\6.11.3\msvc2022_64\bin\qmllint.exe" @files *> $log
+            $lintExit = $LASTEXITCODE
+            Get-Content $log
+            if ($lintExit -ne 0) {
+              throw "qmllint reported warnings"
+            }
+          } finally {
+            Pop-Location
+          }
+
+      - name: Build and run unit tests
+        shell: pwsh
+        run: |
+          $env:PATH = "C:\Qt\6.11.3\msvc2022_64\bin;$env:PATH"
+          New-Item -ItemType Directory -Force -Path build\tests | Out-Null
+          Set-Location build\tests
+          qmake ..\..\tests\tests.pro CONFIG+=release
+          if ($LASTEXITCODE -ne 0) {
+            throw "qmake for tests failed"
+          }
+          nmake release
+          if ($LASTEXITCODE -ne 0) {
+            throw "building tests failed"
+          }
+          $result = Join-Path $env:RUNNER_TEMP "artemis-tests.txt"
+          & .\release\artemis_tests.exe -o "$result,txt"
+          $testExit = $LASTEXITCODE
+          Get-Content $result
+          if ($testExit -ne 0) {
+            throw "unit tests failed"
+          }
+
       - name: Fetch dependencies
         shell: pwsh
         run: |
@@ -71,20 +128,38 @@ jobs:
         shell: pwsh
         run: ./scripts/build-installer.ps1 -Root "${{ github.workspace }}" -BuildDir "build\ci"
 
-      - name: Upload portable ZIP
+      - name: Upload release assets
         uses: actions/upload-artifact@v4
         with:
           name: Artemis-win64
           path: |
             Release/*.zip
             Release/*.exe
+            Release/SHA256SUMS.txt
+            Release/BUILD_INFO.txt
           if-no-files-found: error
 
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download release assets
+        uses: actions/download-artifact@v4
+        with:
+          name: Artemis-win64
+          path: Release
+
       - name: Publish GitHub release
-        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
           files: |
             Release/*.zip
             Release/*.exe
+            Release/SHA256SUMS.txt
+            Release/BUILD_INFO.txt
           generate_release_notes: true
