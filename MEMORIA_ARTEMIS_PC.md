@@ -59,8 +59,10 @@
 ### 2.1 Base Moonlight Qt 6.2.0
 
 Se partió del código de Moonlight Qt 6.2.0. El árbol inicial no tenía `.git`, por lo
-que se clonó el tag `v6.2.0` y se copió su `.git` al proyecto. Los submódulos se
-inicializaron con `git submodule update --init --recursive`.
+que se creó un repositorio propio para Artemis con un commit inicial y sin
+historial de Moonlight. El tag `v6.2.0` se conserva en el remoto `upstream` para
+comparar y absorber cambios. Los submódulos se inicializaron con
+`git submodule update --init --recursive`.
 
 Submódulos:
 
