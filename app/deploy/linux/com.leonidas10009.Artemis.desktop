@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Artemis
+Comment=Stream games from your Apollo PC
+Exec=artemis
+Icon=artemis
+Terminal=false
+Type=Application
+Categories=Qt;Game;Network;RemoteAccess;
+Keywords=nvidia;gamestream;stream;apollo;sunshine;remote play;

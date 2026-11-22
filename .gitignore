@@ -1,0 +1,16 @@
+*pro.user
+
+
+**/.vs/
+.vscode/
+build/
+libs/
+dist/
+Release/
+*.log
+*.ini
+portable.dat
+screenshot*.png
+window_*.png
+config.tests/*/.qmake.stash
+config.tests/*/Makefile
